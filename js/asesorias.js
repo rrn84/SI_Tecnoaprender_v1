@@ -1,18 +1,15 @@
 "option explicit";
 
 var correoUser;
-var regional; //variable para llamar regionales//
 var llevaArchivo = "false";
 
 $(document).ready(function () {
-          eventoCargarDatosIntitucion(); //llama al procedimiento que esta al final
           $.extend($.validator.messages, {
             required: "Campo requerido"
           });
           $('[data-toggle="tooltip"]').tooltip();
           saveSession();
           validacionyEnvioForm();
-          
 
           $("#form_url_file").change(function (e) { 
             e.preventDefault();
@@ -28,10 +25,11 @@ $(document).ready(function () {
           $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correoUser);
           $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
           cargaModalAcercaDe();  
-          selectMediador();
 
+          selectMediador();
           let consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
-          enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php"); 
+          enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php");
+    
   });
   
   function saveSession() {
@@ -82,8 +80,10 @@ $(document).ready(function () {
         $("#btn_asesorias").click(function () {
           if(form.valid()=== true){ 
            console.log("formulario valido");
-                        
-            agregarAsesoria();            
+            
+            
+            agregarAsesoria();
+            
 
             $("#btn_asesorias").prop("disabled", true);
           }
@@ -93,54 +93,43 @@ $(document).ready(function () {
           }
        });
     };
-//---------------------------------------------------------//
-//--------------------Obtener ID CE a mostrar--------------//
-function obtenerIdCe() 
-{
-  //Obtiene el id del string centro educativo
-  let str =  $("#form_idCE").val().split("[");             
-  let res = str[1].slice(4);
-  let idCe = res.slice(0, -1).trim();
-  //console.log(idCe);  
-  return idCe;
-}
-
-
 function agregarAsesoria() {
+  
   //Verifica si hay archivo adjunto
   verificarArchivo();
 
   //Inicia el ajax loader 
   $(".div-shadow").removeClass("invisible");
 
-  const idCe = obtenerIdCe();
-//-------------------------//
+
+//Obtiene el id del string centro educativo
+let str =  $("#form_idCE").val().split("[");             
+let res = str[1].slice(4);
+const idCe = res.slice(0, -1).trim();
+//console.log(idCe);  
+
 var observacionesRegional = $("#form_recomendacionesDR").val();
 
-if (observacionesRegional.length == 0) 
-{
+if (observacionesRegional.length == 0) {
   observacionesRegional = "No aplica"
 }
   let objFile = $("#form_url_file");
   let formData = new FormData();
   
   formData.append("id_CE", idCe );  
-  formData.append("correo_asesor", $("#form_correoAsesor").val() );  
-  formData.append("fecha", $("#form_fecha").val() ); 
   formData.append("medio_visita", $("#form_medio").val() );
-  formData.append("tipo_atencion", $("#form_atencion").val() );
-  formData.append("adquisicion_E", $("#form_adquisicion").val() );
-
+  formData.append("fecha", $("#form_fecha").val() );
   formData.append("objetivos", $("#form_objetivos").val() );
   formData.append("observaciones", $("#form_observaciones").val() );
   formData.append("recomendacion_asesor", $("#form_recomendaciones").val() );
   formData.append("recomendacion_dr",  observacionesRegional );
-  
-
+  formData.append("correo_asesor", $("#form_correoAsesor").val() );
+  formData.append("tipo_atencion", $("#form_atencion").val() );
   formData.append("archivo", objFile[0].files[0] ); 
   formData.append("llevaArchivo", llevaArchivo); 
+  
 
-  //-----------------------//
+
   $.ajax({
     url: "../server/agregar_asesoria.php",
     type: 'POST',
@@ -167,13 +156,19 @@ if (observacionesRegional.length == 0)
       alert (response.error)
         console.log(response.error);
         console.log(response.msj); 
+        
     }
   });
+
+  
 }
+
+ 
 
 function selectMediador () {
   $("#form_correoAsesor").val(correoUser);
 }
+
 
 function empaquetarConsulta(c) { 
 
@@ -208,62 +203,23 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url) {
   });
 }
 
-//----------------Cargar centros educativos--------------//
-function cargarCentrosEducativos(stringArray) 
-{
+
+function cargarCentrosEducativos(stringArray) {
   let data = JSON.parse(stringArray),
       availableCentros=[];
-  // console.log(dataset);    
+  // console.log(dataset);  
+  
   //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
   const maxCentros = data.length;
-  for (var index = 0; index < maxCentros; index++) 
-  { 
+
+  for (var index = 0; index < maxCentros; index++) { 
     availableCentros.push( "(COD: " + data[index].cod_pres + ") -"+    data[index].institucion    +  "- [ID: " + data[index].id  + "]");
-  }
-  $( "#form_idCE").autocomplete(
-  {
+   }
+  $( "#form_idCE").autocomplete({
     source: availableCentros
   });
 }
 
-//-------------------------------------------------------//
-//-------------Metodo manejador de Eventos---------------//
-function eventoCargarDatosIntitucion()
-{
-  console.log("eventoClic2");
-      
-    $("#btnCargar").click(function () 
-    {
-      const idCe = obtenerIdCe();
-
-      console.log("CE",idCe);  
-      obtenerJson ("../server/obtener_datos_gestion.php?idCe="+idCe, function (arrayJson) 
-      {
-        console.log("Datos",arrayJson[0]);
-        $("#form_DRegional").val(arrayJson[0].direccion_regional);
-        $("#form_telefonoI").val(arrayJson[0].telefono);
-        $("#form_adquisicion").val(arrayJson[0].equipamento);
-       // $("#form_pcorriente").val(arrayJson[0].tomas);
-      });
-    })  
-}
-
-function obtenerJson (url, mCallback) 
-{
-  fetch(url)
-  .then(function(response) 
-  {
-    return response.json();
-  })
-
-  .then(function(arrayJson) 
-  {
-    mCallback(arrayJson);
-  }); 
-}
-
-
-//-------------------------------------------------------//
 function camposVacios () {
   let isVacio = true;
   if (  $("#form_idCE").val( ) !=""   &&   $("#form_objetivos").val( ) != ""  )    {
@@ -271,6 +227,7 @@ function camposVacios () {
   }
   return isVacio;  
 }
+
 
 function verificarArchivo  () {
   var objFile = $("#form_url_file");  
