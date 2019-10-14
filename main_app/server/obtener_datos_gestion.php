@@ -1,6 +1,15 @@
 <?php
 $idCe = $_GET["idCe"];
 $sql= "SELECT centro_educativo.direccion_regional, centro_educativo.telefono, centro_educativo.equipamiento FROM centro_educativo WHERE centro_educativo.id = '$idCe'";
+
+
+//$sql= "SELECT 
+//centro_educativo.direccion_regional, centro_educativo.telefono, centro_educativo.equipamiento 
+//FROM centro_educativo 
+//INNER JOIN infraestructura.tomas ON  centro_educativo.id=infraestructura.id_CE 
+//WHERE centro_educativo.id = '$idCe'";
+
+
 include "conexion.php";
 sleep(1);
 function desconectar($conexion)

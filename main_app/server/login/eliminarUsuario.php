@@ -2,8 +2,8 @@
 
 
         $servidor = "localhost";
-        $usuario = "prueba_gespro";
-        $password = "Hola123Gespro";
+        $usuario = "root";
+        $password = "";
         $bd = "prueba_ddie";
 				    $mysqli = new mysqli($servidor, $usuario, $password,$bd);
                 if (mysqli_connect_errno()) {

@@ -84,22 +84,19 @@
         </div>
         <br>
         <div class="row row-search">
-          <!-- <div id="#headAcion" class="col-sm-12"></div> -->
+          <!------------------>
 
-          <div class="col-sm-6">
-          
-          <?php 
+          <div class="col-sm-3">
+                    <?php 
             if ($_SESSION["tipo_usuario"]  == "2"  ) {
               echo '<input id="miConsulta" class="form-control m-1" type="text" name="miConsulta" aria-label="Default" required disabled>';
             }  else {
               echo '<input id="miConsulta" class="form-control m-1" type="text" name="miConsulta" placeholder="Digite el código a buscar" aria-label="Default" required>';
             }         
-          ?>
-          
-              
+          ?>  
           </div>
+          
           <div class="col-sm-3">          
-
           <?php
             if ($_SESSION["tipo_usuario"]  != "2"  ) {
               echo '<button id="btnSend" type="submit" class="btn btn-info m-1" alt = "Buscar" title="Buscar">Buscar <i class="fas fa-search"></i></button>';
@@ -730,7 +727,7 @@
 
                       <div class="col-sm-3" >
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1"><!--Error de etiqueta y hace falta el numero8-->
+                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1">
                           <label class="custom-control-label" for="1">Tecnoaprender en Preescolar</label>
                         </div>
                       </div>
@@ -1267,7 +1264,43 @@
                           </div>
                         </div>
                         <br>
+<!-------------Aqui van los campos nuevos----------------->
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Estado del equipo</span>
+                              </div>
+                                <select id ="fonatel_requiere_soporte" class="form-control custom-select form-4-fonatel" name="fonatel_requiere_soporte">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="EXELENTE">EXELENTE</option>
+                                    <option value="BUENO">BUENO</option>
+                                    <option value="REGULAR">REGULAR</option>
+                                    <option value="MALO">MALO</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
+                        </div>
+                        <br>
 
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">¿Está plaqueado el equipo?</span>
+                              </div>
+                                <select id ="fonatel_plaqueo" class="form-control custom-select form-4-fonatel" name="fonatel_plaqueo">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
+                        </div>
+                        <br>
+<!------------------------------------------------------>
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">

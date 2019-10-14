@@ -286,41 +286,52 @@ function dibujarTabla (array, visor) {
       doc.save('asesoria.pdf');
      }
 
-
-  function handlerValidarInforme () {
+    function handlerValidarInforme () {
     let tmpEstado;
-
+  
     $("#formEstado_asesoria").change(function (e) { 
-      e.preventDefault();
-      tmpEstado = e.target.value;
-      console.log(tmpEstado);
+        e.preventDefault();
+        tmpEstado = e.target.value;
+        console.log("Estado:",tmpEstado);
 
-        if (tmpEstado=="disconforme") {
-            $("#visorAlerta").html(
+        if (tmpEstado=="disconforme") 
+        {
+            $("#visorAlerta").html
+            (
               "<div class='alert alert-danger' role='alert'> Es importante que escriba en la caja de texto el por qué está disconforme con la asesoría. </div>"
             );        
-        }    
+        }  
     });
 
-    $("#btnEnviarValidacion").click(function (e) { 
-      e.preventDefault();
-      alertify.confirm("Tecnoaprender", "¿Desea realmente enviar la validación? Una vez enviada no podrá ser cambiada.",
-  function(){    
-      //Ajax envio
-      envioAjax( tmpEstado );
-     //Cierra el modal
-     $("#mdlValidar").modal('hide');
+    $("#btnEnviarValidacion").click(function (e) 
+    { 
+      e.preventDefault(); 
+      tmp= typeof tmpEstado; //Capturo el valor de tmpEstado
+      
+      if (tmp != "undefined")  //Valoro si el contenido es indefinido, si no se cumple la condición, que siga valorando el resto
+      {
+        console.log("Estado:",tmp); //Bandera para ver el estado de la variable
 
-  },
-  function(){
-    console.log("Cancelar");
-    
-  });
-
-
-    
+        alertify.confirm("Tecno@prender", "¿Desea realmente enviar la validación? Una vez enviada no podrá ser cambiada.",
+          function()  
+          {  
+            //Ajax envio
+            envioAjax( tmpEstado );
+            //Cierra el modal
+            $("#mdlValidar").modal('hide');
+          },
+          
+          function()
+          {
+            console.log("Cancelar");
+          });    
+        }
+        else //Si se cumple la condición que alerte al usuario
+        {
+          console.log("Estado:",tmp);//Bandera para ver el estado de la variable
+          alertify.alert("Tecno@prender","Por favor seleccione si esta conforme o disconforme, con el informe.");
+        }
     });
-    
   }
 
 
@@ -334,11 +345,9 @@ function dibujarTabla (array, visor) {
          //Empaquetar datos para Ajax
          console.log("idVisitaActual", idVisitaActual);
          let urlPhp = "../server/actualizar_main.php?tabla=asesoria2&id="+ idVisitaActual + "";
-         
          let formData = new FormData();
          formData.append( "estado_asesoria", tmpEstado);
          formData.append( "observaciones_director", txtObservaciones_director);
-   
          //Ajax
         
      $.ajax({

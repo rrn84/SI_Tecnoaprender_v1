@@ -21,7 +21,7 @@ function saveSession() {
   tipo = sessionStorage.getItem("tipo");
   correoUser = sessionStorage.getItem("correo");
 }
-
+//Seteo de la libreria para los usuarios que se llama Validy//
 function settingsIniciales() {
   $.extend($.validator.messages, {
     required: "Campo requerido",

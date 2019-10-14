@@ -7,8 +7,8 @@ $donde = $_POST['tabla'];
 $sql = "DELETE FROM $donde WHERE `id` = $elemento";
 //echo $elemento;
 $servername = "localhost";
-$username = "prueba_gespro";
-$password = "Hola123Gespro";
+$username = "root";
+$password = "";
 $dbname = "prueba_tecnoaprender";
 
 // Create connection

@@ -301,12 +301,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">¿Están polarizados los tomacorrientes?</span>
                 </div>
-                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" required>
-                <!-- <option value="default" selected>Seleccione...</option> -->
-                    <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                    <option value="SI">SI</option>
-                    <option value="NO">NO</option>
-                  </select>
+                <input id="form_pcorriente" name="form_pcorriente" type="text" class="form-control form-1" aria-label="Default"  placeholder="Tomas " >
                 </div>
                 <div class="error"></div>
               </div>

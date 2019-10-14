@@ -243,6 +243,7 @@ function eventoCargarDatosIntitucion()
         $("#form_DRegional").val(arrayJson[0].direccion_regional);
         $("#form_telefonoI").val(arrayJson[0].telefono);
         $("#form_adquisicion").val(arrayJson[0].equipamento);
+       // $("#form_pcorriente").val(arrayJson[0].tomas);
       });
     })  
 }

@@ -15,6 +15,7 @@ function setupForm5y6 (accion,itemID) {
 
        activaSelect(accion);          
         
+
        $("#btn-aprovechamiento-tecnologico").click(function (e) { 
            e.preventDefault();   
            llenarEspacios();        
@@ -28,6 +29,7 @@ function setupForm5y6 (accion,itemID) {
                         "../server/agregar_main.php?tabla=uso_equipo&id="+idCentroEducativo );           
        });
    
+   
        $("#btn-usoTecPorProyecto").click(function (e) { 
            e.preventDefault();
            $(this).prop("disabled", true);           
@@ -38,6 +40,8 @@ function setupForm5y6 (accion,itemID) {
                           }, 
                         "../server/agregar_main.php?tabla=uso_materias&id="+idCentroEducativo );           
        });
+
+       
 }
 
 function activaSelect(accion) {
@@ -158,6 +162,7 @@ function cargarJson ( mCallBack, url  ) {
                     mCallBack (data );                
                 })
                 .catch(error => console.error(error))                 
+     
 }
 
 function renderizarFormAprovechamientoTec (dataset ) {
@@ -166,10 +171,13 @@ function renderizarFormAprovechamientoTec (dataset ) {
        deshabilitarInput("form-6");
    if(dataset !== undefined) {
        
-    //console.log(dataset);        
+    //console.log(dataset);
+        
         usoProf = JSON.parse( dataset.uso_general_docente );
         usoEst = JSON.parse( dataset.uso_general_estudiantes );
         //console.log(usoProf);
+
+
 
         for (let index = 0; index < usoProf.length; index++) {
             let tmpChk =  document.getElementById( usoProf[index].id );
@@ -206,12 +214,18 @@ function renderizarFormAprovechamientoTec (dataset ) {
     formaBotonEnviar(formulario,registros);
 }
 
+
+
 function renderizarFormUsoTecnologiaProyecto(dataset) {
 
 dataset.reverse();
    console.log("Desde proyecto render",dataset);  
-    //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
-    const limite = dataset.length;
+    
+    
+     //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
+    
+   
+     const limite = dataset.length;
 
     $("#selProyectosCE").change(function (e) { 
         e.preventDefault();
@@ -225,6 +239,9 @@ dataset.reverse();
         // resetea el textarea
         $("#txaDetalleProyecto").val("");
         
+
+
+
         for (let index = 0; index < limite; index++) {
             
             if (opcion == dataset[index].id_iniciativa  ) {
@@ -263,7 +280,18 @@ dataset.reverse();
             deshabilitarInput("form-6");
         }        
     } 
-   });
+    
+       
+        
+
+    });
+
+
+
+ 
+
+   
+    
 }
 
 
@@ -324,7 +352,9 @@ function empaquetarDatosUsoTecProyecto () {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
     */
-    return formData;
+    
+
+   return formData;
 }
 
 function empaquetarConsulta(c) { 
@@ -344,13 +374,13 @@ function cargarSelect(stringArray) {
 let dataset = JSON.parse(stringArray);
      console.log(dataset);      
      //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:  
-    const limite = dataset.length;
-    console.log(limite);    
+     const limite = dataset.length;
+    console.log("Valor Array:",limite);    
     $("#selProyectosCE").empty();
     $("#selProyectosCE").append("  <option value=0 selected > Seleccione el proyecto </option>  ");
-    for (let index = 0; index < limite; index++) {
+     for (let index = 0; index < limite; index++) {
         let tmpOption = $( "<option value='"+  dataset[index].id_iniciativa  +"'  >" +  dataset[index].nombre   + "</option>"     );        
         $("#selProyectosCE").append(tmpOption);
-    }
-    console.log(index);
+     }
+
 }
