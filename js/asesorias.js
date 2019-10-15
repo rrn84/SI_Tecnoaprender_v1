@@ -244,6 +244,8 @@ function eventoCargarDatosIntitucion()
         $("#form_telefonoI").val(arrayJson[0].telefono);
         $("#form_pcorriente").val(arrayJson[0].tomas);
         $("#form_einstalacione").val(arrayJson[0].condicion_electrica);
+        $("#form_plaq").val(arrayJson[0].plaqueo_equipo);
+        $("#form_protocolo").val(arrayJson[0].protocolo_equip);
         });
     })  
 }

@@ -1213,8 +1213,8 @@ function renderizarFormInfraestructura(data, accion) {
         $("#inputGroupPaneSol").val(infraestructura[0].panel_solar);
         $("#inputGroupSeg").val(infraestructura[0].seguridad_general);
         $("#inputGroupSegEqui").val(infraestructura[0].seguridad_equipo);
-        $("#inputGroupCuidAlum").val(infraestructura[0].cuido_equipo_estudiante);
-        $("#inputGroupRespMan").val(infraestructura[0].cuido_equipo_docente);
+        $("#inputGroupPlaEqui").val(infraestructura[0].plaqueo_equipo);
+        $("#inputGroupProtoEqui").val(infraestructura[0].protocolo_equip);
         document.getElementById('chkOficinas').checked = JSON.parse(infraestructura[0].internet_solo_oficinas); 
         document.getElementById('chkred').checked = JSON.parse(infraestructura[0].red_interna); 
         document.getElementById('chkbib').checked = JSON.parse(infraestructura[0].internet_biblioteca); 

@@ -7,7 +7,8 @@ $idCe = $_GET["idCe"];
 //WHERE centro_educativo.id = '$idCe'";
 
 $sql= "SELECT 
-centro_educativo.direccion_regional, centro_educativo.telefono, infraestructura.tomas, infraestructura.condicion_electrica
+centro_educativo.direccion_regional, centro_educativo.telefono, 
+infraestructura.tomas, infraestructura.condicion_electrica, infraestructura.plaqueo_equipo, infraestructura.protocolo_equip
 FROM centro_educativo 
 INNER JOIN infraestructura ON  centro_educativo.id=infraestructura.id_CE 
 WHERE centro_educativo.id = '$idCe'";

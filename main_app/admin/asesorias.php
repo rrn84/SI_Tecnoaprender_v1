@@ -235,11 +235,11 @@
                <div class="input-group-prepend">
                   <span class="input-group-text">¿Está plaqueado el equipo?  </span>
                </div>
-               <select id ="form_plan" name="form_plan" class="form-control custom-select form-1" required>
+               <select id ="form_plaq" name="form_plaq" class="form-control custom-select form-1" readonly disabled="false">
                <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="SI">SI</option>
-                  <option value="NO">NO</option>
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
               </div>
               <div class="error"></div>
@@ -250,11 +250,11 @@
                <div class="input-group-prepend">
                   <span class="input-group-text">¿Posee protocolo de uso?  </span>
                </div>
-               <select id ="form_protocolo" name="form_protocolo" class="form-control custom-select form-1" required>
+               <select id ="form_protocolo" name="form_protocolo" class="form-control custom-select form-1" readonly disabled="false">
                <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="SI">SI</option>
-                  <option value="NO">NO</option>
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
             </div>
             <div class="error"></div>
@@ -300,14 +300,12 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" for="form_pcorriente">¿Están polarizados los tomacorrientes?</span>
                 </div>
-                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="true">
-                      <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
+                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="false">
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
+                </div>
                 <div class="error"></div>
               </div>
       </div> 
