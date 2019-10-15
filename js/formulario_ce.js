@@ -1029,7 +1029,7 @@ function renderizarFormDatosGenerales(data, accion) {
         
         if (data[i].equipamiento != "") {
 
-          equipamiento = JSON.parse( data[i].equipamiento );
+            JSON.parse( data[i].equipamiento );
 
           for (let index = 0; index < equipamiento.length; index++) {
               let tmpChk =  document.getElementById( equipamiento[index].id );

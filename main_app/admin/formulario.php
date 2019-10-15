@@ -863,7 +863,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondpasi" name="inputGroupCondpasi">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -880,7 +880,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondAula" name="inputGroupCondAula">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -898,7 +898,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupEstEsp" name="inputGroupEstEsp">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -915,7 +915,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBiblio" name="inputGroupBiblio">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -940,7 +940,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupIlumAul" name="inputGroupIlumAul">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -957,7 +957,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupTomPolar" name="inputGroupTomPolar">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -974,7 +974,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondElec" name="inputGroupCondElec">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -991,7 +991,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBibliEle" name="inputGroupBibliEle">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1008,7 +1008,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupPaneSol" name="inputGroupPaneSol">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1035,7 +1035,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSeg" name="inputGroupSeg">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1052,7 +1052,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSegEqui" name="inputGroupSegEqui">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1070,7 +1070,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCuidAlum" name="inputGroupCuidAlum">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1088,7 +1088,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupRespMan" name="inputGroupRespMan">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
