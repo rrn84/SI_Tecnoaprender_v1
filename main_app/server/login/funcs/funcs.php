@@ -1,5 +1,4 @@
 <?php
-
 	function isNull($nombre, $pass, $pass_con, $email){
 		if(strlen(trim($nombre)) < 1 || strlen(trim($pass)) < 1 || strlen(trim($pass_con)) < 1 || strlen(trim($email)) < 1)
 		{
