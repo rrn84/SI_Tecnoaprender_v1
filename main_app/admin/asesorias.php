@@ -110,10 +110,8 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Dirección Regional</span>
                       </div>
-                        <input type="text" id= "form_DRegional" class="form-control " name="form_DRegional"> 
-											</select>
-                      <!-- <input id="form_direccion_regional" name="form_direccion_regional" type="text" class="form-control form-1" aria-label="Default" required> -->
-                    </div>
+                      <input id="form_DRegional" name="form_DRegional" type="text" class="form-control form-1" aria-label="Default" readonly >
+                      </div>
                     <div class="error"></div>
                   </div>
                    
@@ -122,7 +120,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">Teléfono  </span>
                         </div>
-                        <input id="form_telefonoI" name="form_telefonoI" type="text" class="form-control form-1" aria-label="Default"  placeholder="Teléfono " >
+                        <input id="form_telefonoI" name="form_telefonoI" type="text" class="form-control form-1" aria-label="Default" readonly >
                       </div>
                     <div class="error"></div>
                   </div>
@@ -217,13 +215,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Estado de la instalación eléctrica</span>
                     </div>
-                    <select id ="form_einstalacione" name="form_einstalacione" class="form-control custom-select form-1" required>
-                    <!-- <option value="default" selected>Seleccione...</option> -->
-                        <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                        <option value="EXCELENTE">EXCELENTE</option>
-                        <option value="BUENO">BUENO</option>
-                        <option value="REGULAR">REGULAR</option>
-                        <option value="MALO">MALO</option>
+                    <select id ="form_einstalacione" name="form_einstalacione" class="form-control custom-select form-1" readonly disabled="true">
+                      <option value="0" selected>Seleccione</option>
+                      <option value="1">Pésimo</option>
+                      <option value="2">Malo</option>
+                      <option value="3">Regular</option>
+                      <option value="4">Bueno</option>
+                      <option value="5">Excelente</option>
                     </select>
                   </div>
                   <div class="error"></div>
@@ -237,11 +235,11 @@
                <div class="input-group-prepend">
                   <span class="input-group-text">¿Está plaqueado el equipo?  </span>
                </div>
-               <select id ="form_plan" name="form_plan" class="form-control custom-select form-1" required>
+               <select id ="form_plaq" name="form_plaq" class="form-control custom-select form-1" readonly disabled="false">
                <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="SI">SI</option>
-                  <option value="NO">NO</option>
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
               </div>
               <div class="error"></div>
@@ -252,11 +250,11 @@
                <div class="input-group-prepend">
                   <span class="input-group-text">¿Posee protocolo de uso?  </span>
                </div>
-               <select id ="form_protocolo" name="form_protocolo" class="form-control custom-select form-1" required>
+               <select id ="form_protocolo" name="form_protocolo" class="form-control custom-select form-1" readonly disabled="false">
                <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="SI">SI</option>
-                  <option value="NO">NO</option>
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
             </div>
             <div class="error"></div>
@@ -295,49 +293,62 @@
                 </div>
                 <div class="error"></div>
             </div> 
-        
+
+
         <div class="col-sm-6 form-group">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">¿Están polarizados los tomacorrientes?</span>
+                    <span class="input-group-text" for="form_pcorriente">¿Están polarizados los tomacorrientes?</span>
                 </div>
-                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" required>
-                <!-- <option value="default" selected>Seleccione...</option> -->
-                    <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                    <option value="SI">SI</option>
-                    <option value="NO">NO</option>
-                  </select>
+                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="false">
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
+                </select>
                 </div>
                 <div class="error"></div>
               </div>
       </div> 
+      </div>
       <hr>
       </div>
       <br>
-
 <!--------------------------------------------Aqui comienza la tercera parte-------------------------------->              
 <div class="container">    
     <div class="row">
       <div class="col-12">
-          <span class="badge badge-secondary p-2">3.	Observaciones y recomendaciones </span>        
+          <span class="badge badge-secondary p-2">3.	Objetivos </span>        
       </div>
     </div>
+
     <form  id="form_asesoria" name="form_asesoria" >
               <!--Objetivos -->
-              <div class="row">
+        <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <span class="badge badge-secondary p-2">3.1 Objetivos de la visita:</span>
+                    <span class="badge badge-secondary p-2">3.1 Objetivos de la gestión:</span>
                     <textarea class="form-control" id="form_objetivos" name="form_objetivos" rows="3" required></textarea>
                   </div>
                   <div class="error"></div>    
                 </div>
-              </div>
+        </div>
+  <hr>
+</div>
+<br>
+<!--------------------------------------------Aqui comienza la cuarta parte-------------------------------->              
+<div class="container">    
+    <div class="row">
+      <div class="col-12">
+          <span class="badge badge-secondary p-2">4.	Observaciones y recomendaciones </span>        
+      </div>
+    </div>
+    <form  id="form_asesoria" name="form_asesoria" >
+              <!--Objetivos -->
 
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <span class="badge badge-secondary p-2">3.2 Observaciones</span>
+                    <span class="badge badge-secondary p-2">4.1 Observaciones</span>
                     <textarea class="form-control" id="form_observaciones" name="form_observaciones" rows="3" required></textarea>
                   </div>
                   <div class="error"></div>
@@ -347,7 +358,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <span class="badge badge-secondary p-2">3.3 Recomendaciones</span>
+                    <span class="badge badge-secondary p-2">4.2 Recomendaciones</span>
                     <textarea class="form-control" id="form_recomendaciones" name="form_recomendaciones" rows="3" required></textarea>
                   </div>
                   <div class="error"></div>
@@ -357,7 +368,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <span class="badge badge-secondary p-2">3.4 Recomendaciones otros participantes.</span>
+                    <span class="badge badge-secondary p-2">4.3 Recomendación otros participantes.</span>
                     <textarea class="form-control" id="form_recomendacionesDR" name="form_recomendacionesDR" rows="3"></textarea>
                   </div>
                   <div class="error"></div>
@@ -370,7 +381,7 @@
     <div class="container">    
       <div class="row">
         <div class="col-12">
-          <span class="badge badge-secondary p-2">4. Archivos complementarios</span>        
+          <span class="badge badge-secondary p-2">5. Archivos complementarios</span>        
         </div>
       </div>
 
