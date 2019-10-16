@@ -85,7 +85,7 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
   $seguridad_general= $valores['inputGroupSeg'];
   $seguridad_equipo= $valores['inputGroupSegEqui'];
   $plaqueo_equipo= $valores['inputGroupPlaEqui'];
-  $protocolo_equip= $valores['inputGroupProtoEqui'];
+  $protocolo_equipo= $valores['inputGroupProtoEqui'];
   $internet_solo_oficinas= $valores['chkOficinas'];
   $red_interna= $valores['chkred'];
   $internet_biblioteca= $valores['chkbib'];

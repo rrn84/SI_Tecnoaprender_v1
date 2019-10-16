@@ -284,8 +284,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">¿Cuenta con aire acondicionado?</span>
                 </div>
-                <select id ="form_airea" name="form_airea" class="form-control custom-select form-1" required>
-                <!-- <option value="default" selected>Seleccione...</option> -->
+                <select id ="form_airea" name="form_airea" class="form-control custom-select form-1" readonly disabled="false">
                     <option value="default" selected="true" disabled="disabled">Seleccione...</option>
                     <option value="SI">SI</option>
                     <option value="NO">NO</option>
