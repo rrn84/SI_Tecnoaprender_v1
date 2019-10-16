@@ -4,24 +4,23 @@ var itemID=0,  //id del centro que existe
     sourceFile,  // Variable en caso de que el archivo de inventario no se actualice
     arrEquipamiento = [],
     correoUser,  // variable que controla si se realiza un cambio en los formularios
-    tipo,  //tipo de usuario
     accion,  //accion que está ejecutando el usuario: agrear CE o editar CE
-    validaExiste = false;
     modoActualizacion = false;
 
 jQuery(document).ready(function($){  
   // session
   $('[data-toggle="tooltip"]').tooltip();
   saveSession();
-  settingsIniciales();
+  settingsIniciales(); 
+  // setup();
 });
 
 function saveSession() {
   // establecer variables de sesión
-  tipo = sessionStorage.getItem("tipo");
+  let tipo = sessionStorage.getItem("tipo");
   correoUser = sessionStorage.getItem("correo");
 }
-//Seteo de la libreria para los usuarios que se llama Validy//
+
 function settingsIniciales() {
   $.extend($.validator.messages, {
     required: "Campo requerido",
@@ -35,9 +34,7 @@ function settingsIniciales() {
 
   $("#divInfo").html('<a id="btnInicio" href="index.php" alt="Inicio"><i class= "fas fa-home"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="acerca-de" data-toggle="tooltip" title="Acerca de"> <i class="fas fa-info-circle"></i></a>');
   $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correoUser);
-  $("#divSalir").html(
-    '<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>'
-    );
+  $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
   cargaModalAcercaDe();  
   
     // Add minus icon for collapse element which is open by default
@@ -55,7 +52,6 @@ function settingsIniciales() {
 
   $('.collapse').collapse();
   $("#agregarInstitucion").hide();
-
   //llamado de settings para agregar-consultar
   setAccion();
 
@@ -65,14 +61,14 @@ function settingsIniciales() {
 function setAccion() {
   var events = $._data(document.getElementById('agregarInstitucion'), "events");
   var hasEvents = (events != null);
-  // console.log("tiene eventos?", hasEvents);
+  console.log("tiene eventos?", hasEvents);
   
   var accion = null;
   const currentURL =   window.location.href;
   const url = new URL(currentURL);
   accion = url.searchParams.get("accion");
-  // console.log("Direccion actual:",  currentURL);                
-  // console.log("Valor de acción:", accion);
+  console.log("Direccion actual:",  currentURL);                
+  console.log("Valor de acción:", accion);
   if (accion == null) {
     location = 'index.php';
   }
@@ -91,6 +87,9 @@ function setAccion() {
     case "agregar":
       $("#agregarInstitucion").off( );
       $("#agregarInstitucion").on('click', checkDataForms);
+      // var events = $._data(document.getElementById('agregarInstitucion'), "events");
+      // var hasEvents = (events != null);
+      // console.log("tiene eventos?", hasEvents);
       agregarCentro();
     break;
     case "consultar":
@@ -118,7 +117,7 @@ function checkDataForms() { //chequea si existen información sin guardar
       };
       if(elementDeshabilitado){
         alertify.confirm('Aviso', 'Hay información sin guardar ¿Desea continuar?', 
-        function(){ window.location.href = "formulario.php?accion=agregar";},
+        function(){ addCentro();},
         function(){ }).set({
                 labels : {
                     ok     : "SI",
@@ -127,8 +126,15 @@ function checkDataForms() { //chequea si existen información sin guardar
         }); 
       }
       else {
-        window.location.href = "formulario.php?accion=agregar";
+        addCentro();
       } 
+}
+
+function addCentro() {  // preparación para agregar centro educativo
+  $('.collapse').collapse('hide');
+  limpiarFormularios();
+  $("#txtCentroEducativo").val('');
+  agregarCentro();
 }
 
 function limpiarFormularios() {
@@ -206,35 +212,26 @@ function agregarCentro() {
             matches = regExp2.exec(tmp);
         var valorcod = matches[1];
             valorcod = valorcod.match(regex);
-        if (!validaExiste) {
-          validaExiste = true;
-          let consSelect = "SELECT * FROM `centro_educativo` WHERE `cod_pres`= '"+valorcod+"' AND `institucion` = '"+valorinstitucion+"'";
-          enviarFormDataAjax2( empaquetarConsulta(consSelect), buscaCentroEducativo, "../server/consultas_generales.php",accion, 'agregarCentro')
-        }
-        else {
-          validaExiste = false;
-          preparacionAgregar('agregar', true);
-        }
-
-        
+        let consSelect = "SELECT * FROM `centro_educativo` WHERE `cod_pres`= '"+valorcod+"' AND `institucion` = '"+valorinstitucion+"'";
+        enviarFormDataAjax2( empaquetarConsulta(consSelect), buscaCentroEducativo, "../server/consultas_generales.php",accion, 'agregarCentro')
       }  
     }
   });
 };
 
+
+
 function buscaCentroEducativo(stringArray, accion) {
   let dataset = JSON.parse(stringArray);
   const limite = dataset.length;
-  // console.log("Limite en buscaCentroEducativo", limite);
+  console.log("Limite en buscaCentroEducativo", limite);
       
   if(limite != 0) {
-      
       $("#mensaje").html("<p>El centro educativo ya está registrado: <strong>"+dataset[0].institucion+"</strong> con el código presupuestario: <strong>"+dataset[0].cod_pres+" </strong>.</p>");
       $("#mensaje").show();  
-
   }
   else 
-   {
+  {
     preparacionAgregar(accion, true);
   }
 }
@@ -267,14 +264,6 @@ function preparacionAgregar(accion, existe){
 //CONSULTAR 
 function consultaCentro(accion) {  
   $(".row-search").show(); 
-  console.log("Tipo", tipo);
-  
-  if (tipo == 2) {
-    $("#btn-actualizar").hide()
-  }
-  else {
-    $("#btn-actualizar").show()
-  }
   $("#agregarInstitucion").hide(); 
 
   $("#miConsulta").on('focus', function () {  
@@ -421,15 +410,15 @@ function envioDatosForm1(accionF) {
             }
           }
     guardarEquipamiento();
-    // console.log("Enlace condición", $("#form_enlace_condicion").val());
+    console.log("Enlace condición", $("#form_enlace_condicion").val());
     
     // if($("#form_enlace_condicion").val() is null=="" || $("#form_enlace_condicion").val()== null ){
     //   $("#form_enlace_condicion").val("ninguno")
     // };
     data.append("equipamiento", JSON.stringify(arrEquipamiento) );
-    // for (var pair of data.entries()) {
-    //   console.log(pair[0]+ ', ' + pair[1]); 
-    // }
+    for (var pair of data.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
     
       if(accionF =="agregar")
       {
@@ -976,7 +965,7 @@ function llamaRenderForm6(largo,accionF) {
   if(largo !== 0){
     // if (accionF = 'agregar') {
     if (accionF == 'agregar') {
-      // console.log("Cargar form-6 desde accioón = agregar");
+      console.log("Cargar form-6 desde accioón = agregar");
      activaSelect(accion); //actualiza el select, por si se ha modificado los proyectos desde agregar
     };
     $("#mensajeIniciativas").hide();
@@ -1002,7 +991,6 @@ function renderizarFormDatosGenerales(data, accion) {
 
       $("#form_cod_pres").val(institucion[i].cod_pres);
       $("#form_institucion").val(institucion[i].institucion);
-      $("#form_id_modalidad_educativa").val(institucion[i].id_modalidad_educativa);
       $("#form_direccion_regional").val(institucion[i].direccion_regional);        
       $("#form_circuito").val(institucion[i].circuito);
       $("#form_provincia").val(institucion[i].provincia);
@@ -1010,11 +998,8 @@ function renderizarFormDatosGenerales(data, accion) {
       $("#form_distrito").val(institucion[i].distrito);
       $("#form_poblado").val(institucion[i].poblado);
       $("#form_telefono").val(institucion[i].telefono);
-      $("#form_fax").val(institucion[i].fax); 
-      $("#form_centro_indigena").val(institucion[i].centro_indigena); 
-      $("#form_coordenada_x").val(institucion[i].coordenada_x);  
-      $("#form_coordenada_y").val(institucion[i].coordenada_y);      
-      $("#form_correo").val(institucion[i].correo); 
+      $("#form_fax").val(institucion[i].fax);        
+  
       $("#form_actualizado_por").val(correoUser);
 
       provincia = institucion[i].provincia;
@@ -1420,8 +1405,7 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url, input, callFrom) {
     console.log("En proceso");    
     }, success: function(response){
       $(".div-shadow").addClass("invisible");
-      // console.log("Enviado satisfactoriamente", callFrom);
-      console.log("Enviado satisfactoriamente");
+      console.log("Enviado satisfactoriamente", callFrom);
       //console.log(response);
       mCallBack(response,input);      
 
@@ -1513,7 +1497,7 @@ function cargaForm(response) {
   // inicio obtener id
   let  texto = response,
        tipoAccion = 'agregar';
-  // console.log("texto del response", texto);  
+  console.log("texto del response", texto);  
   var regExp = /(\d+)/g;
   texto = regExp.exec(response);
   itemID = parseInt(texto[0]);    

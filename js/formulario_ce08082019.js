@@ -1,27 +1,20 @@
 var itemID=0,  //id del centro que existe
     // formCambio,
-    arrayEquipo =['fonatel','transferencia','conectandonos','donacion'],
+    //  arrayEquipo =['fonatel','transferencia','conectandonos','donacion'];
     sourceFile,  // Variable en caso de que el archivo de inventario no se actualice
     arrEquipamiento = [],
     correoUser,  // variable que controla si se realiza un cambio en los formularios
-    tipo,  //tipo de usuario
     accion,  //accion que está ejecutando el usuario: agrear CE o editar CE
-    validaExiste = false;
     modoActualizacion = false;
 
-jQuery(document).ready(function($){  
+jQuery(document).ready(function($){
   // session
   $('[data-toggle="tooltip"]').tooltip();
   saveSession();
-  settingsIniciales();
+  settingsIniciales(); 
+  setup();
 });
 
-function saveSession() {
-  // establecer variables de sesión
-  tipo = sessionStorage.getItem("tipo");
-  correoUser = sessionStorage.getItem("correo");
-}
-//Seteo de la libreria para los usuarios que se llama Validy//
 function settingsIniciales() {
   $.extend($.validator.messages, {
     required: "Campo requerido",
@@ -32,20 +25,17 @@ function settingsIniciales() {
   for (let index = 0; index < collectionForms.length; index++) {
       collectionForms[index].reset();    
   }
-
-  $("#divInfo").html('<a id="btnInicio" href="index.php" alt="Inicio"><i class= "fas fa-home"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="acerca-de" data-toggle="tooltip" title="Acerca de"> <i class="fas fa-info-circle"></i></a>');
-  $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correoUser);
-  $("#divSalir").html(
-    '<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>'
-    );
-  cargaModalAcercaDe();  
-  
     // Add minus icon for collapse element which is open by default
   $(".collapse.show").each(function(){
     $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
   });
 
- 
+  
+  $("#divInfo").html('<a id="btnInicio" href="index.php" alt="Inicio"><i class= "fas fa-home"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="acerca-de" data-toggle="tooltip" title="Acerca de"> <i class="fas fa-info-circle"></i></a>');
+  $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correoUser);
+  $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
+  cargaModalAcercaDe();  
+
   // Toggle plus minus icon on show hide of collapse element
   $(".collapse").on('show.bs.collapse', function(){
     $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
@@ -54,31 +44,64 @@ function settingsIniciales() {
   });
 
   $('.collapse').collapse();
-  $("#agregarInstitucion").hide();
-
-  //llamado de settings para agregar-consultar
-  setAccion();
-
+  $("#agregarInstitucion").on('click', function () {    
+    if (accion === 'agregar') {
+      // boton + Agregar centro educativo, chequea que no hayan botones activos, con información sin guardar
+      let elementDeshabilitado = false;
+      for (let index = 1; index <10; index++) {
+        let element = '.btn-'+index;
+        if($(element).prop('disabled') == false) {
+          elementDeshabilitado = true;
+        }
+      };
+      if(elementDeshabilitado){
+        alertify.confirm('Aviso', 'Hay información sin guardar ¿Desea continuar?', 
+        function(){  $('.collapse').collapse('hide');
+                    limpiarFormularios();
+                    $("#txtCentroEducativo").val('');
+                    agregarCentro('agregar');},
+        function(){ }).set({
+                labels : {
+                    ok     : "SI",
+                    cancel : "NO"
+                }
+        }); 
+      }
+      else {
+        $('.collapse').collapse('hide');
+        limpiarFormularios();
+        $("#txtCentroEducativo").val('');
+        agregarCentro('agregar');
+      }  
+    }
+    else {
+      $("#agregarInstitucion").addClass('invisible')
+    };
+  });
 }
 
+function saveSession() {
+  let tipo = sessionStorage.getItem("tipo");
+  correoUser = sessionStorage.getItem("correo");
+  // correoUser = "nombre.apellido1.apellido2@mep.go.cr";
+  console.log("tipo", tipo);
+  console.log("correo", correoUser);
+}
 
-function setAccion() {
-  var events = $._data(document.getElementById('agregarInstitucion'), "events");
-  var hasEvents = (events != null);
-  // console.log("tiene eventos?", hasEvents);
-  
-  var accion = null;
+function setup() {
   const currentURL =   window.location.href;
   const url = new URL(currentURL);
   accion = url.searchParams.get("accion");
-  // console.log("Direccion actual:",  currentURL);                
-  // console.log("Valor de acción:", accion);
+  console.log("Direccion actual:",  currentURL);                
+  console.log("Valor de acción:", accion);
   if (accion == null) {
+    // if (accion == null){
     location = 'index.php';
   }
   if (accion != 'agregar' && accion != 'consultar'){
        location = 'index.php';
   }
+
   $("#miConsulta").on('focus', function () {  
       this.value='';
   });  
@@ -88,93 +111,44 @@ function setAccion() {
   });  
 
   switch (accion) {
-    case "agregar":
-      $("#agregarInstitucion").off( );
-      $("#agregarInstitucion").on('click', checkDataForms);
-      agregarCentro();
-    break;
-    case "consultar":
-      consultaCentro(accion);
-    break;
-
-    default:
-    break;
+      case "consultar":
+          consultaCentro(accion);
+      break;
+      case "agregar":
+          $("#mensaje").hide();
+          agregarCentro(accion)
+      break;
+  
+      default:
+          break;
   }
 }
+
 
 function mostarNombreArchivo( archivoPdf ) {
   // Coloca el nombre del archivo en el input file del form-1
   $("#lblInputfile").text(archivoPdf[0].files[0].name);
 }
 
-function checkDataForms() { //chequea si existen información sin guardar
-  let elementDeshabilitado = false;
-      for (let index = 1; index <10; index++) {
-        let element = '.btn-'+index;
-        if($(element).prop('disabled') == false) {
-          elementDeshabilitado = true;
-          break;
-        }
-      };
-      if(elementDeshabilitado){
-        alertify.confirm('Aviso', 'Hay información sin guardar ¿Desea continuar?', 
-        function(){ window.location.href = "formulario.php?accion=agregar";},
-        function(){ }).set({
-                labels : {
-                    ok     : "SI",
-                    cancel : "NO"
-                }
-        }); 
-      }
-      else {
-        window.location.href = "formulario.php?accion=agregar";
-      } 
-}
-
-function limpiarFormularios() {
-  let collectionForms = document.forms;
-  for (let index = 0; index < collectionForms.length; index++) {
-    collectionForms[index].reset();   
-    setEquipamiento(); 
-  };
-}
-
-function setEquipamiento() {
-  //desactiva los tab's por defecto activos
-  for (let index = 0; index < arrayEquipo.length; index++) {
-      $("#"+arrayEquipo[index]).removeClass("show active");
-      let j =  index + 1
-      $("#li"+j).removeClass("active show");
-      $("#ali"+j).removeClass("active show");
-      $("#li"+j).addClass("d-none");
-  };
-};
-
-function agregarCentro() {
-  let accion = 'agregar';
-  $(".row-search").hide();  //oculta espacio de consulta
-  $("#mensaje").hide();   //espacio div mensajes si existe centro educativo
-
-  autocompleteArrays(accion);    
-
+function agregarCentro(accion) {
+  autocompleteArrays(accion); 
+  $(".row-search").hide();        
   $("#cerrarModal").on('click', function () { 
     location = 'index.php';     
   });
   $("#cancelarModal").on('click', function () { 
     location = 'index.php';     
   });
-
   $("#mdlAgregarCE").modal({backdrop: "static"});               
   $("#mdlAgregarCE").modal();
-  
   $("#txtCentroEducativo").on( "focus", function () {
       if( $("#mensaje").is(":visible")) {
         $("#mensaje").hide();
+        $("#txtCentroEducativo").val('');
       }
-      $("#txtCentroEducativo").val('');
     });
- 
-  for (let index = 0; index < arrayEquipo.length; index++) {  //usa la variable global
+  let arrayEquipo = ['fonatel','transferencia','conectandonos','donacion']
+  for (let index = 0; index < arrayEquipo.length; index++) {
       const element = 'form-4-'+arrayEquipo[index];
       formaBotonEnviar(element, false)  
   }
@@ -199,24 +173,17 @@ function agregarCentro() {
                     cancel : "NO"
                 }
         }); 
+        // console.log('Código nuevo / Institución nueva');
+        // preparacionAgregar(accion, false);
       }
       else {
-        var valorinstitucion = matches[1];
-        var regExp2 = /\(([^)]+)\)/;
-            matches = regExp2.exec(tmp);
-        var valorcod = matches[1];
-            valorcod = valorcod.match(regex);
-        if (!validaExiste) {
-          validaExiste = true;
-          let consSelect = "SELECT * FROM `centro_educativo` WHERE `cod_pres`= '"+valorcod+"' AND `institucion` = '"+valorinstitucion+"'";
-          enviarFormDataAjax2( empaquetarConsulta(consSelect), buscaCentroEducativo, "../server/consultas_generales.php",accion, 'agregarCentro')
-        }
-        else {
-          validaExiste = false;
-          preparacionAgregar('agregar', true);
-        }
-
-        
+      var valorinstitucion = matches[1];
+      var regExp2 = /\(([^)]+)\)/;
+          matches = regExp2.exec(tmp);
+      var valorcod = matches[1];
+          valorcod = valorcod.match(regex);
+      let consSelect = "SELECT * FROM `centro_educativo` WHERE `cod_pres`= '"+valorcod+"' AND `institucion` = '"+valorinstitucion+"'";
+      enviarFormDataAjax2( empaquetarConsulta(consSelect), buscaCentroEducativo, "../server/consultas_generales.php",accion)
       }  
     }
   });
@@ -225,16 +192,15 @@ function agregarCentro() {
 function buscaCentroEducativo(stringArray, accion) {
   let dataset = JSON.parse(stringArray);
   const limite = dataset.length;
-  // console.log("Limite en buscaCentroEducativo", limite);
-      
+  console.log("Limite en buscaCentroEducativo", limite);
+  
+    
   if(limite != 0) {
-      
       $("#mensaje").html("<p>El centro educativo ya está registrado: <strong>"+dataset[0].institucion+"</strong> con el código presupuestario: <strong>"+dataset[0].cod_pres+" </strong>.</p>");
       $("#mensaje").show();  
-
   }
   else 
-   {
+  {
     preparacionAgregar(accion, true);
   }
 }
@@ -249,14 +215,13 @@ function preparacionAgregar(accion, existe){
     else{
       codigoConsulta = tmp;
     }
-
     $("#mdlAgregarCE").modal("hide");
     $('.collapse').collapse('show');
     $("#mensajeIniciativas").show();
     $("#mensajeEquipamiento").show();
     $("#form-iniciativas").hide();
     $("#agregarInstitucion").show();
-    // $("#agregarInstitucion").removeClass('invisible')
+    $("#agregarInstitucion").removeClass('invisible')
     cambia_estado_forms(true);                //desactiva todos los forms
     $(".form-1").prop("disabled", false);     //activa solo el formulario 1
     deshabilitaBoton('form-1');
@@ -266,28 +231,12 @@ function preparacionAgregar(accion, existe){
 
 //CONSULTAR 
 function consultaCentro(accion) {  
-  $(".row-search").show(); 
-  console.log("Tipo", tipo);
-  
-  if (tipo == 2) {
-    $("#btn-actualizar").hide()
-  }
-  else {
-    $("#btn-actualizar").show()
-  }
-  $("#agregarInstitucion").hide(); 
-
-  $("#miConsulta").on('focus', function () {  
-    this.value='';
-  });  
-
   $("#mensajeIniciativas").hide();
   $("#form-iniciativas").hide();
   $("#mensajeEquipamiento").hide();
- 
+  $("#agregarInstitucion").hide();
   autocompleteArrays(accion); 
   cambia_estado_forms(true);
-
   $( "#btnSend" ).click( function () {
     $('.collapse').collapse('show')
     var valorConsulta = $("#miConsulta").val();
@@ -329,6 +278,25 @@ function consultaCentro(accion) {
   });
 }
 
+function limpiarFormularios() {
+  let collectionForms = document.forms;
+  for (let index = 0; index < collectionForms.length; index++) {
+    collectionForms[index].reset();   
+    setEquipamiento(); 
+  }
+}
+
+function setEquipamiento() {
+  let array = ['fonatel', 'transferencia','donacion','conectandonos'];
+  for (let index = 0; index < array.length; index++) {
+      $("#"+array[index]).removeClass("show active");
+      let j =  index + 1
+      $("#li"+j).removeClass("active show");
+      $("#ali"+j).removeClass("active show");
+      $("#li"+j).addClass("d-none");
+  };
+};
+
 function cargandoValidaciones (accion) {
   // llamado de validaciones para los formularios
   if (accion === 'consultar') {
@@ -365,10 +333,13 @@ function validacionyEnvioForm1(accion) {
          }
      });
     $("#btn-informacion-general").click(function () {
-      if(form.valid()=== true){           
-        $("#btn-informacion-general").prop("disabled", true);  
+      if(form.valid()=== true){   
+        console.log("Botón clic y valido");
         
-        envioDatosForm1(accion);
+        $("#btn-informacion-general").prop("disabled", true);  
+        console.log("botón desactivado");
+        
+          envioDatosForm1(accion);
       }
       else {
           alertify.notify('El formulario no es válido','warning',3, null);
@@ -421,15 +392,15 @@ function envioDatosForm1(accionF) {
             }
           }
     guardarEquipamiento();
-    // console.log("Enlace condición", $("#form_enlace_condicion").val());
+    console.log("Enlace condición", $("#form_enlace_condicion").val());
     
     // if($("#form_enlace_condicion").val() is null=="" || $("#form_enlace_condicion").val()== null ){
     //   $("#form_enlace_condicion").val("ninguno")
     // };
     data.append("equipamiento", JSON.stringify(arrEquipamiento) );
-    // for (var pair of data.entries()) {
-    //   console.log(pair[0]+ ', ' + pair[1]); 
-    // }
+    for (var pair of data.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+    }
     
       if(accionF =="agregar")
       {
@@ -457,20 +428,20 @@ function envioDatosForm1(accionF) {
                 // }
               if (idx == 0) {
                 alertify.confirm('Aviso - Equipamiento', 'No ha seleccionado ningún tipo de equipamiento ¿Desea continuar?', 
-                    function(){ conectDataAjax(url, data, cargaForm);},
-                    function(){ $("#btn-informacion-general").prop("disabled", false)}).set({
-                      labels : {
-                          ok     : "SI",
-                          cancel : "NO"
-                      }
-                    });                
+                                function(){ conectDataAjax(url, data, cargaForm);},
+                                function(){ }).set({
+                                        labels : {
+                                            ok     : "SI",
+                                            cancel : "NO"
+                                        }
+                                });                
               }
               else {
                 conectDataAjax(url, data, cargaForm);
               }
             }
             else {
-              alertify.alert('AVISO', 'Ya esta institución con ese nombre y código presupuestario habían sido agregadas recientemente.')
+              alertify.alert('AVISO', 'Ya la esta institución con ese nombre y código presupuestario habían sido agregadas recientemente.')
             }
           }, 
           "../server/consultas_generales.php" );
@@ -718,8 +689,7 @@ function preparacion_de_forms(accion) {
           $(elementButton).prop("disabled", false);
         })
   }
-  
-  let arregloEquip = arrayEquipo; //variable global
+  let arregloEquip =['fonatel','transferencia', 'conectandonos','donacion'];
   for (let index = 0; index < arregloEquip.length; index++) {
       elementClass = '.form-4-'+arregloEquip[index];
       let nameClass = "form-4-"+ arregloEquip[index];
@@ -736,7 +706,7 @@ function deshabilitaBotonesGuardar() {
       let element = 'form-'+ index;
       deshabilitaBoton(element)
     }
-    let arregloEquip = arrayEquipo;
+    let arregloEquip =['fonatel','transferencia', 'conectandonos','donacion'];
     for (let index = 0; index < arregloEquip.length; index++) {
       const element = 'form-4-'+arregloEquip[index];
       deshabilitaBoton(element);
@@ -746,7 +716,10 @@ function deshabilitaBotonesGuardar() {
 
 function deshabilitaBoton(nameButton) {    
   // Deshabilita el botón de guardar del formulario
+
   let element = 'button[name='+nameButton+']';
+  // console.log("Element Button", element);
+  
   $(element).prop("disabled", true);  
 }
 
@@ -757,7 +730,7 @@ function cambia_estado_forms(estado) {
     // console.log("element desable", element);
     $(element).prop("disabled", estado);
   }
-  let arregloEquip = arrayEquipo;
+  let arregloEquip =['fonatel','transferencia', 'conectandonos','donacion'];
   for (let index = 0; index < arregloEquip.length; index++) {
       let element = ".form-4-"+ arregloEquip[index];
       $(element).prop("disabled", estado);
@@ -766,16 +739,16 @@ function cambia_estado_forms(estado) {
 
 function cargaForm1(accion, codigo) {
   // llena el formulario1 Datos Generales
-  let  tabla="";
+  let  centro="";
   $("#row-pdf").attr('display', 'none');
   if(accion == 'agregar') {
-    tabla="centros_educativos_mep";
+    centro="centros_educativos_mep";
     $("#btn-informacion-general").prop("disabled", false);  
   }
   else{
-    tabla="centro_educativo";
+    centro="centro_educativo";
   }
-  let url= "../server/obtener_datos.php?id="+codigo+"&tabla="+tabla;   
+  let url= "../server/obtener_datos.php?id="+codigo+"&tabla="+centro;   
   cargarJson2( renderizarFormDatosGenerales,accion, url);
 };
 
@@ -795,9 +768,7 @@ function cargaForm3(accion, codigo) {
 
 function cargaForm4(accion, codigo) {   // EQUIPAMIENTO
   let url= "../server/obtener_datos.php?id="+codigo+"&tabla=centro_educativo",
-      jsonEquipamientos = [], 
-      equipos = [], 
-      primerTab;
+      jsonEquipamientos = [], equipos = [], primerTab;
       
   cargarJson2( function (data) {
     if(data.length !== 0)   {
@@ -924,7 +895,7 @@ function activaTabsAgregar(jsonEquipamientos, tabActivo) {
       { 
         // console.log("dataJSon TRANSFERENCIA");
         let consulta = 'SELECT * FROM `transferencia_estado` ORDER BY id';
-        enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", "","transferencia Activa Estados")
+        enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", "")
         tagLi = "ali2";
         $("#li2").removeClass("d-none");
       }
@@ -961,7 +932,8 @@ function cargaForm5(accion, codigo) {
 
 function cargaForm6(accion, codigo, dataFrom) {
   if (dataFrom != ""){
-    // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXX  Cargar form-6  XXXXXXXXXXXXXXXXXX");
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXX  Cargar form-6  XXXXXXXXXXXXXXXXXX");
+    
     activaSelect(accion); //actualiza el select, por si se ha modificado los proyectos
     llamaRenderForm6(dataFrom, accion )
   }
@@ -976,7 +948,7 @@ function llamaRenderForm6(largo,accionF) {
   if(largo !== 0){
     // if (accionF = 'agregar') {
     if (accionF == 'agregar') {
-      // console.log("Cargar form-6 desde accioón = agregar");
+      console.log("Cargar form-6 desde accioón = agregar");
      activaSelect(accion); //actualiza el select, por si se ha modificado los proyectos desde agregar
     };
     $("#mensajeIniciativas").hide();
@@ -1002,7 +974,6 @@ function renderizarFormDatosGenerales(data, accion) {
 
       $("#form_cod_pres").val(institucion[i].cod_pres);
       $("#form_institucion").val(institucion[i].institucion);
-      $("#form_id_modalidad_educativa").val(institucion[i].id_modalidad_educativa);
       $("#form_direccion_regional").val(institucion[i].direccion_regional);        
       $("#form_circuito").val(institucion[i].circuito);
       $("#form_provincia").val(institucion[i].provincia);
@@ -1010,11 +981,8 @@ function renderizarFormDatosGenerales(data, accion) {
       $("#form_distrito").val(institucion[i].distrito);
       $("#form_poblado").val(institucion[i].poblado);
       $("#form_telefono").val(institucion[i].telefono);
-      $("#form_fax").val(institucion[i].fax); 
-      $("#form_centro_indigena").val(institucion[i].centro_indigena); 
-      $("#form_coordenada_x").val(institucion[i].coordenada_x);  
-      $("#form_coordenada_y").val(institucion[i].coordenada_y);      
-      $("#form_correo").val(institucion[i].correo); 
+      $("#form_fax").val(institucion[i].fax);        
+  
       $("#form_actualizado_por").val(correoUser);
 
       provincia = institucion[i].provincia;
@@ -1097,13 +1065,13 @@ function renderizarFormDatosGenerales(data, accion) {
   //tabla provisional --- la consulta debe hacerse en Usuarios
     // let consulta = "SELECT  id,nombre FROM `usuarios` WHERE `id_tipo`='asesor enlace'  ORDER BY nombre"; 
     let consulta = "SELECT * FROM `usuarios` WHERE `id_tipo`='1' OR `id_tipo`='6' OR `id_tipo`='7' ORDER BY nombre";
-    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectAsesores,  "../server/consultas_generales.php", asesor,"asesores select" );
+    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectAsesores,  "../server/consultas_generales.php", asesor );
     
     consulta = 'SELECT * FROM `modalidad_educativa` ORDER BY id';
-    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectModalidad,  "../server/consultas_generales.php", modalidad,"modalidad select" );
+    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectModalidad,  "../server/consultas_generales.php", modalidad );
     
     consulta = 'SELECT * FROM `direcciones_regionales` ORDER BY id';
-    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectRegional,  "../server/consultas_generales.php", regional,"direcciones reg select" );
+    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectRegional,  "../server/consultas_generales.php", regional );
         
     cargaDatosSelectPCD(provincia,canton,distrito,accion);
 
@@ -1289,7 +1257,7 @@ function renderizarFormInfraestructura(data, accion) {
        });
    };
    consulta = 'SELECT * FROM `transferencia_estado` ORDER BY id';
-   enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", estado,"tranferencia estado" )
+   enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", estado )
    let formulario = "form-4-transferencia";
    formaBotonEnviar(formulario,registros);
  }
@@ -1403,10 +1371,10 @@ function autocompleteArrays(tipo_accion) {
     consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
     inputwithComplete = 'miConsulta';
   };
-  enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php", inputwithComplete,"autocomplete" )
+  enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php", inputwithComplete )
 }
 
-function enviarFormDataAjax2  ( formData, mCallBack,  url, input, callFrom) { 
+function enviarFormDataAjax2  ( formData, mCallBack,  url, input) { 
   $(".div-shadow").removeClass("invisible");
   $.ajax({
     url: url,
@@ -1420,7 +1388,6 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url, input, callFrom) {
     console.log("En proceso");    
     }, success: function(response){
       $(".div-shadow").addClass("invisible");
-      // console.log("Enviado satisfactoriamente", callFrom);
       console.log("Enviado satisfactoriamente");
       //console.log(response);
       mCallBack(response,input);      
@@ -1436,7 +1403,8 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url, input, callFrom) {
 function cargarCentrosEducativos(stringArray,inputwithComplete) {
   let data = JSON.parse(stringArray),
       availableCentros=[];
-  // console.log(dataset);    
+  // console.log(dataset);  
+  
   //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
   const maxCentros = data.length;
 
@@ -1447,9 +1415,6 @@ function cargarCentrosEducativos(stringArray,inputwithComplete) {
   $( "#"+inputwithComplete+"" ).autocomplete({
     source: availableCentros
   });
-   if(inputwithComplete == 'txtCentroEducativo') { //mejorar el despliegue del complete UI
-    $( "#"+inputwithComplete+"" ).autocomplete( "option", "appendTo", ".inputComplete" );    //resuelve problema de posicionamiento del autocomplete en modales
-   }
 }
 
 function  conectDataAjaxSimple (path, formData) {
@@ -1513,7 +1478,7 @@ function cargaForm(response) {
   // inicio obtener id
   let  texto = response,
        tipoAccion = 'agregar';
-  // console.log("texto del response", texto);  
+  console.log("texto del response", texto);  
   var regExp = /(\d+)/g;
   texto = regExp.exec(response);
   itemID = parseInt(texto[0]);    

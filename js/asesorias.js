@@ -242,11 +242,8 @@ function eventoCargarDatosIntitucion()
         console.log("Datos",arrayJson[0]);
         $("#form_DRegional").val(arrayJson[0].direccion_regional);
         $("#form_telefonoI").val(arrayJson[0].telefono);
-        $("#form_pcorriente").val(arrayJson[0].tomas);
-        $("#form_einstalacione").val(arrayJson[0].condicion_electrica);
-        $("#form_plaq").val(arrayJson[0].plaqueo_equipo);
-        $("#form_protocolo").val(arrayJson[0].protocolo_equip);
-        });
+        $("#form_adquisicion").val(arrayJson[0].equipamento);
+      });
     })  
 }
 

@@ -77,60 +77,23 @@
         </div>
       </div>
     </div>
-        <div id="agregarInstitucion" class="text-right" >
+        <div id="agregarInstitucion" class="text-right invisible" >
           <br>
           <h5><i class="fa fa-plus-square" style="font-size:24px"></i> Agregar centro educativo</h5>
           <hr>
         </div>
         <br>
         <div class="row row-search">
-          <!-- <div id="#headAcion" class="col-sm-12"></div> -->
+          <div id="#headAcion" class="col-sm-12"></div>
 
           <div class="col-sm-6">
-          
-          <?php 
-            if ($_SESSION["tipo_usuario"]  == "2"  ) {
-              echo '<input id="miConsulta" class="form-control m-1" type="text" name="miConsulta" aria-label="Default" required disabled>';
-            }  else {
-              echo '<input id="miConsulta" class="form-control m-1" type="text" name="miConsulta" placeholder="Digite el código a buscar" aria-label="Default" required>';
-            }         
-          ?>
-          
-              
-          </div>
-          <div class="col-sm-3">          
-
-          <?php
-            if ($_SESSION["tipo_usuario"]  != "2"  ) {
-              echo '<button id="btnSend" type="submit" class="btn btn-info m-1" alt = "Buscar" title="Buscar">Buscar <i class="fas fa-search"></i></button>';
-            } else {
-              echo '<button id="btnSend" type="submit" class="m-1 invisible" alt = "Buscar" title="Buscar">Buscar <i class="fas fa-search"></i></button>';
-            }
-          ?>
-            
-            
+              <input id="miConsulta" class="form-control m-1 " type="text" name="miConsulta" placeholder="Digite el código a buscar" aria-label="Default" required>
           </div>
           <div class="col-sm-3">
-          <?php
-           switch ($_SESSION["tipo_usuario"]) {
-            case "1":
-                  echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
-                break;
-            case "7":
-                  echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
-                break;
-            case "8":
-                  echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
-                break;
-            case "9":
-                echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
-              break;                    
-            default:
-                //Fuera de rango
-        }
-
-          ?>
-            
+            <button id="btnSend" type="submit" class="btn btn-info m-1" alt = "Buscar" title="Buscar">Buscar <i class='fas fa-search'></i></button>
+          </div>
+          <div class="col-sm-3">
+            <input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">
           </div>
         </div>
 
@@ -149,7 +112,7 @@
             </div>
             <div class="modal-body">
               <form id="form-modal" name="form-modal">
-                <div class="form-group inputComplete">
+                <div class="form-group">
                   <label for="txtCentroEducativo">Digite el código o el nombre del Centro Educativo: </label>
                   <input type="text" class="form-control" id="txtCentroEducativo" aria-describedby="emailHelp" placeholder="Código o nombre del centro educativo">
                 </div>
@@ -158,7 +121,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" id="cancelarModal" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn"  id="btnObtenerCE"  >Aceptar</button>
+              <button type="button" class="btn btn-primary"  id="btnObtenerCE"  >Aceptar</button>
             </div>
           </div>
         </div>
@@ -356,11 +319,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Correo</span>
                       </div>
-                      <input class= "form-control form-control-sm form-1"  
-                        id="form_correo" name="form_correo" type="text" 
-                        placeholder="escuela.nombreinstitucion@mep.go.cr" 
-                        pattern ="((?:[a-z][a-z1-9]+))(\.)((?:[a-z1-9]+))(@)(mep\.go\.cr)"                          
-                        required/>
+                      <input class= "form-control form-control-sm form-1"  id="form_correo" name="form_correo" type="text" placeholder="escuela.nombreinstitucion@mep.go.cr" pattern ="((?:[a-z][a-z1-9]+))(\.)((?:[a-z][a-z1-9]+))(@)(mep\.go\.cr)" required/>
                     </div>
                     <div class="error"></div>
                   </div>
@@ -730,7 +689,7 @@
 
                       <div class="col-sm-3" >
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1"><!--Error de etiqueta y hace falta el numero8-->
+                          <input type="checkbox" class="custom-control-input form-2" id="1" name="2">
                           <label class="custom-control-label" for="1">Tecnoaprender en Preescolar</label>
                         </div>
                       </div>
@@ -2007,7 +1966,7 @@
                   <div class="col-2" >
                           <div class="custom-control custom-checkbox form-5">
                               <input type="checkbox" class="custom-control-input uso-tec-est form-5" id="estIndagar">
-                              <label class="custom-control-label" for="estIndagar">Indagar infotrmación en internet</label>
+                              <label class="custom-control-label" for="estIndagar">Uso del proyector</label>
                            </div>                    
                   </div>
 
