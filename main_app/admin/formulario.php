@@ -863,7 +863,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondpasi" name="inputGroupCondpasi">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -880,7 +880,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondAula" name="inputGroupCondAula">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -898,7 +898,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupEstEsp" name="inputGroupEstEsp">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -915,7 +915,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBiblio" name="inputGroupBiblio">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -940,14 +940,13 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupIlumAul" name="inputGroupIlumAul">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
                       <option value="5">Excelente</option>
                     </select>
                   </div>
-
                 </div>
 
                 <div  class="row">
@@ -957,11 +956,8 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupTomPolar" name="inputGroupTomPolar">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
                     </select>
                   </div>
 
@@ -974,7 +970,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondElec" name="inputGroupCondElec">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -991,7 +987,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBibliEle" name="inputGroupBibliEle">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1008,7 +1004,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupPaneSol" name="inputGroupPaneSol">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1022,7 +1018,7 @@
 
                 <div   class="row">
                   <div class="col-12 mb-4 ml-2 h6">
-                    <span class="badge badge-secondary p-2">Evaluación Seguridad</span>
+                    <span class="badge badge-secondary p-2">Evaluación de Seguridad del equipo</span>
                   </div>
 
                 </div>
@@ -1035,7 +1031,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSeg" name="inputGroupSeg">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1052,7 +1048,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSegEqui" name="inputGroupSegEqui">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
+                      <option value="1">Pésimo</option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1066,15 +1062,12 @@
 
                   <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" for="inputGroupCuidAlum">Condición general en relación con posible cuidado por parte de los alumnos</span>
+                      <span class="input-group-text" for="inputGroupPlaEqui">¿Está plaqueado el equipo?</span>
                     </div>
-                    <select class="custom-select form-3" id="inputGroupCuidAlum" name="inputGroupCuidAlum">
-                      <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
+                    <select class="custom-select form-3" id="inputGroupPlaEqui" name="inputGroupPlaEqui">
+                      <option value="0" selected>Seleccione</option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
                     </select>
                   </div>
 
@@ -1084,20 +1077,39 @@
 
                   <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" for="inputGroupRespMan">Condición general de cuidado y responsabilidad docente en manejo de equipo</span>
+                      <span class="input-group-text" for="inputGroupProtoEqui">¿Existe protocolo de uso del equipo?</span>
                     </div>
                     <select class="custom-select form-3" id="inputGroupRespMan" name="inputGroupRespMan">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1"> Pésimo </option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
                     </select>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div   class="row">
+                  <div class="col-12 mb-4 ml-2 h6">
+                    <span class="badge badge-secondary p-2">Aire acondicionado</span>
                   </div>
 
                 </div>
 
+                
+                <div  class="row">
+
+                  <div class="input-group col-sm-8">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" for="inputGroupAireA">¿Cuenta con aire acondicionado?</span>
+                    </div>
+                    <select class="custom-select form-3" id="inputGroupAireA" name="inputGroupAireA">
+                      <option value="0" selected> Seleccione </option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
+                    </select>
+                  </div>
+                </div>
                 <hr>
 
                 <div   class="row">
