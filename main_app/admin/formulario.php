@@ -1086,7 +1086,6 @@
                     </select>
                   </div>
                 </div>
-
                 <hr>
 
                 <div   class="row">
@@ -1096,9 +1095,7 @@
 
                 </div>
 
-                
                 <div  class="row">
-
                   <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
                       <span class="input-group-text" for="inputGroupAireA">¿Cuenta con aire acondicionado?</span>
@@ -1182,11 +1179,10 @@
                     <li id="li4" class='nav-item nav-equipamiento d-none'><a id="ali4" class='nav-link' data-toggle='tab' href='#donacion' role='tab' aria-controls='home' aria-selected='false'>Donación</a></li>
                   </ul>
                 </div>
-
-                <!-- inicia equipamiento FONATEL -->
+<!-------------------------- inicia equipamiento FONATEL ------------------------------------------------------->
                 <div class="tab-content px-5" id="menuListaContent">
-
                   <div class="tab-pane fade" id="fonatel" role="tabpanel" aria-labelledby="fonatel-tab">
+
                     <!-- <div id="equipamiento_fonatel"> -->
                       <form  id="form-4-fonatel" class="form-4-equipamiento" novalidate>
                         <div class="row">
@@ -1294,10 +1290,11 @@
                           <button id="btn-equipamiento-fonatel" name ="form-4-fonatel" type="submit" class="btn btn-enviar btn-4 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
                         </div>
                       </form>
-                  </div> <!-- fin div del tab-panel FONATEL -->
+                  </div> 
+<!----------------------------------------- fin div del tab-panel FONATEL ------------------------------------------>
+<!----------------------------------------- Inicio div del tab-panel Transferencia --------------------------------->
 
                   <div class="tab-pane fade" id="transferencia" role="tabpanel" aria-labelledby="transferencia-tab">
-
                     <form  id="form-4-transferencia" class="form-4-equipamiento" novalidate>
 
                       <div class="row">
@@ -1338,7 +1335,6 @@
                             </select>
                           </div>
                         </div>
-
                       </div>
 
                       <div class="row">
@@ -1377,7 +1373,6 @@
                             </select>
                           </div>
                         </div>
-
                       </div>
 
                       <div class="row">
@@ -1491,7 +1486,6 @@
                             </select>
                           </div>
                         </div>
-
                       </div>
 
                       <div class="row">
@@ -1525,12 +1519,11 @@
                       </div>
                     </form>
                   </div>
-                  <!-- fin del tab-pane equipamiento por transferencia -->
-
-                  <!-- div equipamiento por donación -->
-                  <div class="tab-pane fade" id="donacion" role="tabpanel" aria-labelledby="donacion-tab">
-                      <!-- <div id="equipamiento_donacion"> -->
+<!----------------------------- fin del tab-pane equipamiento por transferencia ------------------------------------------------->
+<!----------------------------- div equipamiento por donación ------------------------------------------------------------------->
+                    <div class="tab-pane fade" id="donacion" role="tabpanel" aria-labelledby="donacion-tab">
                     <form  id="form-4-donacion" class="form-4-equipamiento" novalidate>
+                    
                       <div class="row">
                         <div class="col-sm-12" >
                           <span class="badge badge-secondary p-2">Equipamiento mediante donación</span>
@@ -1615,9 +1608,8 @@
                       </div>
                     </form>
                   </div>
-                  <!-- fin div equipamiento por donación -->
-
-                  <!-- inicia div equipamiento mediante Conectándonos -->
+<!----------------------------- fin del tab-pane equipamiento por donación ------------------------------------------------->
+<!----------------------------- div equipamiento por conectandonos --------------------------------------------------------->
                   <div class="tab-pane fade" id="conectandonos" role="tabpanel" aria-labelledby="conectandonos-tab">
                       <!-- <div id="equipamiento_conectandonos"> -->
                     <form  id="form-4-conectandonos" class="form-4-equipamiento" novalidate>
@@ -1712,14 +1704,12 @@
                       </div>
                     </form>
                   </div>
-
                 </div>  <!-- fin del tab-content -->
-
             </div>
           </div>  <!-- End div collapse four -->
         </div>   <!-- div en card four -->
 
-        <!-- fin del collapseFour Equipamiento -->
+<!-------------------------------------- fin del collapseFour Equipamiento ----------------------------------------------->
 
         <!-- collapseFive Aprovechamiento Tecnológico -->
         <div class="card">

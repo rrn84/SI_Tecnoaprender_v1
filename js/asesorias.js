@@ -245,7 +245,8 @@ function eventoCargarDatosIntitucion()
         $("#form_pcorriente").val(arrayJson[0].tomas);
         $("#form_einstalacione").val(arrayJson[0].condicion_electrica);
         $("#form_plaq").val(arrayJson[0].plaqueo_equipo);
-        $("#form_protocolo").val(arrayJson[0].protocolo_equip);
+        $("#form_protocolo").val(arrayJson[0].protocolo_equipo);
+        $("#form_aire_a").val(arrayJson[0].aire_acondicionado);
         });
     })  
 }

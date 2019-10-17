@@ -85,12 +85,13 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
   $seguridad_general= $valores['inputGroupSeg'];
   $seguridad_equipo= $valores['inputGroupSegEqui'];
   $plaqueo_equipo= $valores['inputGroupPlaEqui'];
-  $protocolo_equip= $valores['inputGroupProtoEqui'];
+  $protocolo_equipo= $valores['inputGroupProtoEqui'];
+  $aire_acondicionado= $valores['inputGroupAireA']; 
   $internet_solo_oficinas= $valores['chkOficinas'];
   $red_interna= $valores['chkred'];
   $internet_biblioteca= $valores['chkbib'];
   $internet_toda_institucion= $valores['chkinsti'];
-  mysqli_query($conexion,"INSERT INTO $tabla (`id_CE`, `pasillos`, `aulas`, `espacio_resguardo`, `biblioteca`, `iluminacion`, `tomas`, `condicion_electrica`, `instalacion_biblioteca`, `panel_solar`, `seguridad_general`, `seguridad_equipo`, `cuido_equipo_estudiante`, `plaqueo_equipo`,`internet_solo_oficinas`,`red_interna`, `internet_biblioteca`, `internet_toda_institucion`) VALUES ('$id_ce','$pasillos','$aulas','$espacio_resguardo','$biblioteca','$iluminacion','$tomas','$condicion_electrica','$instalacion_biblioteca','$panel_solar','$seguridad_general','$seguridad_equipo','$cuido_equipo_estudiante','$plaqueo_equipo','$internet_solo_oficinas','$red_interna','$internet_biblioteca','$internet_toda_institucion')") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+  mysqli_query($conexion,"INSERT INTO $tabla (`id_CE`, `pasillos`, `aulas`, `espacio_resguardo`, `biblioteca`, `iluminacion`, `tomas`, `condicion_electrica`, `instalacion_biblioteca`, `panel_solar`, `seguridad_general`, `seguridad_equipo`, `plaqueo_equipo`, `protocolo_equipo`,`internet_solo_oficinas`,`red_interna`, `internet_biblioteca`, `internet_toda_institucion`) VALUES ('$id_ce','$pasillos','$aulas','$espacio_resguardo','$biblioteca','$iluminacion','$tomas','$condicion_electrica','$instalacion_biblioteca','$panel_solar','$seguridad_general','$seguridad_equipo','$plaqueo_equipo','$protocolo_equipo','$internet_solo_oficinas','$red_interna','$internet_biblioteca','$internet_toda_institucion')") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
  }
  
 

@@ -68,13 +68,14 @@
   $panel_solar= $valores['inputGroupPaneSol'];
   $seguridad_general= $valores['inputGroupSeg'];
   $seguridad_equipo= $valores['inputGroupSegEqui'];
-  $cuido_equipo_estudiante= $valores['inputGroupPlaEqui'];
-  $plaqueo_equipo= $valores['inputGroupProtoEqui'];
+  $plaqueo_equipo= $valores['inputGroupPlaEqui'];
+  $protocolo_equipo= $valores['inputGroupProtoEqui'];
+  $aire_acondicionado= $valores['inputGroupAireA'];
   $internet_solo_oficinas= $valores['chkOficinas'];
   $red_interna= $valores['chkred'];
   $internet_biblioteca= $valores['chkbib'];
   $internet_toda_institucion= $valores['chkinsti'];
-  mysqli_query($conexion,"UPDATE `$tabla` SET `pasillos`='$pasillos',`aulas`='$aulas',`espacio_resguardo`='$espacio_resguardo',`biblioteca`='$biblioteca',`iluminacion`='$iluminacion',`tomas`='$tomas',`condicion_electrica`='$condicion_electrica',`instalacion_biblioteca`='$instalacion_biblioteca',`panel_solar`='$panel_solar',`internet_solo_oficinas`='$internet_solo_oficinas',`internet_biblioteca`='$internet_biblioteca',`internet_toda_institucion`='$internet_toda_institucion',`red_interna`='$red_interna',`seguridad_general`='$seguridad_general',`seguridad_equipo`='$seguridad_equipo',`plaqueo_equipo`='$plaqueo_equipo',`protocolo_equip`='$protocolo_equip' WHERE `id_CE`=$id_ce") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+  mysqli_query($conexion,"UPDATE `$tabla` SET `pasillos`='$pasillos',`aulas`='$aulas',`espacio_resguardo`='$espacio_resguardo',`biblioteca`='$biblioteca',`iluminacion`='$iluminacion',`tomas`='$tomas',`condicion_electrica`='$condicion_electrica',`instalacion_biblioteca`='$instalacion_biblioteca',`panel_solar`='$panel_solar',`internet_solo_oficinas`='$internet_solo_oficinas',`internet_biblioteca`='$internet_biblioteca',`internet_toda_institucion`='$internet_toda_institucion',`red_interna`='$red_interna',`seguridad_general`='$seguridad_general',`seguridad_equipo`='$seguridad_equipo',`plaqueo_equipo`='$plaqueo_equipo',`protocolo_equipo`='$protocolo_equipo', `aire_acondicionado`='$aire_acondicionado' WHERE `id_CE`=$id_ce") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
  }
 
  function actualizarUsuario($valores, $tabla,$id,$conexion){

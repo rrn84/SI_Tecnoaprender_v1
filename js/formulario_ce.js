@@ -1214,7 +1214,8 @@ function renderizarFormInfraestructura(data, accion) {
         $("#inputGroupSeg").val(infraestructura[0].seguridad_general);
         $("#inputGroupSegEqui").val(infraestructura[0].seguridad_equipo);
         $("#inputGroupPlaEqui").val(infraestructura[0].plaqueo_equipo);
-        $("#inputGroupProtoEqui").val(infraestructura[0].protocolo_equip);
+        $("#inputGroupProtoEqui").val(infraestructura[0].protocolo_equipo);
+        $("#inputGroupAireA").val(infraestructura[0].aire_acondicionado);
         document.getElementById('chkOficinas').checked = JSON.parse(infraestructura[0].internet_solo_oficinas); 
         document.getElementById('chkred').checked = JSON.parse(infraestructura[0].red_interna); 
         document.getElementById('chkbib').checked = JSON.parse(infraestructura[0].internet_biblioteca); 
@@ -1358,24 +1359,24 @@ function renderizarFormInfraestructura(data, accion) {
    formaBotonEnviar(formulario,registros);
  }
  
- function cargarJson2 ( mCallBack, accion, url  ) {
- 
+ function cargarJson2 ( mCallBack, accion, url  ) 
+ { 
    fetch( url)
           .then(response => response.json())
-          .then(data => { 
-
-              mCallBack (data,accion );                
+          .then(data => 
+          { 
+            mCallBack (data,accion );                
           })
           .catch( 
-            error => {
+          error => 
+          {
               // aquí
-              console.error(error)
-            })                 
+            console.error(error)
+          })                 
  };
  
 
- function formaBotonEnviar(formulario,registros) {  // cambia el texto e imagen del botón
-  
+ function formaBotonEnviar(formulario,registros) {  // cambia el texto e imagen del botón  
    
   let elementButton = 'button[name='+formulario+']';
    if (registros) { //no tiene informacion

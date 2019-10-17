@@ -282,14 +282,13 @@
         <div class="col-sm-6 form-group">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">¿Cuenta con aire acondicionado?</span>
+                  <span class="input-group-text" for="form_aire_a">¿Cuenta con aire acondicionado?</span>
                 </div>
-                <select id ="form_airea" name="form_airea" class="form-control custom-select form-1" required>
-                <!-- <option value="default" selected>Seleccione...</option> -->
-                    <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                    <option value="SI">SI</option>
-                    <option value="NO">NO</option>
-                  </select>
+                <select id ="form_aire_a" name="form_aire_a" class="form-control custom-select form-1" readonly disabled="false">
+                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
+                </select>
                 </div>
                 <div class="error"></div>
             </div> 
