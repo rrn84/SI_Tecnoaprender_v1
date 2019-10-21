@@ -182,16 +182,33 @@
       </div>
     
       <div class="row">
-                <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Adquisición de equipo</span>
-                    </div>
-                    <input id="form_adquisicion" name="form_adquisicion" type="text" class="form-control form-1" aria-label="Default"  placeholder="Adquisición " >
-                      
-                  </div>
-                  <div class="error"></div>
-                </div>
+          <div class="col-sm-4 form-group">
+              <div class="input-group input-group-sm">
+                 
+                  <div class="col-sm-2" >
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkfonatel" name="chkfonatel" readonly disabled="false">
+                        <label class="custom-control-label" for="chkfonatel">MEP-Fonatel</label>
+                      </div>
+                    
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chktransferencia" name="chktransferencia" readonly disabled="false">
+                        <label class="custom-control-label" for="chktransferencia">Transferencia</label>
+                      </div>   
+                  
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkconectandonos" name="chkconectandonos" readonly disabled="false">
+                        <label class="custom-control-label" for="chkconectandonos">Conectándonos</label>
+                      </div>                  
+                  
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkdonacion" name="chkdonacion" readonly disabled="false">
+                        <label class="custom-control-label" for="chkdonacion">Donación</label>
+                      </div>
+              </div>
+          </div>
+          <div class="error"></div>
+      </div>
 
                 <div class="col-sm-4 form-group">
                   <div class="input-group input-group-sm">
@@ -265,11 +282,11 @@
                <div class="input-group-prepend">
                   <span class="input-group-text">¿Requiere soporte? </span>
                </div>
-               <select id ="form_soporte" name="form_soporte" class="form-control custom-select form-1" required>
+               <select id ="form_soporte" name="form_soporte" class="form-control custom-select form-1" readonly disabled="false">
                <!-- <option value="default" selected>Seleccione...</option> -->
                   <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="SI">En garantía	</option>
-                  <option value="NO">Gestión de Junta</option>
+                  <option value="1">Si</option>
+                  <option value="2">No</option>
                 </select>
             </div>
             <div class="error"></div>

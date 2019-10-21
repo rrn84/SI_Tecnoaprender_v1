@@ -230,8 +230,10 @@ function cargarCentrosEducativos(stringArray)
 //-------------Metodo manejador de Eventos---------------//
 function eventoCargarDatosIntitucion()
 {
-  console.log("eventoClic2");
-      
+ var  i=0, 
+      tmp, tmp2;
+ 
+    console.log("eventoClic2");      
     $("#btnCargar").click(function () 
     {
       const idCe = obtenerIdCe();
@@ -247,10 +249,79 @@ function eventoCargarDatosIntitucion()
         $("#form_plaq").val(arrayJson[0].plaqueo_equipo);
         $("#form_protocolo").val(arrayJson[0].protocolo_equipo);
         $("#form_aire_a").val(arrayJson[0].aire_acondicionado);
-        });
+
+        //---------------se consulta el valor del campo de equipamiento------------------//
+        if (arrayJson[i].equipamiento != "") 
+        {
+        tmp = JSON.parse( arrayJson[i].equipamiento );
+        console.log("tmp:",tmp);   
+
+        for (let index = 0; index < tmp.length; index++) 
+        {
+            let tmpChk =  document.getElementById( tmp[index].id );
+            tmpChk.checked = tmp[index].chk;  
+             
+            if (tmpChk.checked == true)
+            { 
+              tmp2 = tmpChk.name;
+              console.log("tmp2:",tmp2);
+              switch (tmp2) 
+              {
+                case "chkfonatel":
+                      console.log("FONATEL");
+                      consulta = "SELECT requiere_soporte FROM `equipamiento_fonatel` WHERE `id_CE`= '"+idCe+"'";
+
+                      enviarFormDataAjax( empaquetarConsulta(consulta), 
+                      function(data){
+                        json1 = JSON.parse(data); 
+                        renderizarEquipamientoFonatel(json1, accion); 
+                      }, 
+                      "../server/consultas_generales.php" );
+
+                  break;
+
+                case "chktransferencia":
+                  console.log("TRANSFERENCIA");
+                  consulta = "SELECT * FROM `equipamiento_transferencia` WHERE `id_CE`= '"+idCe+"'";
+                  break;
+
+                case "chkconectandonos":
+                  console.log("CONECTANDONOS");
+                  consulta = "SELECT * FROM `equipamiento_conectandonos` WHERE `id_CE`= '"+idCe+"'";
+                  break;
+
+                case "chkdonacion":
+                  console.log("DONACION");
+                  consulta = "SELECT * FROM `equipamiento_donacion` WHERE `id_CE`= '"+idCe+"'";
+                  break;
+              }
+            }         
+        }
+      }
+      else
+      {
+        console.log("esta vacío equipamiento");        
+      }
+      //----------------------------------------------------------------------------------//
+      });
     })  
 }
 
+//----------------------------------//
+function renderizarEquipamientoFonatel(data, accion)
+{
+var equipamiento=[],
+     registros= false;
+
+  if(data.length !== 0)   {
+   registros = true;
+      $.each(data, function(i, field){
+        equipamiento.push(field);  
+        $("#form_soporte").val(equipamiento[0].requiere_soporte);
+      });
+  };
+}
+//----------------------------------//
 function obtenerJson (url, mCallback) 
 {
   fetch(url)
@@ -282,4 +353,27 @@ function verificarArchivo  () {
     llevaArchivo = "true";     
    }
    
+}
+
+function enviarFormDataAjax  ( formData, mCallBack, url) { 
+    
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: formData,
+    //dataType:'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    beforeSend: function(){
+    console.log("En proceso");    
+    }, success: function(response){
+      console.log("Enviado satisfactoriamente");
+      //console.log(response);
+      mCallBack(response);      
+
+    }, error: function(response){
+      console.log("Error al enviar");
+    }
+  });
 }
