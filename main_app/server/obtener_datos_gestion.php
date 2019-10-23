@@ -7,7 +7,7 @@ $idCe = $_GET["idCe"];
 //WHERE centro_educativo.id = '$idCe'";
 
 $sql= "SELECT 
-centro_educativo.direccion_regional, centro_educativo.telefono, 
+centro_educativo.direccion_regional, centro_educativo.telefono, centro_educativo.equipamiento, 
 infraestructura.tomas, infraestructura.condicion_electrica, infraestructura.plaqueo_equipo, 
 infraestructura.protocolo_equipo, infraestructura.aire_acondicionado
 FROM centro_educativo 
