@@ -1267,8 +1267,8 @@
                               </div>
                                 <select id ="fonatel_requiere_soporte" class="form-control custom-select form-4-fonatel" name="fonatel_requiere_soporte">
                                     <option value="" disabled selected>Seleccione...</option>
-                                    <option value="si">Si</option>
-                                    <option value="no">No</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
                                 </select>
                             </div>
                             <div class="error"></div>
@@ -1496,8 +1496,8 @@
                               </div>
                                 <select id ="transferencia_requiere_soporte" class="form-control custom-select form-4-transferencia" name="transferencia_requiere_soporte">
                                     <option value="" disabled selected>Seleccione...</option>
-                                    <option value="si">Si</option>
-                                    <option value="no">No</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
                                 </select>
                             </div>
                             <div class="error"></div>
@@ -1586,8 +1586,8 @@
                               </div>
                                 <select id ="donacion_requiere_soporte" class="form-control custom-select form-4-donacion" name="donacion_requiere_soporte">
                                     <option value="" disabled selected>Seleccione...</option>
-                                    <option value="si">Si</option>
-                                    <option value="no">No</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
                                 </select>
                             </div>
                             <div class="error"></div>
@@ -1681,8 +1681,8 @@
                               </div>
                                 <select id ="conectandonos_requiere_soporte" class="form-control custom-select form-4-conectandonos" name="conectandonos_requiere_soporte">
                                     <option value="" disabled selected>Seleccione...</option>
-                                    <option value="si">Si</option>
-                                    <option value="no">No</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
                                 </select>
                             </div>
                             <div class="error"></div>
