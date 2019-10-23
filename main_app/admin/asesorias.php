@@ -324,9 +324,10 @@
                 </div>
                 <div class="error"></div>
               </div>
-      </div> 
+        </div> 
+      <hr>  
       </div>
-      <hr>
+      </div>
       </div>
       <br>
 <!--------------------------------------------Aqui comienza la tercera parte-------------------------------->              

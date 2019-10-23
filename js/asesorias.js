@@ -105,7 +105,7 @@ function obtenerIdCe()
   return idCe;
 }
 
-
+//---------------------Agrega la asesoría a la tabla------------------//
 function agregarAsesoria() {
   //Verifica si hay archivo adjunto
   verificarArchivo();
@@ -141,7 +141,8 @@ if (observacionesRegional.length == 0)
   formData.append("llevaArchivo", llevaArchivo); 
 
   //-----------------------//
-  $.ajax({
+  $.ajax
+  ({
     url: "../server/agregar_asesoria.php",
     type: 'POST',
     data: formData,
@@ -149,37 +150,40 @@ if (observacionesRegional.length == 0)
     cache: false,
     contentType: false,
     processData: false,
-    beforeSend: function(){
-    console.log("En proceso");    
-    }, success: function(response){     
+    beforeSend: function()
+    {
+      console.log("En proceso");    
+    }, success: function(response)
+    {     
       $(".div-shadow").addClass("invisible");
                 alertify
-                  .alert("Tecnoaprender", "Datos enviados satisfactoriamente." , function(){
-            console.log("ok"); 
-            window.location.href = "index.php";             
-          });
+                  .alert("Tecnoaprender", "Datos enviados satisfactoriamente." , function()
+                  {
+                    console.log("ok"); 
+                    window.location.href = "index.php";             
+                  });
       console.log(response);
-
-     
-     }, error: function(response){
-      $(".div-shadow").addClass("invisible");    
-      console.log("Error al enviar");
-      alert (response.error)
+    
+     }, error: function(response)
+      {
+        $(".div-shadow").addClass("invisible");    
+        console.log("Error al enviar");
+        alert (response.error)
         console.log(response.error);
         console.log(response.msj); 
-    }
+        }
   });
 }
 
-function selectMediador () {
+function selectMediador () 
+{
   $("#form_correoAsesor").val(correoUser);
 }
 
-function empaquetarConsulta(c) { 
-
+function empaquetarConsulta(c) 
+{ 
         var formData = new FormData();               
         formData.append("consulta", c );
-
         return formData;
 }
 
@@ -271,12 +275,12 @@ function eventoCargarDatosIntitucion()
                       console.log("FONATEL");
                       consulta = "SELECT requiere_soporte FROM `equipamiento_fonatel` WHERE `id_CE`= '"+idCe+"'";
 
-                      enviarFormDataAjax( empaquetarConsulta(consulta), 
-                      function(data){
-                        json1 = JSON.parse(data); 
-                        renderizarEquipamientoFonatel(json1, accion); 
-                      }, 
-                      "../server/consultas_generales.php" );
+                      //enviarFormDataAjax( empaquetarConsulta(consulta), 
+                      //function(data){
+                      //  json1 = JSON.parse(data); 
+                      //  renderizarEquipamientoFonatel(json1, accion); 
+                      //}, 
+                      //"../server/consultas_generales.php" );
 
                   break;
 
@@ -308,19 +312,19 @@ function eventoCargarDatosIntitucion()
 }
 
 //----------------------------------//
-function renderizarEquipamientoFonatel(data, accion)
-{
-var equipamiento=[],
-     registros= false;
+//function renderizarEquipamientoFonatel(data, accion)
+//{
+// var equipamiento=[],
+//      registros= false;
 
-  if(data.length !== 0)   {
-   registros = true;
-      $.each(data, function(i, field){
-        equipamiento.push(field);  
-        $("#form_soporte").val(equipamiento[0].requiere_soporte);
-      });
-  };
-}
+//   if(data.length !== 0)   {
+//    registros = true;
+//       $.each(data, function(i, field){
+//         equipamiento.push(field);  
+//         $("#form_soporte").val(equipamiento[0].requiere_soporte);
+//       });
+//   };
+// }
 //----------------------------------//
 function obtenerJson (url, mCallback) 
 {
@@ -353,27 +357,4 @@ function verificarArchivo  () {
     llevaArchivo = "true";     
    }
    
-}
-
-function enviarFormDataAjax  ( formData, mCallBack, url) { 
-    
-  $.ajax({
-    url: url,
-    type: 'POST',
-    data: formData,
-    //dataType:'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    beforeSend: function(){
-    console.log("En proceso");    
-    }, success: function(response){
-      console.log("Enviado satisfactoriamente");
-      //console.log(response);
-      mCallBack(response);      
-
-    }, error: function(response){
-      console.log("Error al enviar");
-    }
-  });
 }
