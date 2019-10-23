@@ -1244,23 +1244,23 @@
                         </div>
 
                         <div class="row">
-                          <div class="col-sm-10">
-                            <div class="input-group mb-3">
+                        
+                          <div class="col-sm-4">
+                            <div class="input-group input-group-sm">
                               <div class="input-group-prepend">
-                                <span class="input-group-text" for="fonatel_cantidad_equipo">La cantidad de equipo disponible es</span>
+                                <span class="input-group-text">La cantidad de equipo disponible es</span>
                               </div>
-                              <select class="custom-select form-4-fonatel" id="fonatel_cantidad_equipo"  name="fonatel_cantidad_equipo">
+                              <select id ="fonatel_cantidad_equipo" class="form-control custom-select form-4-fonatel" name="fonatel_cantidad_equipo">
+                                
                                 <option value="0" disabled selected> Seleccione</option>
-                                <option value="suficiente">Suficiente</option>
-                                <option value="insuficiente">Insuficiente</option>
+                                <option value="1">Suficiente</option>
+                                <option value="2">Insuficiente</option>
                                 <option value="otro">Otro</option>
                               </select>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="row">
-                          <div class="col-sm-5">
+                          <div class="col-sm-4">
                             <div class="input-group input-group-sm">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
@@ -1273,9 +1273,25 @@
                             </div>
                             <div class="error"></div>
                           </div>
-                        </div>
-                        <br>
 
+                          <div class="col-sm-4">
+                            <div class="input-group input-group-sm">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Estado actual del equipo</span>
+                              </div>
+                                <select id ="fonatel_estado" class="form-control custom-select form-4-fonatel" name="fonatel_requiere_soporte">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="1">Excelente</option>
+                                    <option value="2">Bueno</option>
+                                    <option value="3">Regular</option>
+                                    <option value="4">Malo</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
+                        </div>
+                        
+                                                
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">

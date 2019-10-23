@@ -270,16 +270,14 @@ function eventoCargarDatosIntitucion()
                console.log("tmp2:",tmp2);
                switch (tmp2) 
                {
-                 case "chkfonatel":
-                  console.log("FONATEL");
-                  //consulta = "SELECT requiere_soporte FROM `equipamiento_fonatel` WHERE `id_CE`= '"+idCe+"'";
 
-                       //enviarFormDataAjax( empaquetarConsulta(consulta), 
-                       //function(data){
-                       //  json1 = JSON.parse(data); 
-                       //  renderizarEquipamientoFonatel(json1, accion); 
-                       //}, 
-                       //"../server/consultas_generales.php" );
+                case "chkfonatel":
+                console.log("FONATEL");
+                    obtenerJson2 ("../server/obtener_datos_equipo_fonatel.php?idCe="+idCe, function (arrayJson2)
+                    { 
+                      console.log("Datos:",arrayJson2[0]);
+                      $("#form_soporte").val(arrayJson2[0].requiere_soporte);
+                    });
                    break;
 
                  case "chktransferencia":
@@ -337,6 +335,22 @@ function obtenerJson (url, mCallback)
     mCallback(arrayJson);
   }); 
 }
+
+//---------------------------------//
+function obtenerJson2 (url, mCallback) 
+{
+  fetch(url)
+  .then(function(response) 
+  {
+    return response.json();
+  })
+
+  .then(function(arrayJson2) 
+  {
+    mCallback(arrayJson2);
+  }); 
+}
+
 
 
 //-------------------------------------------------------//
