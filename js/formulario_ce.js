@@ -1250,6 +1250,7 @@ function renderizarFormInfraestructura(data, accion) {
          $("#fonatel_tipo_cartel").val(equipamiento[0].tipo_cartel);    
          $("#fonatel_cantidad_equipo").val(equipamiento[0].cantidad_equipo);      
          $("#fonatel_requiere_soporte").val(equipamiento[i].requiere_soporte);   
+         $("#fonatel_estado").val(equipamiento[i].fonatel_estado); 
        });
    };
    let formulario = "form-4-fonatel";

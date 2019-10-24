@@ -2,7 +2,7 @@
 $idCe = $_GET["idCe"];
 
 $sql= "SELECT 
-requiere_soporte
+equipamiento_fonatel.requiere_soporte, equipamiento_fonatel.fonatel_estado
 FROM equipamiento_fonatel 
 INNER JOIN centro_educativo ON  centro_educativo.id=equipamiento_fonatel.id_CE 
 WHERE  centro_educativo.id = '$idCe'";

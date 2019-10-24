@@ -182,67 +182,59 @@
       </div>
     
       <div class="row">
-          <div class="col-sm-4 form-group">
+          <div class="col-sm-8 form-group">
               <div class="input-group input-group-sm">
                  
-                  <div class="col-sm-2" >
+                  <div class="col-sm-3" >
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkfonatel" name="chkfonatel" readonly disabled="false">
                         <label class="custom-control-label" for="chkfonatel">MEP-Fonatel</label>
                       </div>
-                    
+                    </div>
+                  
+                  <div class="col-sm-3" >
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chktransferencia" name="chktransferencia" readonly disabled="false">
                         <label class="custom-control-label" for="chktransferencia">Transferencia</label>
                       </div>   
-                  
+                  </div>
+
+                  <div class="col-sm-3" >
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkconectandonos" name="chkconectandonos" readonly disabled="false">
                         <label class="custom-control-label" for="chkconectandonos">Conectándonos</label>
                       </div>                  
-                  
+                  </div>
+
+                  <div class="col-sm-3" >
                       <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkdonacion" name="chkdonacion" readonly disabled="false">
                         <label class="custom-control-label" for="chkdonacion">Donación</label>
                       </div>
-              </div>
-          </div>
-          <div class="error"></div>
-      </div>
+                  </div>
 
-                <div class="col-sm-4 form-group">
+              </div>
+              <div class="error"></div>
+          </div>
+        </div>
+
+        <div class="row">
+              <div class="col-sm-4 form-group">
                   <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Estado actual del equipo</span>
                     </div>
-                    <select id ="form_eequipo" name="form_eequipo" class="form-control custom-select form-1" required>
+                    <select id ="form_eequipo" name="form_eequipo" class="form-control custom-select form-1" readonly disabled="true">
                       <!-- <option value="default" selected>Seleccione...</option> -->
-                        <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                        <option value="EXCELENTE">EXCELENTE</option>
-                        <option value="BUENO">BUENO</option>
-                        <option value="REGULAR">REGULAR</option>
-                        <option value="MALO">MALO</option>
+                        <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                        <option value="1">EXCELENTE</option>
+                        <option value="2">BUENO</option>
+                        <option value="3">REGULAR</option>
+                        <option value="4">MALO</option>
                     </select>
                   </div>
                   <div class="error"></div>
-                </div> 
-
-                <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Estado de la instalación eléctrica</span>
-                    </div>
-                    <select id ="form_einstalacione" name="form_einstalacione" class="form-control custom-select form-1" readonly disabled="true">
-                      <option value="0" selected>Seleccione</option>
-                      <option value="1">Pésimo</option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
-                    </select>
-                  </div>
-                  <div class="error"></div>
-                </div> 
+                </div>           
       </div>
       <br>
 <!------------------------------------------------SI/NO---------------------------------------------------------->     
@@ -278,25 +270,56 @@
           </div>
 
           <div class="col-sm-4 form-group">
-            <div class="input-group input-group-sm">
-               <div class="input-group-prepend">
-                  <span class="input-group-text">¿Requiere soporte? </span>
-               </div>
-               <select id ="form_soporte" name="form_soporte" class="form-control custom-select form-1" readonly disabled="false">
-               <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="1">Si</option>
-                  <option value="2">No</option>
-                </select>
-            </div>
-            <div class="error"></div>
-          </div> 
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">¿Requiere soporte? </span>
+                    </div>
+                    <select id ="form_soporte" name="form_soporte" class="form-control custom-select form-1" readonly disabled="false">
+                    <!-- <option value="default" selected>Seleccione...</option> -->
+                      <option value="default" selected="true" disabled="disabled">Seleccione...</option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
+                    </select>
+                  </div>
+                <div class="error"></div>
+              </div> 
       </div> 
       <br>
       
       <div class="row">
 
-        <div class="col-sm-6 form-group">
+                <div class="col-sm-4 form-group">
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Estado de la instalación eléctrica</span>
+                    </div>
+                    <select id ="form_einstalacione" name="form_einstalacione" class="form-control custom-select form-1" readonly disabled="true">
+                      <option value="0" selected>Seleccione</option>
+                      <option value="1">Pésimo</option>
+                      <option value="2">Malo</option>
+                      <option value="3">Regular</option>
+                      <option value="4">Bueno</option>
+                      <option value="5">Excelente</option>
+                    </select>
+                  </div>
+                  <div class="error"></div>
+                </div>       
+
+                <div class="col-sm-4 form-group">
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                     <span class="input-group-text" for="form_pcorriente">¿Están polarizados los tomacorrientes?</span>
+                    </div>
+                    <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="false">
+                      <option value="0" selected="true" disabled="disabled">Seleccione...</option>
+                      <option value="1">Si</option>
+                      <option value="2">No</option>
+                    </select>
+                </div>
+                <div class="error"></div>
+              </div>
+
+              <div class="col-sm-4 form-group">
               <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
                   <span class="input-group-text" for="form_aire_a">¿Cuenta con aire acondicionado?</span>
@@ -309,21 +332,6 @@
                 </div>
                 <div class="error"></div>
             </div> 
-
-
-        <div class="col-sm-6 form-group">
-              <div class="input-group input-group-sm">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" for="form_pcorriente">¿Están polarizados los tomacorrientes?</span>
-                </div>
-                <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="false">
-                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="1">Si</option>
-                  <option value="2">No</option>
-                </select>
-                </div>
-                <div class="error"></div>
-              </div>
         </div> 
       <hr>  
       </div>

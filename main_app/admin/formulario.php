@@ -1291,17 +1291,17 @@
                           </div>
                         </div>
                         
-                                                
+                                                                                               
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">
-                              <label for="fonatel_que_falta">Indique qué hace falta:</label>
-                              <textarea class="form-control form-4-fonatel" rows="3" id="fonatel_que_falta" name="fonatel_que_falta"></textarea>
-                              <!-- <input class="form-control form-4" type="text" id="fonatel_que_falta" name="fonatel_que_falta"> -->
+                                <br>
+                                <span class="badge badge-secondary p-2">Indique qué hace falta:</span>
+                                <textarea class="form-control form-4-fonatel" rows="3" id="fonatel_que_falta" name="fonatel_que_falta"></textarea>
                             </div>
                           </div>
-                        </div>
-
+                         </div>
+                                                
                         <div class="row">
                           <button id="btn-equipamiento-fonatel" name ="form-4-fonatel" type="submit" class="btn btn-enviar btn-4 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
                         </div>

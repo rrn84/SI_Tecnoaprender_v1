@@ -277,6 +277,7 @@ function eventoCargarDatosIntitucion()
                     { 
                       console.log("Datos:",arrayJson2[0]);
                       $("#form_soporte").val(arrayJson2[0].requiere_soporte);
+                      $("#form_eequipo").val(arrayJson2[0].fonatel_estado); 
                     });
                    break;
 
