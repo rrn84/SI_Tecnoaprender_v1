@@ -11,16 +11,14 @@ $(document).ready(function () {
           });
           $('[data-toggle="tooltip"]').tooltip();
           saveSession();
-          validacionyEnvioForm();
-          
+          validacionyEnvioForm();          
 
           $("#form_url_file").change(function (e) { 
             e.preventDefault();
             const nombre = e.target.files[0].name;
             //console.log(nombre);
             $("#lblFile").text(nombre);            
-          });
-   
+          });   
 
           // $("#divInicio").html('<a href="../server/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>')
           // $("#divUsuario").html('<i class="fas fa-user-alt"></i> '+correoUser)
@@ -39,9 +37,6 @@ $(document).ready(function () {
     correoUser = sessionStorage.getItem("correo");
     $("#divInicio").html('<a href="../server/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>')
     $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> Usuario: </span>'+correoUser)
-    // correoUser = "nombre.apellido1.apellido2@mep.go.cr";
-    // console.log("tipo", tipo);
-    // console.log("correo", correoUser);
   }
 
   function validacionyEnvioForm() {
@@ -52,8 +47,7 @@ $(document).ready(function () {
             event.preventDefault();
       });
       $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        //console.log("avalue", value,"arg", arg);
-        
+        //console.log("avalue", value,"arg", arg);        
         return arg !== value;
         }, "Inserta el nombre");
     
@@ -114,9 +108,9 @@ function agregarAsesoria() {
   $(".div-shadow").removeClass("invisible");
 
   const idCe = obtenerIdCe();
+
 //-------------------------//
 var observacionesRegional = $("#form_recomendacionesDR").val();
-
 if (observacionesRegional.length == 0) 
 {
   observacionesRegional = "No aplica"

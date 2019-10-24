@@ -3,9 +3,6 @@ session_start();
 if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
       header("Location: ../../index.php");
   }
-  //  elseif ($_SESSION['tipo'] !== 1) {  //debe ser tipo administrador
-  //        header("Location: ../../index.php");
-  //      }
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,8 +33,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/style_forms.css">
     <!-- <link rel="stylesheet" href="../../css/main.css"> -->
-    <link rel="stylesheet" href="../../vendor/animate/animate.css">
-    
+    <link rel="stylesheet" href="../../vendor/animate/animate.css">    
 
     <style>
         tfoot input {
@@ -49,7 +45,6 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         visibility:hidden;
     }
     </style>
-
 
 </head>
 <body>  
@@ -70,41 +65,36 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
       </div>
 </div> 
 <!-- <div class="row" style="background-color: #e45032b5; color: beige; padding-bottom: 14px;padding-left: 4px"> -->
-   <!-- <br> -->
+
     <div class="container container-custom">
     <div id="asesoriasModal" class="modal fade">  
       <div class="modal-dialog modal-lg">  
            <div class="modal-content">  
                 <div class="modal-header">  
-                <h5 class="modal-title">Detalles de asesoría</h5>  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     
+                    <h5 class="modal-title">Dirección de Recursos Tecnológicos en Educación.</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>                    
                 </div>  
                 <div class="modal-body" id="employee_detail"> 
-                        <div id="visorAsesorias"></div>
+                  <div id="visorAsesorias"></div>
                 </div>  
                 <div id="editor"></div>
                 <div class="modal-footer">  
 
-
                 <button type="button" id="btn-exportar" class="btn btn-success">Exportar a PDF</button> 
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button> 
-                
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>                 
                 </div>  
            </div>  
       </div>  
  </div> 
 
-            <div id="visor">
+  <div id="visor">
 
-            </div>
-
-    </div>
+  </div>
+  </div>
 
     <div class="div-shadow invisible">
         <img class="img-ajax-loading" src="../../images/ajax-loader.gif" alt="Loading">
     </div>
-
     <div class="modal animated" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>      
 
 </body>

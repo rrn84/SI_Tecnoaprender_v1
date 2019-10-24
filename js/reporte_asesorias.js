@@ -7,8 +7,6 @@ $(document).ready(function () {
   cargaModalAcercaDe();  
   cargarApp();
 
-
-
   $("#btn-exportar").click(function (e) { 
           e.preventDefault();
           exportPDF();
@@ -18,17 +16,11 @@ $(document).ready(function () {
 function saveSession() {
   let tipo = sessionStorage.getItem("tipo");
   correoUser = sessionStorage.getItem("correo"); 
-  // $("#divInicio").html('<a href="../server/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>')
-  // $("#divUsuario").html('<i class="fas fa-user-alt"></i> '+correoUser)
-
-
-}
-  
+}  
   
   function cargarApp(){
-
-    //CArga el ajax loader    
-    $(".div-shadow").removeClass("invisible");
+  //CArga el ajax loader    
+  $(".div-shadow").removeClass("invisible");
   
   const data = new FormData();
    url= '../server/consultar_asesorias.php?id_CE=x&correo=x&tipo_usr=8';
@@ -45,38 +37,41 @@ function saveSession() {
           } else {
               $("#visor").append("<br><br><h2>No se han ingresado asesorías al sistema.</h2>");
               $(".div-shadow").addClass("invisible");
-          }
-          
+          }          
       })
     }  
   
-  
-    function mostrarDetalle(id, array) {
-
+    function mostrarDetalle(id, array) 
+    {
       console.log(array);      
-        
-        $("#visorAsesorias").empty(); 
-
-
+      $("#visorAsesorias").empty(); 
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
-            
-            $("#visorAsesorias").append("<span class='t1'><b>Parte 1. Datos administrativos de la visita</b></span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Fecha de la asesoría:</span><span>"+ moment(array[index].fecha).format('L') + "</span><br>");            
-            $("#visorAsesorias").append("<span class='t1'>Institución:</span><span>"+array[index].institucion+"</span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Codigo Presupuestario:</span><span>"+array[index].id_CE+"</span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Dirección Regional:</span> <span>"+array[index].dRegional+"</span>");//Recupera el dato de la tabla//
 
-            $("#visorAsesorias").append("<br><br><span class='t1'><b>Parte 2. Información general</b></span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Estado de la Asesoría:</span> <span>"+array[index].estado_asesoria+"<br></span>");         
-            $("#visorAsesorias").append("<span class='t1'><a>Medio:</a></span><span>"+ array[index].medio_visita+"<br></span>");
-            $("#visorAsesorias").append("<span class='t1'>Tipo de atención:</span><span>"+ array[index].tipo_atencion+"</span>");
-            $("#visorAsesorias").append("<br><span class='t1'><br><b>Parte 3 - Consultas Administrativas/Pedagógicas</b></span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Objetivos:</span><span>"+array[index].objetivos+"</span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Observaciones:</span><span>"+array[index].observaciones+"</span>");
-            $("#visorAsesorias").append("<span class='t1'><br><br><b>Parte 4 - Recomendaciones</b><br></span>");
-            $("#visorAsesorias").append("<span class='t1'>Recomendaciones de los participantes por Dirección Regional:</span><span>"+array[index].recomendacion_dr+"</span><br>" );
-            $("#visorAsesorias").append("<span class='t1'>Recomendaciones de los asesores DRTE-PNTM: </span><span>"+array[index].recomendacion_asesor+"</span><br>" );
+            $("#visorAsesorias").append("<span class='t1'><h5>Informe de gestión educativa:</h5></span><br>");
+            $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
+
+            $("#visorAsesorias").append("<span class='t1'><b>Parte 1. Datos administrativos de la visita.</b></span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Codigo Presupuestario: </span><span>"+array[index].cod_pres+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Nombre del centro educativo: </span><span>"+array[index].institucion+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Provincia: </span><span>"+array[index].provincia+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Cantón: </span><span>"+array[index].canton+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Distrito: </span><span>"+array[index].distrito+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Dirección Regional: </span> <span>"+array[index].direccion_regional+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Fecha de la gestión educativa: </span><span>"+ moment(array[index].fecha).format('L') + "</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Propuesta educativa: </span><span>"+array[index].equipamiento2+"</span>");          
+
+            $("#visorAsesorias").append("<br><br><span class='t1'><b>Parte 2. Información general.</b></span><br>");                 
+            $("#visorAsesorias").append("<span class='t1'>Canal de comunicación: </span><span>"+ array[index].medio_visita+"<br></span>");
+            $("#visorAsesorias").append("<span class='t1'>Tipo de atención: </span><span>"+ array[index].tipo_atencion+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Aval del informe: </span> <span>"+array[index].estado_asesoria+"</span>"); 
+
+            $("#visorAsesorias").append("<br><span class='t1'><br><b>Parte 3 - Consultas Administrativas/Pedagógicas.</b></span><br>");
+            $("#visorAsesorias").append("<span class='t1'><b>Objetivos: </b></span><span>"+array[index].objetivos+"</span><br><br>");
+            $("#visorAsesorias").append("<span class='t1'><b>Observaciones: </b></span><span>"+array[index].observaciones+"</span>");
+            $("#visorAsesorias").append("<span class='t1'><br><br><b>Parte 4 - Recomendaciones.</b><br></span>");
+            $("#visorAsesorias").append("<span class='t1'><b>Recomendaciones de los participantes por Dirección Regional: </b></span><span>"+array[index].recomendacion_dr+"</span><br><br>" );
+            $("#visorAsesorias").append("<span class='t1'><b>Recomendaciones de los asesores DRTE-PNTM: </b></span><span>"+array[index].recomendacion_asesor+"</span><br>" );
             if (array[index].observaciones_director.length > 1 ) 
             {
               $("#visorAsesorias").append("<span class='t1'> Observciones del Director: </span><span>"+array[index].observaciones_director+"</span>" );  
@@ -145,12 +140,9 @@ function saveSession() {
                  );
                    $(tBody).append(row);
                }
-         $(htmlTable).append(tBody);
-          $(visor).html(htmlTable);
-     
+        $(htmlTable).append(tBody);
+        $(visor).html(htmlTable);     
         loadDataTable();
-
-
 
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btnVerDetalles").click(function (e) { 
@@ -160,9 +152,6 @@ function saveSession() {
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         });
-
-
-
        }
   
       function loadDataTable() {
@@ -220,23 +209,6 @@ function saveSession() {
         } );
       }
       
-    //   function exportHTML(){
-    //     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-    //          "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-    //          "xmlns='http://www.w3.org/TR/REC-html40'>"+
-    //          "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-    //     var footer = "</body></html>";
-    //     var sourceHTML = header+document.getElementById("visorAsesorias").innerHTML+footer;
-        
-    //     var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-    //     var fileDownload = document.createElement("a");
-    //     document.body.appendChild(fileDownload);
-    //     fileDownload.href = source;
-    //     fileDownload.download = 'document.doc';
-    //     fileDownload.click();
-    //     document.body.removeChild(fileDownload);
-    //  }
-
      function exportPDF() {
        ///Este codigo Kilometrico, genera la imagen/
       var doc = new jsPDF();

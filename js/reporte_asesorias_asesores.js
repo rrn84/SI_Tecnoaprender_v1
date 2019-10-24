@@ -1,29 +1,23 @@
 var arregloDatos=[];
 var correo = correoUser = sessionStorage.getItem("correo");
 
-
 $(document).ready(function () { 
   console.log("****correo", correo);
   console.log("tipo usuario", tipoUsuario);
   
-  
-  
+    
   $("#divInfo").html('<a id="btnInicio" href="../admin" alt="Inicio"><i class= "fas fa-home"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="acerca-de" data-toggle="tooltip" title="Acerca de"> <i class="fas fa-info-circle"></i></a>');
   $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correo);
   $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
   cargaModalAcercaDe();  
   cargarApp();
 
-
-
   $("#btn-exportar").click(function (e) { 
           e.preventDefault();
           exportPDF();
     });
 });
-  
-  
-  
+     
   function cargarApp(){
 
     //CArga el ajax loader    
@@ -48,15 +42,11 @@ $(document).ready(function () {
           
       })
     }  
-  
-  
-    function mostrarDetalle(id, array) {
-
+    
+    function mostrarDetalle(id, array) 
+    {
       console.log(array);      
-        
         $("#visorAsesorias").empty(); 
-
-
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
             $("#visorAsesorias").append("<span class='t1'><b>Asesor:</b></span> <span>"+array[index].correo_asesor+"</span>");
@@ -76,16 +66,10 @@ $(document).ready(function () {
 
             if (array[index].url_archivo != "pepito") {
               $("#visorAsesorias").append("<hr><a href="+ array[index].url_archivo +" class='t1' target='_blank' > <i class='fas fa-paperclip'></i> Archivo adjunto </a><br>");  
-            }
-            
-          }
-          
-        }
-        
-       
+            }            
+          }          
+        }      
       }
-
-
 
     function dibujarTabla (array, visor) {
       console.log(array);
@@ -147,8 +131,6 @@ $(document).ready(function () {
      
         loadDataTable();
 
-
-
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btnVerDetalles").click(function (e) { 
           e.preventDefault();
@@ -157,9 +139,6 @@ $(document).ready(function () {
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         });
-
-
-
        }
   
       function loadDataTable() {

@@ -1,13 +1,11 @@
 var arregloDatos=[];
 var idVisitaActual;
 
-
-$(document).ready(function () {    
-
-console.log("id desde js", idCE);
-$('[data-toggle="tooltip"]').tooltip();
-saveSession();
-
+$(document).ready(function () 
+{    
+  console.log("id desde js", idCE);
+  $('[data-toggle="tooltip"]').tooltip();
+  saveSession();
   cargarApp();
 
   $("#btn-exportar").click(function (e) { 
@@ -16,7 +14,6 @@ saveSession();
     });
 });
   
-
 function saveSession() {
   // establecer variables de sesión
   let tipo = sessionStorage.getItem("tipo");
@@ -26,10 +23,8 @@ function saveSession() {
   $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
   cargaModalAcercaDe();  
 }
-
   
   function cargarApp(){
-
     //CArga el ajax loader    
     $(".div-shadow").removeClass("invisible");
   
@@ -49,16 +44,12 @@ function saveSession() {
           } else {
               $("#visor").append("<br><br><h2>No se han ingresado asesorías al sistema.</h2>");
               $(".div-shadow").addClass("invisible");
-          }
-          
+          }          
       })
     }  
-  
-  
+    
     function mostrarDetalle(id, array) {
-
       console.log(array);      
-        
         $("#visorAsesorias").empty(); 
 
 
@@ -81,23 +72,15 @@ function saveSession() {
 
             if (array[index].url_archivo != "pepito") {
               $("#visorAsesorias").append("<hr><a href="+ array[index].url_archivo +" class='t1' target='_blank' > <i class='fas fa-paperclip'></i> Archivo adjunto </a><br>");  
-            }
-            
-          }
-          
-        }
-        
-       
+            }            
+          }          
+        }      
       }
-
-
-    
-function mosatrarModalValidar () {
-
-  
+   
+function mosatrarModalValidar () 
+{  
   $("#mdlValidar").modal();
-  }
-
+}
 
 function dibujarTabla (array, visor) {
       console.log(array);
@@ -168,8 +151,6 @@ function dibujarTabla (array, visor) {
      
         loadDataTable();
 
-
-
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btn-detalles").click(function (e) { 
           e.preventDefault();
@@ -178,19 +159,15 @@ function dibujarTabla (array, visor) {
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         });
-
         //Manejador de eventos para renderizar contenido modal vbalidar
 
         $(".btn-validar").click(function (e) { 
           e.preventDefault();
           idVisitaActual = $(e.target).attr("tar");  
-          mosatrarModalValidar();
-          
+          mosatrarModalValidar();          
         });
 
         handlerValidarInforme();
-
-
        }
   
       function loadDataTable() {
