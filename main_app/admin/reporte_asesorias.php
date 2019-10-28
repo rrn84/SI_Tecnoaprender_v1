@@ -27,7 +27,10 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 
     <script src="../../js/reporte_asesorias.js"></script>
     <script  src="../../js/acercade.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
@@ -74,7 +77,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     <h5 class="modal-title">Dirección de Recursos Tecnológicos en Educación.</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>                    
                 </div>  
-                <div class="modal-body" id="employee_detail"> 
+                <div class="modal-body" id="datos_visita"> 
                   <div id="visorAsesorias"></div>
                 </div>  
                 <div id="editor"></div>
