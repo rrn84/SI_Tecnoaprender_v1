@@ -52,7 +52,7 @@ function saveSession() {
             $("#visorAsesorias").append("<span class='t1'><h5>Informe de gestión educativa:</h5></span><br>");
             $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
 
-            $("#visorAsesorias").append("<span class='t1'><b>Parte 1. Datos administrativos de la visita.</b></span><br>");
+            $("#visorAsesorias").append("<span class='t1'><b>Datos administrativos de la visita.</b></span><br>");
             $("#visorAsesorias").append("<span class='t1'>Codigo Presupuestario: </span><span>"+array[index].cod_pres+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Nombre del centro educativo: </span><span>"+array[index].institucion+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Provincia: </span><span>"+array[index].provincia+"</span><br>");
@@ -60,18 +60,18 @@ function saveSession() {
             $("#visorAsesorias").append("<span class='t1'>Distrito: </span><span>"+array[index].distrito+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Dirección Regional: </span> <span>"+array[index].direccion_regional+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Fecha de la gestión educativa: </span><span>"+ moment(array[index].fecha).format('L') + "</span><br>");
-            $("#visorAsesorias").append("<span class='t1'>Propuesta educativa: </span><span>"+array[index].equipamiento2+"</span>");          
+            //$("#visorAsesorias").append("<span class='t1'>Propuesta educativa: </span><span>"+array[index].equipamiento2+"</span>");        //  
 
-            $("#visorAsesorias").append("<br><br><span class='t1'><b>Parte 2. Información general.</b></span><br>");                 
+            $("#visorAsesorias").append("<br><br><span class='t1'><b>Información general.</b></span><br>");                 
             $("#visorAsesorias").append("<span class='t1'>Canal de comunicación: </span><span>"+ array[index].medio_visita+"<br></span>");
             $("#visorAsesorias").append("<span class='t1'>Tipo de atención: </span><span>"+ array[index].tipo_atencion+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Aval del informe: </span> <span>"+array[index].estado_asesoria+"</span>"); 
 
-            $("#visorAsesorias").append("<br><span class='t1'><br><b>Parte 3 - Consultas Administrativas/Pedagógicas.</b></span><br>");
+            $("#visorAsesorias").append("<br><span class='t1'><br><b>Consultas Administrativas/Pedagógicas.</b></span><br>");
             $("#visorAsesorias").append("<span class='t1'><b>Objetivos: </b></span><span>"+array[index].objetivos+"</span><br><br>");
             $("#visorAsesorias").append("<span class='t1'><b>Observaciones: </b></span><span>"+array[index].observaciones+"</span>");
-            $("#visorAsesorias").append("<span class='t1'><br><br><b>Parte 4 - Recomendaciones.</b><br></span>");
-            $("#visorAsesorias").append("<span class='t1'><b>Recomendaciones de los participantes por Dirección Regional: </b></span><span>"+array[index].recomendacion_dr+"</span><br><br>" );
+            $("#visorAsesorias").append("<span class='t1'><br><br><b>Recomendaciones.</b><br></span>");
+            $("#visorAsesorias").append("<span class='t1'><b>Recomendaciones por funcionarios de Dirección Regional: </b></span><span>"+array[index].recomendacion_dr+"</span><br><br>" );
             $("#visorAsesorias").append("<span class='t1'><b>Recomendaciones de los asesores DRTE-PNTM: </b></span><span>"+array[index].recomendacion_asesor+"</span><br>" );
             if (array[index].observaciones_director.length > 1 ) 
             {

@@ -1279,7 +1279,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Estado actual del equipo</span>
                               </div>
-                                <select id ="fonatel_estado" class="form-control custom-select form-4-fonatel" name="fonatel_requiere_soporte">
+                                <select id ="fonatel_estado" class="form-control custom-select form-4-fonatel" name="fonatel_estado">
                                     <option value="" disabled selected>Seleccione...</option>
                                     <option value="1">Excelente</option>
                                     <option value="2">Bueno</option>
@@ -1296,7 +1296,7 @@
                           <div class="col-sm-12">
                             <div class="form-group">
                                 <br>
-                                <span class="badge badge-secondary p-2">Indique qué hace falta:</span>
+                                <p class="badge badge-secondary p-2" for="fonatel_que_falta">Indique qué hace falta:</p>
                                 <textarea class="form-control form-4-fonatel" rows="3" id="fonatel_que_falta" name="fonatel_que_falta"></textarea>
                             </div>
                           </div>
@@ -1356,7 +1356,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label for="transferencia_razones">Indique las razones por las que no se ha realizado el proceso de contratación:</label>
+                            <p class="badge badge-secondary p-2" label for="transferencia_razones"> Indique las razones por las que no se ha realizado el proceso de contratación:</label></p>
                             <textarea class="form-control form-4-transferencia" rows="5" id="transferencia_razones" name="transferencia_razones"></textarea>
                           </div>
                         </div>
@@ -1370,9 +1370,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_recibido" name="transferencia_recibido">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="si">Si</option>
-                              <option value="no">No</option>
-                              <option value="no aplica">No aplica</option>
+                              <option value="1">Si</option>
+                              <option value="2">No</option>
+                              <option value="3">No aplica</option>
                             </select>
                           </div>
                         </div>
@@ -1383,9 +1383,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_pago_empresa" name="transferencia_pago_empresa">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="si">Si</option>
-                              <option value="no">No</option>
-                              <option value="no aplica">No aplica</option>
+                              <option value="1">Si</option>
+                              <option value="2">No</option>
+                              <option value="3">No aplica</option>
                             </select>
                           </div>
                         </div>
@@ -1420,9 +1420,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_remanente" name="transferencia_remanente">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="si">Si</option>
-                              <option value="no">No</option>
-                              <option value="no aplica">No aplica</option>
+                              <option value="1">Si</option>
+                              <option value="2">No</option>
+                              <option value="3">No aplica</option>
                             </select>
                           </div>
                         </div>
@@ -1465,9 +1465,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_en_uso" name="transferencia_en_uso">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="si">Si</option>
-                              <option value="no">No</option>
-                              <option value="no aplica">No aplica</option>
+                              <option value="1">Si</option>
+                              <option value="2">No</option>
+                              <option value="3">No aplica</option>
                             </select>
                             </div>
                         </div>
@@ -1496,18 +1496,16 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_cantidad_equipo" name="transferencia_cantidad_equipo">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="suficiente">Suficiente</option>
-                              <option value="insuficiente">Insuficiente</option>
-                              <option value="otro">Otro</option>
+                              <option value="1">Suficiente</option>
+                              <option value="2">Insuficiente</option>
+                              <option value="3">Otro</option>
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                          <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                              <div class="input-group-prepend">
+                        <div class="col-sm-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
                               </div>
                                 <select id ="transferencia_requiere_soporte" class="form-control custom-select form-4-transferencia" name="transferencia_requiere_soporte">
@@ -1518,17 +1516,35 @@
                             </div>
                             <div class="error"></div>
                           </div>
-                        </div>
-                        <br>
+
+                          <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Estado actual del equipo</span>
+                              </div>
+                                <select id ="transferencia_estado" class="form-control custom-select form-4-transferencia" name="transferencia_requiere_soporte">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="1">Excelente</option>
+                                    <option value="2">Bueno</option>
+                                    <option value="3">Regular</option>
+                                    <option value="4">Malo</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
+
+                      </div>
+
 
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label for="transferencia_que_falta">Indique qué hace falta:</label>
-                            <textarea class="form-control form-4-transferencia" rows="5" id="transferencia_que_falta" name="transferencia_que_falta"></textarea>
+                            <p class="badge badge-secondary p-2" for="transferencia_razones">Indique qué hace falta:</p>
+                            <textarea class="form-control form-4-transferencia" rows="3" id="transferencia_que_falta" name="transferencia_que_falta"></textarea>
                           </div>
                         </div>
                       </div>
+
 
                       <div class="row">
                         <button id="btn-equipamiento-transferencia" name ="form-4-transferencia" type="submit" class="btn btn-enviar btn-5 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
@@ -1541,10 +1557,11 @@
                     <form  id="form-4-donacion" class="form-4-equipamiento" novalidate>
                     
                       <div class="row">
-                        <div class="col-sm-12" >
-                          <span class="badge badge-secondary p-2">Equipamiento mediante donación</span>
-                        </div>
+                          <div class="col-sm-12" >
+                            <span class="badge badge-secondary p-2">Equipamiento mediante donación</span>
+                          </div>
                       </div>
+
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="input-group mb-3">
@@ -1554,6 +1571,7 @@
                             <input  id ="donacion_anno"  name ="donacion_anno" type="text"  class="form-control form-4-donacion" >
                           </div>
                         </div>
+
                         <div class="col-sm-6">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -1563,8 +1581,9 @@
                           </div>
                         </div>
                       </div>
+
                       <div class="row">
-                        <div class="col-sm-6">
+                          <div class="col-sm-6">
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text" for="donacion_cantidad_docentes">Cantidad de docentes que utilizan el equipo</span>
@@ -1579,24 +1598,25 @@
                               </select>
                             </div>
                           </div>
-                        <div class="col-sm-6">
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" for="donacion_cantidad_equipo">La cantidad de equipo disponible es</span>
-                            </div>
-                            <select class="custom-select form-4-donacion" id="donacion_cantidad_equipo" name="donacion_cantidad_equipo">
-                              <option value="0" disabled selected> Seleccione</option>
-                              <option value="suficiente">Suficiente</option>
-                              <option value="insuficiente">Insuficiente</option>
-                              <option value="otro">Otro</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
 
+                          <div class="col-sm-6">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" for="donacion_cantidad_equipo">La cantidad de equipo disponible es</span>
+                              </div>
+                              <select class="custom-select form-4-donacion" id="donacion_cantidad_equipo" name="donacion_cantidad_equipo">
+                                <option value="0" disabled selected> Seleccione</option>
+                                <option value="1">Suficiente</option>
+                                <option value="2">Insuficiente</option>
+                                <option value="3">Otro</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+ 
                       <div class="row">
-                          <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
+                          <div class="col-sm-6">
+                          <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
                               </div>
@@ -1608,22 +1628,41 @@
                             </div>
                             <div class="error"></div>
                           </div>
+
+                          <div class="col-sm-6">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Estado actual del equipo</span>
+                              </div>
+                                <select id ="donacion_estado" class="form-control custom-select form-4-donacion" name="donacion_requiere_soporte">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="1">Excelente</option>
+                                    <option value="2">Bueno</option>
+                                    <option value="3">Regular</option>
+                                    <option value="4">Malo</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
                         </div>
-                        <br>
+
 
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label for="donacion_que_falta">Indique qué hace falta:</label>
+                            <p class="badge badge-secondary p-2"  for="donacion_que_falta">Indique qué hace falta:</p>                            
                             <textarea class="form-control form-4-donacion" rows="5" id="donacion_que_falta" name="donacion_que_falta"></textarea>
                           </div>
                         </div>
                       </div>
+
                       <div class="row">
                         <button id="btn-equipamiento-donacion" name ="form-4-donacion" type="submit" class="btn btn-enviar btn-6 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
                       </div>
                     </form>
                   </div>
+
+
 <!----------------------------- fin del tab-pane equipamiento por donación ------------------------------------------------->
 <!----------------------------- div equipamiento por conectandonos --------------------------------------------------------->
                   <div class="tab-pane fade" id="conectandonos" role="tabpanel" aria-labelledby="conectandonos-tab">
@@ -1681,18 +1720,18 @@
                             </div>
                             <select class="custom-select form-4-conectandonos" id="conectandonos_cantidad_equipo" name="conectandonos_cantidad_equipo">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="suficiente">Suficiente</option>
-                              <option value="insuficiente">Insuficiente</option>
-                              <option value="otro">Otro</option>
+                              <option value="1">Suficiente</option>
+                              <option value="2">Insuficiente</option>
+                              <option value="3">Otro</option>
                             </select>
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
-                          <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                              <div class="input-group-prepend">
+                        <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
                               </div>
                                 <select id ="conectandonos_requiere_soporte" class="form-control custom-select form-4-conectandonos" name="conectandonos_requiere_soporte">
@@ -1703,13 +1742,28 @@
                             </div>
                             <div class="error"></div>
                           </div>
+
+                        <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Estado actual del equipo</span>
+                              </div>
+                                <select id ="conectandonos_estado" class="form-control custom-select form-4-conectandonos" name="conectandonos_estado">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="1">Excelente</option>
+                                    <option value="2">Bueno</option>
+                                    <option value="3">Regular</option>
+                                    <option value="4">Malo</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                          </div>
                         </div>
-                        <br>
 
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label for="conectandonos_que_falta">Indique qué hace falta:</label>
+                            <p class="badge badge-secondary p-2"  for="conectandonos_que_falta">Indique qué hace falta:</p>  
                             <textarea class="form-control form-4-conectandonos" rows="5" id="conectandonos_que_falta" name="conectandonos_que_falta"></textarea>
                           </div>
                         </div>

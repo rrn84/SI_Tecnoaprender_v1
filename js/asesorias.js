@@ -277,18 +277,31 @@ function eventoCargarDatosIntitucion()
 
                  case "chktransferencia":
                    console.log("TRANSFERENCIA");
-                  //  consulta = "SELECT * FROM `equipamiento_transferencia` WHERE `id_CE`= '"+idCe+"'";
-                   break;
-
+                   obtenerJson2 ("../server/obtener_datos_equipo_transferencia.php?idCe="+idCe, function (arrayJson2)
+                   { 
+                     console.log("Datos:",arrayJson2[0]);
+                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
+                     $("#form_eequipo").val(arrayJson2[0].transferencia_estado); 
+                   });
+                  break;
                  case "chkconectandonos":
                    console.log("CONECTANDONOS");
-                  //  consulta = "SELECT * FROM `equipamiento_conectandonos` WHERE `id_CE`= '"+idCe+"'";
-                   break;
-
+                   obtenerJson2 ("../server/obtener_datos_equipo_conectandonos.php?idCe="+idCe, function (arrayJson2)
+                   { 
+                     console.log("Datos:",arrayJson2[0]);
+                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
+                     $("#form_eequipo").val(arrayJson2[0].donacion_estado); 
+                   });
+                  break;
                  case "chkdonacion":
                    console.log("DONACION");
-                  //  consulta = "SELECT * FROM `equipamiento_donacion` WHERE `id_CE`= '"+idCe+"'";
-                   break;
+                   obtenerJson2 ("../server/obtener_datos_equipo_donacion.php?idCe="+idCe, function (arrayJson2)
+                   { 
+                     console.log("Datos:",arrayJson2[0]);
+                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
+                     $("#form_eequipo").val(arrayJson2[0].donacion_estado); 
+                   });
+                  break;
                }
              }         
          }

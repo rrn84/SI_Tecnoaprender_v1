@@ -84,8 +84,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
            <div class="modal-content">  
                 <div class="modal-header">  
                 <h5 class="modal-title">Detalles de asesoría</h5>  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>                       
                 </div>  
                 <div class="modal-body" id="employee_detail"> 
                         <div id="visorAsesorias"></div>

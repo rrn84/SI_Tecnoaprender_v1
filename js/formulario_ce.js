@@ -1287,7 +1287,10 @@ function renderizarFormInfraestructura(data, accion) {
          $("#transferencia_que_falta").val(equipamiento[0].que_falta);
          $("#transferencia_tipo_cartel").val(equipamiento[0].tipo_cartel);     
          $("#transferencia_cantidad_equipo").val(equipamiento[0].cantidad_equipo);      
-         $("#transferencia_requiere_soporte").val(equipamiento[i].requiere_soporte);   
+         $("#transferencia_requiere_soporte").val(equipamiento[0].requiere_soporte);   
+         $("#transferencia_estado").val(equipamiento[0].transferencia_estado); 
+         
+         
        });
    };
    consulta = 'SELECT * FROM `transferencia_estado` ORDER BY id';
@@ -1331,7 +1334,8 @@ function renderizarFormInfraestructura(data, accion) {
          $("#conectandonos_que_falta").val(equipamiento[0].que_falta);
          $("#conectandonos_tipo_cartel").val(equipamiento[0].tipo_cartel);     
          $("#conectandonos_cantidad_equipo").val(equipamiento[0].cantidad_equipo);     
-         $("#conectandonos_requiere_soporte").val(equipamiento[i].requiere_soporte);    
+         $("#conectandonos_requiere_soporte").val(equipamiento[0].requiere_soporte);   
+         $("#conectandonos_estado").val(equipamiento[0].conectandonos_estado);  
        });
    };
    let formulario = "form-4-conectandonos";
@@ -1353,7 +1357,9 @@ function renderizarFormInfraestructura(data, accion) {
          $("#donacion_que_falta").val(equipamiento[0].que_falta);
          $("#donacion_tipo_cartel").val(equipamiento[0].tipo_cartel);      
          $("#donacion_cantidad_equipo").val(equipamiento[0].cantidad_equipo); 
-         $("#donacion_requiere_soporte").val(equipamiento[i].requiere_soporte);   
+         $("#donacion_requiere_soporte").val(equipamiento[0].requiere_soporte);   
+         $("#donacion_estado").val(equipamiento[0].donacion_estado);  
+
        });
    };
    let formulario = "form-4-donacion";
