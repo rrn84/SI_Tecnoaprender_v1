@@ -20,6 +20,7 @@ function obtenerArreglo($sql){
     //Creamos la conexion con la funcion anterior
   $conexion = conectarDB();
 
+
     //generamos la consulta
 
         mysqli_set_charset($conexion, "utf8"); //formato de datos utf8

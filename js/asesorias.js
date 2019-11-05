@@ -209,6 +209,8 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url) {
 //----------------Cargar centros educativos--------------//
 function cargarCentrosEducativos(stringArray) 
 {
+  //console.log("stringArray",stringArray);
+  
   let data = JSON.parse(stringArray),
       availableCentros=[];
   // console.log(dataset);    
@@ -290,7 +292,7 @@ function eventoCargarDatosIntitucion()
                    { 
                      console.log("Datos:",arrayJson2[0]);
                      $("#form_soporte").val(arrayJson2[0].requiere_soporte);
-                     $("#form_eequipo").val(arrayJson2[0].donacion_estado); 
+                     $("#form_eequipo").val(arrayJson2[0].conectandonos_estado); 
                    });
                   break;
                  case "chkdonacion":
