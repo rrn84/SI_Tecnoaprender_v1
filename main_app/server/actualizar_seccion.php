@@ -54,7 +54,7 @@
  }
 
 
- function actualizarInfraestructura($valores, $tabla,$id,$conexion)
+  function actualizarInfraestructura($valores, $tabla,$id,$conexion)
  {
   $id_ce=$id;
   $pasillos= $valores['inputGroupCondpasi'];
@@ -149,8 +149,7 @@ function actualizarIniciativas($valores, $tabla,$id,$conexion){
   $fonatel_cantidad_equipo=$valores['fonatel_cantidad_equipo']; 
   $fonatel_que_falta=utf8_decode($valores['fonatel_que_falta']); 
   $fonatel_requiere_soporte= utf8_decode($valores['fonatel_requiere_soporte']);
-  $fonatel_estado= utf8_decode($valores['fonatel_estado']);
-  mysqli_query($conexion,"UPDATE `$tabla` SET `tipo_cartel`= '$fonatel_tipo_cartel',`monto_inversion`= '$fonatel_monto_inversion',`fecha`='$fonatel_fecha',`cantidad_docentes`='$fonatel_cantidad_docentes',`cantidad_equipo`='$fonatel_cantidad_equipo',`que_falta`='$fonatel_que_falta',`requiere_soporte`='$fonatel_requiere_soporte',`fonatel_estado`='$fonatel_estado' WHERE `id_CE`=$id_CE") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+  mysqli_query($conexion,"UPDATE `$tabla` SET `tipo_cartel`= '$fonatel_tipo_cartel',`monto_inversion`= '$fonatel_monto_inversion',`fecha`='$fonatel_fecha',`cantidad_docentes`='$fonatel_cantidad_docentes',`cantidad_equipo`='$fonatel_cantidad_equipo',`que_falta`='$fonatel_que_falta',`requiere_soporte`='$fonatel_requiere_soporte' WHERE `id_CE`=$id_CE") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
  }
 
  function actualizarCapacitaciones ($valores, $tabla, $conexion, $id){

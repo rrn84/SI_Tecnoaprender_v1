@@ -95,6 +95,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         <br>  
         <br> 
         <div><input  type="checkbox" id="selectall1"><span class="marcadores"> Todas/Ninguna</span></div>
+
     </td>
     <td>
         <input class="margen-izq mat-sec"  type="checkbox" name="columnas" value="uso_bio"> Biología<br>
@@ -103,7 +104,9 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         <input class="margen-izq mat-sec"  type="checkbox" name="columnas" value="uso_civ"> Cívica<br>
         <br>  
         <br> 
-        <div><input type="checkbox" id="selectall"> <span class="marcadores"> Todas/Ninguna</span></div>        
+        <div><input type="checkbox" id="selectall"> <span class="marcadores"> Todas/Ninguna</span></div>
+    
+        
     </td>
     <td>
         <input class="margen-izq mat-esp" type="checkbox" name="columnas" value="uso_apl"> Artes Plásticas<br>
@@ -124,6 +127,8 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         
         <div><input type="checkbox" id="selectall4"><span class="marcadores"> Todas/Ninguna</span></div>
     </td>
+
+    
 </tr>
 
 </tbody>

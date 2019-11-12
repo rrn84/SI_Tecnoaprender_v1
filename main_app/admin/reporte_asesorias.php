@@ -27,6 +27,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 
     <script src="../../js/reporte_asesorias.js"></script>
     <script  src="../../js/acercade.js"></script>
+    <script  src="../../js/logos_B64.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
@@ -75,7 +76,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
       <div class="modal-dialog modal-lg">  
            <div class="modal-content">  
                 <div class="modal-header">  
-                    <h5 class="modal-title">Dirección de Recursos Tecnológicos en Educación.</h5>
+                    <h5 class="modal-title w-100 text-center"  >Dirección de Recursos Tecnológicos en Educación.</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>                    
                 </div>  
                 <div class="modal-body" id="datos_visita"> 

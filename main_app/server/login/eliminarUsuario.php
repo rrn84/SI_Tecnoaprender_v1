@@ -3,7 +3,7 @@
 
         $servidor = "localhost";
         $usuario = "root";
-        $password = "";
+       // $password = "Hola123Gespro";
         $bd = "prueba_ddie";
 				    $mysqli = new mysqli($servidor, $usuario, $password,$bd);
                 if (mysqli_connect_errno()) {

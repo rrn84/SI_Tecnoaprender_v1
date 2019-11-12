@@ -1,0 +1,6 @@
+[11-Nov-2019 19:43:54 UTC] PHP Warning:  stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed in /home/tecno/public_html/main_app/server/login/PHPMailer/class.smtp.php on line 358
+[11-Nov-2019 19:44:40 UTC] PHP Warning:  stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed in /home/tecno/public_html/main_app/server/login/PHPMailer/class.smtp.php on line 358
+[11-Nov-2019 19:46:37 UTC] PHP Warning:  stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed in /home/tecno/public_html/main_app/server/login/PHPMailer/class.smtp.php on line 358

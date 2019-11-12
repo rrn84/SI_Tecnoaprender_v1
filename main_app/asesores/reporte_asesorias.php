@@ -9,8 +9,8 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Reportes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,10 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <script src="../../vendor/moment-with-locales.min.js"></script> 
 
     <script src="../../js/reporte_asesorias_asesores.js"></script>
-    <script src="../../js/logo_tecnoaprender.js"></script>
+    <script  src="../../js/logos_B64.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 
     <script  src="../../js/acercade.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
@@ -83,8 +86,9 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
       <div class="modal-dialog modal-lg">  
            <div class="modal-content">  
                 <div class="modal-header">  
-                <h5 class="modal-title">Detalles de asesoría</h5>  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>                       
+                <h5 class="modal-title w-100 text-center"  >Dirección de Recursos Tecnológicos en Educación.</h5>
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     
                 </div>  
                 <div class="modal-body" id="employee_detail"> 
                         <div id="visorAsesorias"></div>

@@ -21,7 +21,7 @@ function saveSession() {
   tipo = sessionStorage.getItem("tipo");
   correoUser = sessionStorage.getItem("correo");
 }
-//Seteo de la libreria para los usuarios que se llama Validy//
+
 function settingsIniciales() {
   $.extend($.validator.messages, {
     required: "Campo requerido",
@@ -133,6 +133,8 @@ function checkDataForms() { //chequea si existen información sin guardar
 
 function limpiarFormularios() {
   let collectionForms = document.forms;
+  // console.log("colección de forms", collectionForms);
+  
   for (let index = 0; index < collectionForms.length; index++) {
     collectionForms[index].reset();   
     setEquipamiento(); 
@@ -182,7 +184,7 @@ function agregarCentro() {
     const element = 'form-'+ index;
     formaBotonEnviar(element, false)  
   }
-
+  $( "#btnObtenerCE" ).off("click");
   $( "#btnObtenerCE" ).click( function () {
     let tmp = $("#txtCentroEducativo").val();
     if (tmp != ""){      
@@ -191,7 +193,7 @@ function agregarCentro() {
       var matches = regExp.exec(tmp);
       if (matches == null) {
         alertify.confirm('AGREGAR CENTRO EDUCATIVO', 'Este código no existe ¿Desea agregarlo?', 
-        function(){console.log('Código nuevo / Institución nueva');
+        function(){//console.log('Código nuevo / Institución nueva');
                     preparacionAgregar(accion, false);},
         function(){ }).set({
                 labels : {
@@ -267,7 +269,7 @@ function preparacionAgregar(accion, existe){
 //CONSULTAR 
 function consultaCentro(accion) {  
   $(".row-search").show(); 
-  console.log("Tipo", tipo);
+  // console.log("Tipo", tipo);
   
   if (tipo == 2) {
     $("#btn-actualizar").hide()
@@ -287,10 +289,11 @@ function consultaCentro(accion) {
  
   autocompleteArrays(accion); 
   cambia_estado_forms(true);
-
+  $( "#btnSend" ).off("click");
   $( "#btnSend" ).click( function () {
     $('.collapse').collapse('show')
     var valorConsulta = $("#miConsulta").val();
+    $("#form-2")[0].reset();   
     limpiarFormularios();
     // if ($("#miConsulta").val() != "")
    if (valorConsulta != "")
@@ -308,8 +311,17 @@ function consultaCentro(accion) {
       cargaForm5(accion, codigoConsulta);
       cargaForm6(accion, codigoConsulta,"");
       cambia_estado_forms(true);
-
+      $( "#btn-actualizar" ).off("click");
       $( "#btn-actualizar" ).click( function () {
+        console.log("id", itemID);
+        
+
+        /*
+        Deshabilita el botón buscar para obligar al usuario a cargar nuevamente el form
+        con el fin de limpiar datos de los inputs
+        */
+      //  $("#btnSend").prop("disabled", true);
+
         //Bandera modo actualizacion
         modoActualizacion=true;
         //redundancia para habilitar forms 5 y 6
@@ -364,6 +376,7 @@ function validacionyEnvioForm1(accion) {
              }
          }
      });
+    $("#btn-informacion-general").off("click");
     $("#btn-informacion-general").click(function () {
       if(form.valid()=== true){           
         $("#btn-informacion-general").prop("disabled", true);  
@@ -507,20 +520,25 @@ function validacionyEnvioForm2(accionF) {
     // FALTA VALIDACIÓN SI SE REQUIERE
     // regla de que no esté vacío el código
   });
-  
+  $('#btn-datos-proyectos').off("click");
   $('#btn-datos-proyectos').click(function(e){
+    var searchIDs = [];
+    console.log("array searchIDs AFUERA"+searchIDs);
+            
     if(form.valid()=== true){   
 
       if (id_del_centro_educativo != 0) {
       if (accionF == 'agregar') {
             e.preventDefault();
-            var searchIDs = $("#proyectosCE input:checkbox:checked").map(function(){
+            searchIDs = $("#proyectosCE input:checkbox:checked").map(function(){
               return $(this).attr("id");
             }).get(); // <----
-            // console.log("searchIDs",searchIDs);
+            
             // var url = "../server/agregar_main.php?tabla=proyectos&id=" +id_del_centro_educativo + "";
             var url = "../server/actualizar_main.php?tabla=proyectos&id=" +id_del_centro_educativo + "";
             let datosDesde = searchIDs.length;  
+            // console.log("largo del array"+ datosDesde);
+            
             $(".div-shadow").removeClass("invisible");          
             $.ajax({
               type: "POST",
@@ -541,12 +559,14 @@ function validacionyEnvioForm2(accionF) {
             });
           }
           else {
+            searchIDs = [];
             e.preventDefault();
-            var searchIDs = $("#proyectosCE input:checkbox:checked").map(function(){
+            searchIDs = $("#proyectosCE input:checkbox:checked").map(function(){
               return $(this).attr("id");
+              
             }).get(); // <----
-            
             var url = "../server/actualizar_main.php?tabla=proyectos&id=" +id_del_centro_educativo + "";
+
             // console.log("url actualizar",url);
             let datosDesde = searchIDs.length;
             $(".div-shadow").removeClass("invisible");
@@ -554,11 +574,11 @@ function validacionyEnvioForm2(accionF) {
               type: "POST",
               url: url,
               data: {'array': JSON.stringify(searchIDs)},//capturo array     
-              success: function(data){
+              success: function(data){                
                 $(".div-shadow").addClass("invisible");
                 deshabilitaBoton('form-2');
                 $('#btn-datos-proyectos').blur();
-                // alertify.notify('La información ha sido actualizada','warning',3, null);
+                
                 cargaForm6(accionF, id_del_centro_educativo, datosDesde);
                 // console.log('actualizados');  
               },
@@ -586,33 +606,60 @@ function validacionyEnvioForm3(accionF) {       //Infraestructura
         event.preventDefault();
   });
   form.validate({
+
     // FALTA VALIDACIÓN SI SE REQUIERE
     // regla de que no esté vacío el código
   });
+  $('#btn-infraestructura').off("click");
   $('#btn-infraestructura').click(function(e){
     if(form.valid()=== true){   
       if (id_del_centro_educativo != 0) {  
-        let data = new FormData($('#form-3')[0]); 
+        let datosForm = new FormData($('#form-3')[0]); 
         var internet=["#chkOficinas","#chkred","#chkbib","#chkinsti"];
         var names=["chkOficinas","chkred","chkbib","chkinsti"];
         var url;
         for (let index = 0; index < 4; index++) {
           var oficinas = $(internet[index]);
-          data.delete(names[index]);        
+          datosForm.delete(names[index]);        
         if (oficinas.is(":checked")){
-            data.append((names[index]), 'true');    
+          datosForm.append((names[index]), 'true');    
         }
           else {
-            data.append((names[index]), 'false'); 
+            datosForm.append((names[index]), 'false'); 
           } 
         }
+      //            console.log(datosForm);
+      //   for (var pair of datosForm.entries()) {
+      //     console.log(pair[0]+ ',  ' + pair[1]); 
+      // }
+        // INICIO codigo agregado para permitar agregar INSERT desde la opción consultar
+        consulta = "SELECT * FROM `infraestructura` WHERE `id_CE`= '"+id_del_centro_educativo+"'";
+        cargaJson( consulta, function (data){resultado = data.length; 
+          console.log("datos de INFRAESTRUCTURA", resultado);
+          if(resultado == 0)  
+          {
+            accionF = 'agregar' // NO hay registros
+          }
+          else
+          {
+            accionF = 'consultar'
+          }
+        // });
+        
+
         if (accionF == 'agregar') {
             url = "../server/agregar_main.php?tabla=infraestructura&id=" +id_del_centro_educativo + "";
         }
         else {
             url = "../server/actualizar_main.php?tabla=infraestructura&id=" +id_del_centro_educativo + "";
         }
-        conectDataAjaxSimple(url, data);    
+        conectDataAjaxSimple(url, datosForm);    
+
+      },"../server/consultas_generales.php");
+
+      //FIN DE CÓDIGO
+
+      
         if (accionF == 'agregar') {
           $(".form-3").prop("disabled", true);
           deshabilitaBoton('form-3');
@@ -643,7 +690,7 @@ function validacionyEnvioForms4(accion) {
 function actualizaForm4(accionF,tipoEquipo) {  
   let idForm = "#form-4-"+tipoEquipo,
       idBtn =  "#btn-equipamiento-"+tipoEquipo;
-
+      var datosForm, url, resultado;
   var form = $(idForm);
   
   // var form = $( "#form-4-fonatel" );
@@ -657,30 +704,59 @@ function actualizaForm4(accionF,tipoEquipo) {
     // FALTA VALIDACIÓN SI SE REQUIERE
     // regla de que no esté vacío el código
   });
+  $(idBtn).off("click");
   $(idBtn).click(function(e){
     // valores de la tabla y clase se pierden cuando se agrega
     var tipoEquipamiento = idBtn.slice(18),
      nombreTabla = "equipamiento_"+tipoEquipamiento,
      nombreClase = '.form-4-'+tipoEquipamiento;
+    //  console.log("tabla"+nombreTabla);
+     
+    console.log("id del centro"+id_del_centro_educativo);
     
     if(form.valid()=== true){ 
 
       if (id_del_centro_educativo != 0) {  
-        let data = new FormData($(idForm)[0]); 
-        
-      //   for (var pair of data.entries()) {
-      //     console.log(pair[0]+ ', ' + pair[1]); 
+                             
+        // datosForm = new FormData($('#form-4-fonatel')[0]);
+        datosForm = new FormData($(idForm)[0]); 
+      //    console.log("nombre del form"+($(idForm)[0]));
+         
+      //    console.log(datosForm);
+      //   for (var pair of datosForm.entries()) {
+      //     console.log(pair[0]+ ',  ' + pair[1]); 
       // }
-        var url;
-        if (accionF === 'agregar') {
-          url = "../server/agregar_main.php?tabla="+nombreTabla+"&id=" +id_del_centro_educativo + "";
-          
+
+       consulta = "SELECT * FROM `"+nombreTabla+"` WHERE `id_CE`= '"+id_del_centro_educativo+"'";
+      cargaJson( consulta, function (data){resultado = data.length; 
+        console.log("datos de equipamiento", resultado);
+        if(resultado == 0)  
+        {
+          accionF = 'agregar'
         }
-        else {
-            url = "../server/actualizar_main.php?tabla="+nombreTabla+"&id=" +id_del_centro_educativo + "";
-            // url = "../server/actualizar_main.php?tabla=equipamiento_fonatel&id=" +id_del_centro_educativo + "";
+        else
+        {
+          accionF = 'consultar'
         }
-        conectDataAjaxSimple(url, data);    
+      if (accionF === 'agregar' ) {
+        url = "../server/agregar_main.php?tabla="+nombreTabla+"&id=" +id_del_centro_educativo + "";
+        conectDataAjaxSimple(url, datosForm); 
+      //   console.log("aqui no hay registros");
+      //   for (var pair of datosForm.entries()) {
+      //     console.log("despues..."+pair[0]+ ',  ' + pair[1]); 
+      // };
+      }
+      else
+      {
+          url = "../server/actualizar_main.php?tabla="+nombreTabla+"&id=" +id_del_centro_educativo + "";
+          console.log("aqui update");
+          conectDataAjaxSimple(url, datosForm); 
+                    // url = "../server/actualizar_main.php?tabla=equipamiento_fonatel&id=" +id_del_centro_educativo + "";
+      }
+             
+      },"../server/consultas_generales.php");
+
+        
         if (accionF === 'agregar') {
           $(nombreClase).prop("disabled", true);
           $(idBtn).prop("disabled", true);  //se deshabilita por ID, porque los 4 btn's  llevan el mismo name
@@ -1029,7 +1105,7 @@ function renderizarFormDatosGenerales(data, accion) {
         
         if (data[i].equipamiento != "") {
 
-            JSON.parse( data[i].equipamiento );
+          equipamiento = JSON.parse( data[i].equipamiento );
 
           for (let index = 0; index < equipamiento.length; index++) {
               let tmpChk =  document.getElementById( equipamiento[index].id );
@@ -1096,7 +1172,7 @@ function renderizarFormDatosGenerales(data, accion) {
   
   //tabla provisional --- la consulta debe hacerse en Usuarios
     // let consulta = "SELECT  id,nombre FROM `usuarios` WHERE `id_tipo`='asesor enlace'  ORDER BY nombre"; 
-    let consulta = "SELECT * FROM `usuarios` WHERE `id_tipo`='1' OR `id_tipo`='6' OR `id_tipo`='7' ORDER BY nombre";
+    let consulta = "SELECT * FROM `usuarios` WHERE `id_tipo`='1' OR `id_tipo`='6' OR `id_tipo`='7'  OR `id_tipo`='9' ORDER BY nombre";
     enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectAsesores,  "../server/consultas_generales.php", asesor,"asesores select" );
     
     consulta = 'SELECT * FROM `modalidad_educativa` ORDER BY id';
@@ -1220,7 +1296,7 @@ function renderizarFormInfraestructura(data, accion) {
         document.getElementById('chkred').checked = JSON.parse(infraestructura[0].red_interna); 
         document.getElementById('chkbib').checked = JSON.parse(infraestructura[0].internet_biblioteca); 
         document.getElementById('chkinsti').checked = JSON.parse(infraestructura[0].internet_toda_institucion); 
-      });
+     });
       registros = true;
       
       $(".form-5").prop("disabled", false);
@@ -1251,7 +1327,7 @@ function renderizarFormInfraestructura(data, accion) {
          $("#fonatel_cantidad_equipo").val(equipamiento[0].cantidad_equipo);      
          $("#fonatel_requiere_soporte").val(equipamiento[i].requiere_soporte);   
          $("#fonatel_estado").val(equipamiento[i].fonatel_estado); 
-       });
+      });
    };
    let formulario = "form-4-fonatel";
    formaBotonEnviar(formulario,registros);
@@ -1272,26 +1348,24 @@ function renderizarFormInfraestructura(data, accion) {
          estado = equipamiento[0].estado_compra,
         //  consulta = 'SELECT * FROM `transferencia_estado` ORDER BY id';
         //  enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", estado )
-         $("#transferencia_fecha_transferencia").val(equipamiento[0].fecha_transferencia);
-         $("#transferencia_monto").val(equipamiento[0].monto);
-         $("#transferencia_recibido").val(equipamiento[0].recibido);
-         $("#transferencia_fecha_recibido").val(equipamiento[0].fecha_recibido);
-         $("#transferencia_pago_empresa").val(equipamiento[0].pago_empresa);
-         $("#transferencia_fecha_pago").val(equipamiento[0].fecha_pago);
-         $("#transferencia_en_uso").val(equipamiento[0].en_uso);
-         $("#transferencia_remanente").val(equipamiento[0].remanente);
-         $("#transferencia_monto_remanente").val(equipamiento[0].monto_remanente);
-         $("#transferencia_razones").val(equipamiento[0].razones);
-         $("#transferencia_fecha_contrato_recibido").val(equipamiento[0].fecha_contrato_recibido);
-         $("#transferencia_cantidad_docentes").val(equipamiento[0].cantidad_docentes);
-         $("#transferencia_que_falta").val(equipamiento[0].que_falta);
-         $("#transferencia_tipo_cartel").val(equipamiento[0].tipo_cartel);     
-         $("#transferencia_cantidad_equipo").val(equipamiento[0].cantidad_equipo);      
-         $("#transferencia_requiere_soporte").val(equipamiento[0].requiere_soporte);   
-         $("#transferencia_estado").val(equipamiento[0].transferencia_estado); 
-         
-         
-       });
+        $("#transferencia_fecha_transferencia").val(equipamiento[0].fecha_transferencia);
+        $("#transferencia_monto").val(equipamiento[0].monto);
+        $("#transferencia_recibido").val(equipamiento[0].recibido);
+        $("#transferencia_fecha_recibido").val(equipamiento[0].fecha_recibido);
+        $("#transferencia_pago_empresa").val(equipamiento[0].pago_empresa);
+        $("#transferencia_fecha_pago").val(equipamiento[0].fecha_pago);
+        $("#transferencia_en_uso").val(equipamiento[0].en_uso);
+        $("#transferencia_remanente").val(equipamiento[0].remanente);
+        $("#transferencia_monto_remanente").val(equipamiento[0].monto_remanente);
+        $("#transferencia_razones").val(equipamiento[0].razones);
+        $("#transferencia_fecha_contrato_recibido").val(equipamiento[0].fecha_contrato_recibido);
+        $("#transferencia_cantidad_docentes").val(equipamiento[0].cantidad_docentes);
+        $("#transferencia_que_falta").val(equipamiento[0].que_falta);
+        $("#transferencia_tipo_cartel").val(equipamiento[0].tipo_cartel);     
+        $("#transferencia_cantidad_equipo").val(equipamiento[0].cantidad_equipo);      
+        $("#transferencia_requiere_soporte").val(equipamiento[0].requiere_soporte);   
+        $("#transferencia_estado").val(equipamiento[0].transferencia_estado); 
+        });
    };
    consulta = 'SELECT * FROM `transferencia_estado` ORDER BY id';
    enviarFormDataAjax2( empaquetarConsulta(consulta), llenarSelectEstadoCompra,  "../server/consultas_generales.php", estado,"tranferencia estado" )
@@ -1336,7 +1410,7 @@ function renderizarFormInfraestructura(data, accion) {
          $("#conectandonos_cantidad_equipo").val(equipamiento[0].cantidad_equipo);     
          $("#conectandonos_requiere_soporte").val(equipamiento[0].requiere_soporte);   
          $("#conectandonos_estado").val(equipamiento[0].conectandonos_estado);  
-       });
+      });
    };
    let formulario = "form-4-conectandonos";
    formaBotonEnviar(formulario,registros);
@@ -1359,31 +1433,30 @@ function renderizarFormInfraestructura(data, accion) {
          $("#donacion_cantidad_equipo").val(equipamiento[0].cantidad_equipo); 
          $("#donacion_requiere_soporte").val(equipamiento[0].requiere_soporte);   
          $("#donacion_estado").val(equipamiento[0].donacion_estado);  
-
-       });
+});
    };
    let formulario = "form-4-donacion";
    formaBotonEnviar(formulario,registros);
  }
  
- function cargarJson2 ( mCallBack, accion, url  ) 
- { 
+ function cargarJson2 ( mCallBack, accion, url  ) {
+ 
    fetch( url)
           .then(response => response.json())
-          .then(data => 
-          { 
-            mCallBack (data,accion );                
+          .then(data => { 
+
+              mCallBack (data,accion );                
           })
           .catch( 
-          error => 
-          {
+            error => {
               // aquí
-            console.error(error)
-          })                 
+              console.error(error)
+            })                 
  };
  
 
- function formaBotonEnviar(formulario,registros) {  // cambia el texto e imagen del botón  
+ function formaBotonEnviar(formulario,registros) {  // cambia el texto e imagen del botón
+  
    
   let elementButton = 'button[name='+formulario+']';
    if (registros) { //no tiene informacion
@@ -1439,6 +1512,7 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url, input, callFrom) {
     }
   });
 }
+
 
 
 function cargarCentrosEducativos(stringArray,inputwithComplete) {
@@ -1527,7 +1601,7 @@ function cargaForm(response) {
   itemID = parseInt(texto[0]);    
   // fin obtener id
 
-  console.log("Código del nuevo Centro", itemID); 
+  // console.log("Código del nuevo Centro", itemID); 
   cambia_estado_forms(false);
   
   preparacion_de_forms('agregar');

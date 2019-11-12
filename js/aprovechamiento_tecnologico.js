@@ -6,30 +6,32 @@ var accion;
 
 
 function setupForm5y6 (accion,itemID) {
-       
-        console.log("Accion en setup5y6", accion);
-        
-       // Handler onload
+	// Handler onload
        idCentroEducativo = itemID;
-       console.log("idCentroEducativo", idCentroEducativo);
+	   activaSelect(accion);          	    
+        //console.log("---------------Accion en setup5y6", accion, "--------------");                      
+       //console.log("idCentroEducativo", idCentroEducativo);	
 
-       activaSelect(accion);          
-        
-
-       $("#btn-aprovechamiento-tecnologico").click(function (e) { 
+       
+	   //Se elimina manjeador de eventos residuales en memoria
+	   $("#btn-aprovechamiento-tecnologico").off("click");
+       $("#btn-aprovechamiento-tecnologico").click(function (e) {			
            e.preventDefault();   
-           llenarEspacios();        
-           guardarProfesor();
-           guardarEstudiante();         
-           enviarFormDataAjax( empaquetarDatosAprovechamientoTec(), 
+			llenarEspacios();			
+            guardarProfesor();           
+		   guardarEstudiante();         
+          
+		   enviarFormDataAjax( empaquetarDatosAprovechamientoTec(), 
                         function () { 
-                            console.log("ACCION", accion);  
+                            // console.log("ACCION", accion);  
                             deshabilitaForm('form-5');
                         },  
-                        "../server/agregar_main.php?tabla=uso_equipo&id="+idCentroEducativo );           
+                        "../server/agregar_main.php?tabla=uso_equipo&id="+idCentroEducativo );  
+						
        });
    
-   
+	//Se eliminana eventos residuales
+	$("#btn-usoTecPorProyecto").off("click");
        $("#btn-usoTecPorProyecto").click(function (e) { 
            e.preventDefault();
            $(this).prop("disabled", true);           
@@ -46,7 +48,7 @@ function setupForm5y6 (accion,itemID) {
 
 function activaSelect(accion) {
     accion=accion;
-    console.log("------------------Accion en activaSelect", accion);
+    // console.log("------------------Accion en activaSelect", accion);
     $("#selProyectosCE").empty();
     consulta = "SELECT id_CE,  id_iniciativa, iniciativas.nombre FROM proyectos INNER JOIN iniciativas ON iniciativas.id=proyectos.id_iniciativa WHERE `id_CE`="+ idCentroEducativo;
     enviarFormDataAjax( empaquetarConsulta(consulta), cargarSelect,  "../server/consultas_generales.php" );   
@@ -54,19 +56,23 @@ function activaSelect(accion) {
 
 
 function deshabilitarInput(clase) {
-    console.log("DESACTIVANDO formulario", clase);    
+    // console.log("DESACTIVANDO formulario", clase);    
     $("."+ clase).prop("disabled", true);  
     $("."+clase).addClass("disabled");       
 }
 
 function habilitaritarInput(clase) {
-    console.log("ACTIVANDO formulario", clase);    
+    // console.log("ACTIVANDO formulario", clase);    
     $("."+ clase).prop("disabled", false);  
     $("."+clase).removeClass("disabled");       
 }
 
-function guardarProfesor () {   
-    const chkProfesor = $(".uso-tec-prof");
+
+
+function guardarProfesor () { 
+//Se limpia el array para que no haga duplicados :	
+    usoProf = []; 
+	const chkProfesor = $(".uso-tec-prof");
     for (let index = 0; index < chkProfesor.length; index++) {
         let obj = {
             "id" : chkProfesor[index].id,
@@ -74,12 +80,13 @@ function guardarProfesor () {
         };
         usoProf.push(obj);        
     };
-    console.log("datos profesor guardados ");
-    console.log(usoProf);    
+    // console.log("datos profesor guardados", usoProf);   
        
 }
 
-function guardarEstudiante () {   
+function guardarEstudiante () {
+	//Se limpia el array para que no haga duplicados :
+	usoEst  = [];
     const chkEstudiante = $(".uso-tec-est");
     for (let index = 0; index < chkEstudiante.length; index++) {
         let obj = {
@@ -88,8 +95,8 @@ function guardarEstudiante () {
         };
         usoEst.push(obj);        
     };
-    console.log("datos estudiante guardados ");
-    console.log(usoEst);    
+    // console.log("datos estudiante guardados ");
+    // console.log(usoEst);    
        
 }
 
@@ -219,14 +226,14 @@ function renderizarFormAprovechamientoTec (dataset ) {
 function renderizarFormUsoTecnologiaProyecto(dataset) {
 
 dataset.reverse();
-   console.log("Desde proyecto render",dataset);  
+//    console.log("Desde proyecto render",dataset);  
     
     
      //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
     
    
      const limite = dataset.length;
-
+	$("#selProyectosCE").off("change");
     $("#selProyectosCE").change(function (e) { 
         e.preventDefault();
         const opcion = e.target.value;
@@ -358,7 +365,7 @@ function empaquetarDatosUsoTecProyecto () {
 }
 
 function empaquetarConsulta(c) { 
-    // c recibe como parámetro la consulta a empaquetar para luego mandarla por Ajx    
+    // c recibe como parámetro la consulta a empaquetar para luego mandarla por Ajax    
     
         var formData = new FormData();               
         formData.append("consulta", c );
@@ -372,10 +379,10 @@ function empaquetarConsulta(c) {
 
 function cargarSelect(stringArray) {
 let dataset = JSON.parse(stringArray);
-     console.log(dataset);      
+    //  console.log(dataset);      
      //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:  
      const limite = dataset.length;
-    console.log("Valor Array:",limite);    
+    //console.log(limite);    
     $("#selProyectosCE").empty();
     $("#selProyectosCE").append("  <option value=0 selected > Seleccione el proyecto </option>  ");
      for (let index = 0; index < limite; index++) {

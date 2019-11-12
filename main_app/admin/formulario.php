@@ -22,8 +22,8 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -730,7 +730,7 @@
 
                       <div class="col-sm-3" >
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1"><!--Error de etiqueta y hace falta el numero8-->
+                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1">
                           <label class="custom-control-label" for="1">Tecnoaprender en Preescolar</label>
                         </div>
                       </div>
@@ -863,7 +863,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondpasi" name="inputGroupCondpasi">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -880,7 +880,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondAula" name="inputGroupCondAula">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -898,7 +898,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupEstEsp" name="inputGroupEstEsp">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -915,7 +915,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBiblio" name="inputGroupBiblio">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -940,13 +940,14 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupIlumAul" name="inputGroupIlumAul">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
                       <option value="5">Excelente</option>
                     </select>
                   </div>
+
                 </div>
 
                 <div  class="row">
@@ -970,7 +971,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupCondElec" name="inputGroupCondElec">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -987,7 +988,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupBibliEle" name="inputGroupBibliEle">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1004,7 +1005,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupPaneSol" name="inputGroupPaneSol">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1018,7 +1019,7 @@
 
                 <div   class="row">
                   <div class="col-12 mb-4 ml-2 h6">
-                    <span class="badge badge-secondary p-2">Evaluación de Seguridad del equipo</span>
+                    <span class="badge badge-secondary p-2">Evaluación Seguridad</span>
                   </div>
 
                 </div>
@@ -1031,7 +1032,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSeg" name="inputGroupSeg">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1048,7 +1049,7 @@
                     </div>
                     <select class="custom-select form-3" id="inputGroupSegEqui" name="inputGroupSegEqui">
                       <option value="0" selected> Seleccione </option>
-                      <option value="1">Pésimo</option>
+                      <option value="1"> Pésimo </option>
                       <option value="2">Malo</option>
                       <option value="3">Regular</option>
                       <option value="4">Bueno</option>
@@ -1060,7 +1061,7 @@
 
                 <div  class="row">
 
-                  <div class="input-group col-sm-8">
+                <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
                       <span class="input-group-text" for="inputGroupPlaEqui">¿Está plaqueado el equipo?</span>
                     </div>
@@ -1075,11 +1076,11 @@
 
                 <div  class="row">
 
-                  <div class="input-group col-sm-8">
+                <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
                       <span class="input-group-text" for="inputGroupProtoEqui">¿Existe protocolo de uso del equipo?</span>
                     </div>
-                    <select class="custom-select form-3" id="inputGroupRespMan" name="inputGroupRespMan">
+                    <select class="custom-select form-3" id="inputGroupProtoEqui" name="inputGroupProtoEqui">
                       <option value="0" selected> Seleccione </option>
                       <option value="1">Si</option>
                       <option value="2">No</option>
@@ -1088,13 +1089,13 @@
                 </div>
                 <hr>
 
+ 
                 <div   class="row">
                   <div class="col-12 mb-4 ml-2 h6">
                     <span class="badge badge-secondary p-2">Aire acondicionado</span>
                   </div>
-
                 </div>
-
+               
                 <div  class="row">
                   <div class="input-group col-sm-8">
                     <div class="input-group-prepend">
@@ -1179,10 +1180,11 @@
                     <li id="li4" class='nav-item nav-equipamiento d-none'><a id="ali4" class='nav-link' data-toggle='tab' href='#donacion' role='tab' aria-controls='home' aria-selected='false'>Donación</a></li>
                   </ul>
                 </div>
-<!-------------------------- inicia equipamiento FONATEL ------------------------------------------------------->
-                <div class="tab-content px-5" id="menuListaContent">
-                  <div class="tab-pane fade" id="fonatel" role="tabpanel" aria-labelledby="fonatel-tab">
 
+<!------------------------------------------ inicia equipamiento FONATEL --------------------------------------------------------->
+                <div class="tab-content px-5" id="menuListaContent">
+
+                  <div class="tab-pane fade" id="fonatel" role="tabpanel" aria-labelledby="fonatel-tab">
                     <!-- <div id="equipamiento_fonatel"> -->
                       <form  id="form-4-fonatel" class="form-4-equipamiento" novalidate>
                         <div class="row">
@@ -1221,7 +1223,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text" for="fonatel_monto_inversion">Monto Inversión</span>
                               </div>
-                              <input type="text"  id="fonatel_monto_inversion" name="fonatel_monto_inversion" class="form-control form-4-fonatel" >
+                              <input type="number"  id="fonatel_monto_inversion" name="fonatel_monto_inversion" class="form-control form-4-fonatel" >
                             </div>
                           </div>
 
@@ -1244,23 +1246,22 @@
                         </div>
 
                         <div class="row">
-                        
-                          <div class="col-sm-4">
+                        <div class="col-sm-4">
                             <div class="input-group input-group-sm">
                               <div class="input-group-prepend">
-                                <span class="input-group-text">La cantidad de equipo disponible es</span>
+                                <span class="input-group-text" for="fonatel_cantidad_equipo">La cantidad de equipo disponible es</span>
                               </div>
-                              <select id ="fonatel_cantidad_equipo" class="form-control custom-select form-4-fonatel" name="fonatel_cantidad_equipo">
-                                
+                               <select id ="fonatel_cantidad_equipo" class="form-control custom-select form-4-fonatel" name="fonatel_cantidad_equipo"">
+
                                 <option value="0" disabled selected> Seleccione</option>
-                                <option value="1">Suficiente</option>
-                                <option value="2">Insuficiente</option>
+                                <option value="suficiente">Suficiente</option>
+                                <option value="insuficiente">Insuficiente</option>
                                 <option value="otro">Otro</option>
                               </select>
                             </div>
                           </div>
-
-                          <div class="col-sm-4">
+                 
+                        <div class="col-sm-4">
                             <div class="input-group input-group-sm">
                               <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
@@ -1290,18 +1291,19 @@
                             <div class="error"></div>
                           </div>
                         </div>
-                        
-                                                                                               
+
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">
                                 <br>
-                                <p class="badge badge-secondary p-2" for="fonatel_que_falta">Indique qué hace falta:</p>
-                                <textarea class="form-control form-4-fonatel" rows="3" id="fonatel_que_falta" name="fonatel_que_falta"></textarea>
+                              <p class="badge badge-secondary p-2" for="fonatel_que_falta">Indique qué hace falta:</p>
+                              <textarea class="form-control form-4-fonatel" rows="3" id="fonatel_que_falta" name="fonatel_que_falta"></textarea>
+                              <!-- <input class="form-control form-4" type="text" id="fonatel_que_falta" name="fonatel_que_falta"> -->
                             </div>
                           </div>
-                         </div>
-                                                
+                        </div>
+
+
                         <div class="row">
                           <button id="btn-equipamiento-fonatel" name ="form-4-fonatel" type="submit" class="btn btn-enviar btn-4 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
                         </div>
@@ -1310,7 +1312,9 @@
 <!----------------------------------------- fin div del tab-panel FONATEL ------------------------------------------>
 <!----------------------------------------- Inicio div del tab-panel Transferencia --------------------------------->
 
+
                   <div class="tab-pane fade" id="transferencia" role="tabpanel" aria-labelledby="transferencia-tab">
+
                     <form  id="form-4-transferencia" class="form-4-equipamiento" novalidate>
 
                       <div class="row">
@@ -1351,12 +1355,13 @@
                             </select>
                           </div>
                         </div>
+
                       </div>
 
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <p class="badge badge-secondary p-2" label for="transferencia_razones"> Indique las razones por las que no se ha realizado el proceso de contratación:</label></p>
+                            <p for="transferencia_razones" class="badge badge-secondary p-2" for="fonatel_que_falta">Indique las razones por las que no se ha realizado el proceso de contratación:</p>
                             <textarea class="form-control form-4-transferencia" rows="5" id="transferencia_razones" name="transferencia_razones"></textarea>
                           </div>
                         </div>
@@ -1370,9 +1375,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_recibido" name="transferencia_recibido">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Si</option>
-                              <option value="2">No</option>
-                              <option value="3">No aplica</option>
+                              <option value="si">Si</option>
+                              <option value="no">No</option>
+                              <option value="no aplica">No aplica</option>
                             </select>
                           </div>
                         </div>
@@ -1383,12 +1388,13 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_pago_empresa" name="transferencia_pago_empresa">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Si</option>
-                              <option value="2">No</option>
-                              <option value="3">No aplica</option>
+                              <option value="si">Si</option>
+                              <option value="no">No</option>
+                              <option value="no aplica">No aplica</option>
                             </select>
                           </div>
                         </div>
+
                       </div>
 
                       <div class="row">
@@ -1420,9 +1426,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_remanente" name="transferencia_remanente">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Si</option>
-                              <option value="2">No</option>
-                              <option value="3">No aplica</option>
+                              <option value="si">Si</option>
+                              <option value="no">No</option>
+                              <option value="no aplica">No aplica</option>
                             </select>
                           </div>
                         </div>
@@ -1465,9 +1471,9 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_en_uso" name="transferencia_en_uso">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Si</option>
-                              <option value="2">No</option>
-                              <option value="3">No aplica</option>
+                              <option value="si">Si</option>
+                              <option value="no">No</option>
+                              <option value="no aplica">No aplica</option>
                             </select>
                             </div>
                         </div>
@@ -1496,12 +1502,13 @@
                             </div>
                             <select class="custom-select form-4-transferencia" id="transferencia_cantidad_equipo" name="transferencia_cantidad_equipo">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Suficiente</option>
-                              <option value="2">Insuficiente</option>
-                              <option value="3">Otro</option>
+                              <option value="suficiente">Suficiente</option>
+                              <option value="insuficiente">Insuficiente</option>
+                              <option value="otro">Otro</option>
                             </select>
                           </div>
                         </div>
+
 
                         <div class="col-sm-6">
                         <div class="input-group mb-3">
@@ -1522,7 +1529,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Estado actual del equipo</span>
                               </div>
-                                <select id ="transferencia_estado" class="form-control custom-select form-4-transferencia" name="transferencia_requiere_soporte">
+                                <select id ="transferencia_estado" class="form-control custom-select form-4-transferencia" name="transferencia_estado">
                                     <option value="" disabled selected>Seleccione...</option>
                                     <option value="1">Excelente</option>
                                     <option value="2">Bueno</option>
@@ -1539,12 +1546,11 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <p class="badge badge-secondary p-2" for="transferencia_razones">Indique qué hace falta:</p>
-                            <textarea class="form-control form-4-transferencia" rows="3" id="transferencia_que_falta" name="transferencia_que_falta"></textarea>
+                            <p for="transferencia_que_falta" class="badge badge-secondary p-2">Indique qué hace falta:</p>
+                            <textarea class="form-control form-4-transferencia" rows="5" id="transferencia_que_falta" name="transferencia_que_falta"></textarea>
                           </div>
                         </div>
                       </div>
-
 
                       <div class="row">
                         <button id="btn-equipamiento-transferencia" name ="form-4-transferencia" type="submit" class="btn btn-enviar btn-5 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
@@ -1553,15 +1559,15 @@
                   </div>
 <!----------------------------- fin del tab-pane equipamiento por transferencia ------------------------------------------------->
 <!----------------------------- div equipamiento por donación ------------------------------------------------------------------->
-                    <div class="tab-pane fade" id="donacion" role="tabpanel" aria-labelledby="donacion-tab">
+  
+                  <div class="tab-pane fade" id="donacion" role="tabpanel" aria-labelledby="donacion-tab">
+                      <!-- <div id="equipamiento_donacion"> -->
                     <form  id="form-4-donacion" class="form-4-equipamiento" novalidate>
-                    
                       <div class="row">
-                          <div class="col-sm-12" >
-                            <span class="badge badge-secondary p-2">Equipamiento mediante donación</span>
-                          </div>
+                        <div class="col-sm-12" >
+                          <span class="badge badge-secondary p-2">Equipamiento mediante donación</span>
+                        </div>
                       </div>
-
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="input-group mb-3">
@@ -1571,7 +1577,6 @@
                             <input  id ="donacion_anno"  name ="donacion_anno" type="text"  class="form-control form-4-donacion" >
                           </div>
                         </div>
-
                         <div class="col-sm-6">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -1581,9 +1586,8 @@
                           </div>
                         </div>
                       </div>
-
                       <div class="row">
-                          <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text" for="donacion_cantidad_docentes">Cantidad de docentes que utilizan el equipo</span>
@@ -1598,22 +1602,21 @@
                               </select>
                             </div>
                           </div>
-
-                          <div class="col-sm-6">
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" for="donacion_cantidad_equipo">La cantidad de equipo disponible es</span>
-                              </div>
-                              <select class="custom-select form-4-donacion" id="donacion_cantidad_equipo" name="donacion_cantidad_equipo">
-                                <option value="0" disabled selected> Seleccione</option>
-                                <option value="1">Suficiente</option>
-                                <option value="2">Insuficiente</option>
-                                <option value="3">Otro</option>
-                              </select>
+                        <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" for="donacion_cantidad_equipo">La cantidad de equipo disponible es</span>
                             </div>
+                            <select class="custom-select form-4-donacion" id="donacion_cantidad_equipo" name="donacion_cantidad_equipo">
+                              <option value="0" disabled selected> Seleccione</option>
+                              <option value="suficiente">Suficiente</option>
+                              <option value="insuficiente">Insuficiente</option>
+                              <option value="otro">Otro</option>
+                            </select>
                           </div>
+                        </div>
                       </div>
- 
+
                       <div class="row">
                           <div class="col-sm-6">
                           <div class="input-group mb-3">
@@ -1646,25 +1649,22 @@
                           </div>
                         </div>
 
-
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <p class="badge badge-secondary p-2"  for="donacion_que_falta">Indique qué hace falta:</p>                            
+                            <p  for="donacion_que_falta" class="badge badge-secondary p-2">Indique qué hace falta:</p>
                             <textarea class="form-control form-4-donacion" rows="5" id="donacion_que_falta" name="donacion_que_falta"></textarea>
                           </div>
                         </div>
                       </div>
-
                       <div class="row">
                         <button id="btn-equipamiento-donacion" name ="form-4-donacion" type="submit" class="btn btn-enviar btn-6 form-4" value="" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:30px'></i></button>
                       </div>
                     </form>
                   </div>
-
-
 <!----------------------------- fin del tab-pane equipamiento por donación ------------------------------------------------->
 <!----------------------------- div equipamiento por conectandonos --------------------------------------------------------->
+ 
                   <div class="tab-pane fade" id="conectandonos" role="tabpanel" aria-labelledby="conectandonos-tab">
                       <!-- <div id="equipamiento_conectandonos"> -->
                     <form  id="form-4-conectandonos" class="form-4-equipamiento" novalidate>
@@ -1720,16 +1720,16 @@
                             </div>
                             <select class="custom-select form-4-conectandonos" id="conectandonos_cantidad_equipo" name="conectandonos_cantidad_equipo">
                               <option value="0" disabled selected> Seleccione</option>
-                              <option value="1">Suficiente</option>
-                              <option value="2">Insuficiente</option>
-                              <option value="3">Otro</option>
+                              <option value="suficiente">Suficiente</option>
+                              <option value="insuficiente">Insuficiente</option>
+                              <option value="otro">Otro</option>
                             </select>
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-6">
+                      <div class="col-sm-6">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Requiere soporte</span>
@@ -1743,13 +1743,13 @@
                             <div class="error"></div>
                           </div>
 
-                        <div class="col-sm-6">
+                          <div class="col-sm-6">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Estado actual del equipo</span>
                               </div>
                                 <select id ="conectandonos_estado" class="form-control custom-select form-4-conectandonos" name="conectandonos_estado">
-                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="0" disabled selected>Seleccione...</option>
                                     <option value="1">Excelente</option>
                                     <option value="2">Bueno</option>
                                     <option value="3">Regular</option>
@@ -1763,7 +1763,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <p class="badge badge-secondary p-2"  for="conectandonos_que_falta">Indique qué hace falta:</p>  
+                            <p  for="conectandonos_que_falta" class="badge badge-secondary p-2">Indique qué hace falta:</p>
                             <textarea class="form-control form-4-conectandonos" rows="5" id="conectandonos_que_falta" name="conectandonos_que_falta"></textarea>
                           </div>
                         </div>
@@ -1778,7 +1778,6 @@
             </div>
           </div>  <!-- End div collapse four -->
         </div>   <!-- div en card four -->
-
 <!-------------------------------------- fin del collapseFour Equipamiento ----------------------------------------------->
 
         <!-- collapseFive Aprovechamiento Tecnológico -->
@@ -1874,7 +1873,7 @@
 
                   <div class="custom-control custom-checkbox form-5">
                           <input type="checkbox" class="custom-control-input uso-tec-prof form-5" id="profIndagar">
-                          <label class="custom-control-label" for="profIndagar">Indagar información en Interne</label>
+                          <label class="custom-control-label" for="profIndagar">Indagar información en Internet</label>
                       </div>
 
                     
@@ -1947,8 +1946,8 @@
                   <div class="col-2 " >
 
                   <div class="custom-control custom-checkbox form-5">
-                          <input type="checkbox" class="custom-control-input uso-tec-prof form-5" id="profGrabarVideos">
-                          <label class="custom-control-label" for="profGrabarVideos">Grabar y editar videos</label>
+                          <input type="checkbox" class="custom-control-input uso-tec-prof form-5" id="profAudios">
+                          <label class="custom-control-label" for="profAudios">Grabar y editar audios</label>
                   </div> 
                     
                    

@@ -145,66 +145,66 @@ const data = new FormData();
   
 
 
-    function dibujarTabla (array, visor) {
-      console.log(array);
-      moment.locale('es'); 
-         $(visor).empty();
-     
-         var limite = array.length, row,
-         htmlTable = $(
-           "<table  id='tblReportes' class='table table-striped'>" +
-           "<thead>" +
-           "<tr>" + 
-           "<th class='text-center'>Código</th>" +     
-             "<th  scope='col'>Centro educativo</th>" +
-             "<th  scope='col'>Modalidad</th>" +
-             "<th scope='col'>Provincia</th>" +
-             "<th class='text-center'>Regional</th>" +
-             "<th class='text-center'>Teléfono</th>" +
-             "<th class='text-center'>Mas información</th>" +            
-             "<th class='text-center'>Mapa</th>" +            
-            "</tr>" +
-           "</thead>" +
-           "<tfoot> <tr><th>código</th><th>centro educativo</th> <th>modalidad</th> <th>provincia</th> <th>dirección regional</th> <th>teléfono</th>  <th class='buscadores'>proyectos</th><th class='buscadores'>ubicacion</th>"+
-           "</tr></tfoot>"+
-           "</table>"
-         ), tBody = $("<tbody></tbody>");
-     
-                 for (let index = 0; index < limite; index++) {
-                   let fowNumb = index + 1;
-                   row = $(
-                     "<tr>" +
-                     "<td class=''>" +
-                        array[index].cod_pres +
-                     "</td>" +
-                     "<td class=''>"+ array[index].institucion+ "</td>" +
-                     "</td>" +
-                     "<td class=''>"+ array[index].modalidad+ "</td>" +
-                     "<td class='text-center'>" +
-                        array[index].provincia  +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                        array[index].direccion_regional  +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    array[index].telefono  +
-                  "</td>" +
-                   "<td class='text-center' >" +
-                       "<i codigo='"+ array[index].cod_pres +"'id='"+ array[index].id +"'enlace='"+ array[index].enlace_nombre +"'asesor='"+ array[index].nombre +"'mat='"+ (parseInt(array[index].matricula_h) + parseInt(array[index].matricula_m)) +"'internet='"+ array[index].valor +"'name='"+ array[index].institucion +"'  class='fas fa-eye lnk-ico  btnVerDetalles'></i>" +
+  function dibujarTabla (array, visor) {
+    console.log(array);
+    moment.locale('es'); 
+       $(visor).empty();
+   
+       var limite = array.length, row,
+       htmlTable = $(
+         "<table  id='tblReportes' class='table table-striped'>" +
+         "<thead>" +
+         "<tr>" + 
+         "<th class='text-center'>Código</th>" +     
+           "<th  scope='col'>Centro educativo</th>" +
+           "<th  scope='col'>Modalidad</th>" +
+           "<th scope='col'>Provincia</th>" +
+           "<th class='text-center'>Regional</th>" +
+           "<th class='text-center'>Teléfono</th>" +
+           "<th class='text-center'>Mas información</th>" +            
+           "<th class='text-center'>Mapa</th>" +            
+          "</tr>" +
+         "</thead>" +
+         "<tfoot> <tr><th>código</th><th>centro educativo</th> <th>modalidad</th> <th>provincia</th> <th>dirección regional</th> <th>teléfono</th>  <th class='buscadores'>proyectos</th><th class='buscadores'>ubicacion</th>"+
+         "</tr></tfoot>"+
+         "</table>"
+       ), tBody = $("<tbody></tbody>");
+   
+               for (let index = 0; index < limite; index++) {
+                 let fowNumb = index + 1;
+                 row = $(
+                   "<tr>" +
+                   "<td class=''>" +
+                      array[index].cod_pres +
                    "</td>" +
-                   "<td class='text-center' >" +
-                      "<i id='"+ array[index].id +"'equis='"+ array[index].coordenada_x +"'ye='"+ array[index].coordenada_y +"'  class='fas fa-map-marker-alt  btnVerMapa'></i>" +
+                   "<td class=''>"+ array[index].institucion+ "</td>" +
+                   "</td>" +
+                   "<td class=''>"+ array[index].modalidad+ "</td>" +
+                   "<td class='text-center'>" +
+                      array[index].provincia  +
                   "</td>" +
-                     "</tr>"
-                 );
-                   $(tBody).append(row);
-               }
-         $(htmlTable).append(tBody);
-          $(visor).html(htmlTable);
-     
-        loadDataTable();
-       }
-  
+                  "<td class='text-center'>" +
+                      array[index].direccion_regional  +
+                  "</td>" +
+                  "<td class='text-center'>" +
+                  array[index].telefono  +
+                "</td>" +
+                 "<td class='text-center' >" +
+                     "<i codigo='"+ array[index].cod_pres +"'id='"+ array[index].id +"'enlace='"+ array[index].enlace_nombre +"'asesor='"+ array[index].nombre +"'mat='"+ (parseInt(array[index].matricula_h) + parseInt(array[index].matricula_m)) +"'internet='"+ array[index].valor +"'name='"+ array[index].institucion +"'  class='fas fa-eye lnk-ico  btnVerDetalles'></i>" +
+                 "</td>" +
+                 "<td class='text-center' >" +
+                    "<i id='"+ array[index].id +"'equis='"+ array[index].coordenada_x +"'ye='"+ array[index].coordenada_y +"'  class='fas fa-map-marker-alt  btnVerMapa'></i>" +
+                "</td>" +
+                   "</tr>"
+               );
+                 $(tBody).append(row);
+             }
+       $(htmlTable).append(tBody);
+        $(visor).html(htmlTable);
+   
+      loadDataTable();
+     }
+
       function loadDataTable() {
         var table = $('#tblReportes').DataTable({
           dom: 'Blfrtip',

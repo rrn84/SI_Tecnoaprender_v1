@@ -70,7 +70,7 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
    echo ("Aquí irá código para agregar proyecto");
  }
 
- function incluirInfraestructura($valores, $tabla, $conexion, $id)
+  function incluirInfraestructura($valores, $tabla, $conexion, $id)
  {
   $id_ce=$id;
   $pasillos= $valores['inputGroupCondpasi'];
@@ -191,7 +191,7 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
   $cantidad_docentes=$valores['fonatel_cantidad_docentes']; 
   $cantidad_equipo=$valores['fonatel_cantidad_equipo']; 
   $que_falta=utf8_decode($valores['fonatel_que_falta']); 
-  $requiere_soporte= utf8_decode($valores['requiere_soporte']);
+  $requiere_soporte= utf8_decode($valores['fonatel_requiere_soporte']);
   mysqli_query($conexion,"INSERT INTO $tabla(`id_CE`, `tipo_cartel`, `monto_inversion`, `fecha`, `cantidad_docentes`, `cantidad_equipo`, `que_falta`, `requiere_soporte`) VALUES ('$id_CE','$tipo_cartel','$monto_inversion','$fecha','$cantidad_docentes','$cantidad_equipo','$que_falta','$requiere_soporte')") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
  }
 

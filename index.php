@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html lang="en" >
 
-<head>
-  <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
   <title>Tecnoaprender</title>
 		
 		<link rel="stylesheet" href="vendor/bootstrap-4.1.3/css/bootstrap.min.css">
@@ -141,7 +141,7 @@
 			<p class="cd-form-message"> Acerca de</p><hr>
 			<p class="cd-form-message"> Ministerio de Educación Pública de Costa Rica <br>
 				Dirección de Recursos Tecnológicos - Depto. Gestión y Producción GESPRO <br>
-					Desarrolladores: Luis Chacón, Óscar Pérez, Patricia Hernández, Ana Araya <br>
+					Desarrolladores: Luis Chacón, Óscar Pérez, Patricia Hernández, Ana Araya, Ronny Rodríguez N <br>
 					Diseño Gráfico: </p><hr>
 			<p class="cd-form-message">Derechos reservados © 2019</p>
 				</p>

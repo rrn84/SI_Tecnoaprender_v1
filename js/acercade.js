@@ -6,7 +6,7 @@ jQuery(document).ready(function($){
       modalAcercaDe += '<button type="button" class="close" data-custom-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
       modalAcercaDe += '</div>';
       modalAcercaDe += '<div class="modal-body body-about-us">';
-      modalAcercaDe += '<p> Ministerio de Educación Pública de Costa Rica <br> Dirección de Recursos Tecnológicos <br> Departamento de Gestión y Producción GESPRO <br>Desarrolladores: Luis Chacón, Óscar Pérez, Patricia Hernández, Ana Araya <br>Derechos reservados ©2019 </p>';
+      modalAcercaDe += '<p> Ministerio de Educación Pública de Costa Rica <br> Dirección de Recursos Tecnológicos <br> Departamento de Gestión y Producción GESPRO <br>Desarrolladores: Luis Chacón, Óscar Pérez, Patricia Hernández, Ana Araya, Ronny Rodríguez N <br>Derechos reservados ©2019 </p>';
       modalAcercaDe += '</div>';
       modalAcercaDe += '<div class="modal-footer about-us">';
       modalAcercaDe += '<button type="button" class="btn btn-modal btn-default" data-custom-dismiss="modal">Cerrar</button>';
