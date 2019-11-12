@@ -7,11 +7,20 @@ $(document).ready(function () {
   cargaModalAcercaDe();  
   cargarApp();
 
-  $("#btn-exportar").click(function (e) { 
+  $("#btn-exportar").click(function (e) 
+    { 
           e.preventDefault();
           exportPDF();
-          console.log("Doy clic");    
+          //console.log("Doy clic");    
     });
+  
+    $("#btn-exportar-doc").click(function (e) 
+    { 
+      e.preventDefault();
+      exportWord();
+      //console.log("Doy clic");    
+    });
+  
 });
   
 function saveSession() {
@@ -249,6 +258,25 @@ function exportPDF()
       
       pdf.save('Gestion_educativa_'+time_pdf +'.pdf');
   });
+//----------------------------------------------------------------------------//
+
+// $(function() {   
+//   $(".btn-exportar-doc").click(function(event) {
+//       $("#visorAsesorias").wordExport();
+//   });
+// });
+
+   function exportWord()
+   {
+     jQuery(document).ready(function($) 
+     {
+       $(".btn-exportar-doc").click(function(event) 
+       {
+           $("#visorAsesorias").wordExport();
+       });
+     });
+   }
+
 };      
 
     
