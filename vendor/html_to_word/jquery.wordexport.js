@@ -1,7 +1,8 @@
+var time_pdf = moment().add(10, 'days').calendar(); 
 if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
     (function($) {
         $.fn.wordExport = function(fileName) {
-            fileName = typeof fileName !== 'undefined' ? fileName : "Consolidado-pfp";
+            fileName = typeof fileName !== 'undefined' ? fileName : 'Gestion_educativa_'+time_pdf;
             var static = {
                 mhtml: {
                     top: "Mime-Version: 1.0\nContent-Base: " + location.href + "\nContent-Type: Multipart/related; boundary=\"NEXT.ITEM-BOUNDARY\";type=\"text/html\"\n\n--NEXT.ITEM-BOUNDARY\nContent-Type: text/html; charset=\"utf-8\"\nContent-Location: " + location.href + "\n\n<!DOCTYPE html>\n<html>\n_html_</html>",

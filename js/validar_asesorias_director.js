@@ -12,6 +12,13 @@ cargarApp();
           e.preventDefault();
           exportPDF();
     });
+
+    $(function() {   
+      console.log("clic");
+      $(".btn-exportar-doc").click(function(event) {
+          $("#visorAsesorias").wordExport();          
+      });
+    });
 });
   
 
@@ -56,7 +63,7 @@ function saveSession() {
       $("#visorAsesorias").empty(); 
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
-            $("#visorAsesorias").append("<br><br><br>");
+            $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
             $("#visorAsesorias").append("<span class='t1'><h5 align='center'>MINISTERIO DE EDUCACIÓN PÚBLICA</h5></span>");
             $("#visorAsesorias").append("<span class='t1'><h6 align='center'>Informe de gestión educativa</h6></span>");
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
@@ -293,7 +300,7 @@ function dibujarTabla (array, visor) {
         var time_pdf = moment().add(10, 'days').calendar(); 
     
         pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);   
-        pdf.addImage(imgTecnoMep, 'JPEG', 300, 30, 200, 60); 
+        //pdf.addImage(imgTecnoMep, 'JPEG', 300, 30, 200, 60); 
         for (var i = 1; i <= totalPDFPages; i++) 
         {
           pdf.addPage(PDF_Width, PDF_Height);      

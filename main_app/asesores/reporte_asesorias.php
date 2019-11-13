@@ -37,6 +37,9 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 
+    <script src="../../vendor/html_to_word/jquery.wordexport.js"></script>
+    <script src="../../vendor/html_to_word/FileSaver.js"></script>
+
     <script  src="../../js/acercade.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -95,6 +98,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 </div>  
                 <div id="editor"></div>
                 <div class="modal-footer">  
+                <button type="button" id="btn-exportar-doc" class="btn btn-success btn-exportar-doc">Exportar a Word</button> 
                 <button type="button" id="btn-exportar" class="btn btn-success">Exportar a PDF</button> 
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button> 
                 

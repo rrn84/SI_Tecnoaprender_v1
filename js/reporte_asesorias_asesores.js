@@ -20,6 +20,13 @@ $(document).ready(function () {
           e.preventDefault();
           exportPDF();
     });
+
+    $(function() {   
+      console.log("clic");
+      $(".btn-exportar-doc").click(function(event) {
+          $("#visorAsesorias").wordExport();          
+      });
+    });
 });
   
   
@@ -57,7 +64,7 @@ $(document).ready(function () {
       $("#visorAsesorias").empty(); 
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
-            $("#visorAsesorias").append("<br><br><br>");
+            $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
             $("#visorAsesorias").append("<span class='t1'><h5 align='center'>MINISTERIO DE EDUCACIÓN PÚBLICA</h5></span>");
             $("#visorAsesorias").append("<span class='t1'><h6 align='center'>Informe de gestión educativa</h6></span>");
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
