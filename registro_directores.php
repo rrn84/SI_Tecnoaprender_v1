@@ -53,7 +53,8 @@
 
 		<nav class="main-nav">
 			<ul>
-				<!-- inser more links here -->	<li><a class="cd-signup" href="#0" id="crear" >Crear una cuenta</a></li>
+												<li><a class="cd-signin" href="index.php" id="Inicio" >inicio</a></li>
+				<!-- inser more links here -->	<li><a class="cd-signup" href="#0" id="crear" >Crear cuenta Director</a></li>
 			</ul>
 		</nav>
 	</header>

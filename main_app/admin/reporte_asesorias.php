@@ -89,7 +89,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 <div class="modal-footer">  
 
                 <button type="button" id="btn-exportar-doc" class="btn btn-success btn-exportar-doc">Exportar a Word</button> 
-                <button type="button" id="btn-exportar" class="btn btn-success">Exportar a PDF</button> 
+                <!--<button type="button" id="btn-exportar" class="btn btn-success">Exportar a PDF</button> -->
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>                 
                 </div>  
            </div>  

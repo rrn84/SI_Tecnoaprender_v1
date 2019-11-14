@@ -98,6 +98,9 @@
                   switch ($_SESSION["tipo_usuario"]) {
                     case "1":
                           echo "<a class='dropdown-item' href='#' class='botones_menu' id='agregar'>Agregar</a>";  
+                        break;                    
+                  case "6":
+                          echo "<a class='dropdown-item' href='#' class='botones_menu' id='agregar'>Agregar</a>";  
                         break;
                     case "7":
                           echo "<a class='dropdown-item' href='#' class='botones_menu' id='agregar'>Agregar</a>";  

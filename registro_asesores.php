@@ -55,7 +55,8 @@
 		<nav class="main-nav">
 			<ul>
 				<!-- inser more links here -->
-				<li><a class="cd-signup" href="#0" id="crear" >Crear una cuenta</a></li>
+				<li><a class="cd-signin" href="index.php" id="Inicio" >Inicio</a></li>
+				<li><a class="cd-signup" href="#0" id="crear" >Crear cuenta Asesor</a></li>
 			</ul>
 		</nav>
 	</header>

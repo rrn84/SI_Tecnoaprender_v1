@@ -271,7 +271,7 @@ function consultaCentro(accion) {
   $(".row-search").show(); 
   // console.log("Tipo", tipo);
   
-  if (tipo == 2) {
+  if (tipo === 2) {
     $("#btn-actualizar").hide()
   }
   else {

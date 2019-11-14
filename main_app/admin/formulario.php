@@ -116,6 +116,9 @@
             case "1":
                   echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
                 break;
+            case "6":
+                  echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
+                break;
             case "7":
                   echo '<input id="btn-actualizar" type="button" class="btn btn-info m-1" value="Actualizar">';  
                 break;
