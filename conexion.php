@@ -3,9 +3,9 @@
 function conectarDB(){
 //Conexión a DB 123
         $servidor = "localhost";
-        $usuario = "tecno_admin";
-        $password = "Holatecno123*";
-        $bd = "tecno_aprender";
+        $usuario = "root";
+        $password = "";
+        $bd = "prueba_tecnoaprender";
 
     $conexion = mysqli_connect($servidor, $usuario, $password,$bd);
 
