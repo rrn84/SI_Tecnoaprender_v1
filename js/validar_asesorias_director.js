@@ -12,7 +12,7 @@ cargarApp();
           e.preventDefault();
           exportPDF();
     });
-
+    
     $(function() {   
       console.log("clic");
       $(".btn-exportar-doc").click(function(event) {
@@ -65,7 +65,7 @@ function saveSession() {
           if (array[index].id_visita == id  ) {
             $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
             $("#visorAsesorias").append("<span class='t1'><h5 align='center'>MINISTERIO DE EDUCACIÓN PÚBLICA</h5></span>");
-            $("#visorAsesorias").append("<span class='t1'><h6 align='center'>Informe de gestión educativa</h6></span>");
+            $("#visorAsesorias").append("<span class='t1'><h5 align='center'>Informe de gestión educativa</h5></span>");
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
             $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
             
@@ -175,10 +175,6 @@ function dibujarTabla (array, visor) {
                }
          $(htmlTable).append(tBody);
           $(visor).html(htmlTable);
-     
-        loadDataTable();
-
-
 
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btn-detalles").click(function (e) { 
@@ -188,7 +184,8 @@ function dibujarTabla (array, visor) {
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         });
-
+        
+        loadDataTable();
         //Manejador de eventos para renderizar contenido modal vbalidar
 
         $(".btn-validar").click(function (e) { 
@@ -199,8 +196,6 @@ function dibujarTabla (array, visor) {
         });
 
         handlerValidarInforme();
-
-
        }
   
       function loadDataTable() {
@@ -262,7 +257,7 @@ function dibujarTabla (array, visor) {
     //     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
     //          "xmlns:w='urn:schemas-microsoft-com:office:word' "+
     //          "xmlns='http://www.w3.org/TR/REC-html40'>"+
-    //          "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+    //          "<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Export HTML to Word Document with JavaScript</title></head><body>";
     //     var footer = "</body></html>";
     //     var sourceHTML = header+document.getElementById("visorAsesorias").innerHTML+footer;
         

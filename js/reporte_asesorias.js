@@ -7,20 +7,18 @@ $(document).ready(function () {
   cargaModalAcercaDe();  
   cargarApp();
 
-  $("#btn-exportar").click(function (e) 
-    { 
+  $("#btn-exportar").click(function (e) { 
           e.preventDefault();
           exportPDF();
-          //console.log("Doy clic");    
+          console.log("Doy clic");    
     });
-
+    
     $(function() {   
       console.log("clic");
       $(".btn-exportar-doc").click(function(event) {
           $("#visorAsesorias").wordExport();          
       });
     });
-   
 });
   
 function saveSession() {
@@ -59,7 +57,7 @@ function saveSession() {
           if (array[index].id_visita == id  ) {
             $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
             $("#visorAsesorias").append("<span class='t1'><h5 align='center'>MINISTERIO DE EDUCACIÓN PÚBLICA</h5></span>");
-            $("#visorAsesorias").append("<span class='t1'><h6 align='center'>Informe de gestión educativa</h6></span>");
+            $("#visorAsesorias").append("<span class='t1'><h5 align='center'>Informe de gestión educativa</h5></span>");
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
             $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
             
@@ -135,10 +133,12 @@ function saveSession() {
                         array[index].correo_asesor  +
                     "</td>" +
                     "<td class='text-center'>" +
-                        moment(array[index].fecha).format('L') +
+                                     array[index].fecha +
+                        // moment(array[index].fecha).format('L') +
                     "</td>" +
                     "<td class='text-center'>" +
-                        moment(array[index].fecha_ingreso).format('L') +
+                    array[index].fecha_ingreso +
+                        // moment(array[index].fecha_ingreso).format('L') +
                 "</td>" +
                     "<td class='text-center'>" +
                           array[index].tipo_atencion  +
@@ -155,18 +155,20 @@ function saveSession() {
                }
         $(htmlTable).append(tBody);
         $(visor).html(htmlTable);     
-        loadDataTable();
+  
 
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btnVerDetalles").click(function (e) { 
+            console.log("botón cliqueado");
           e.preventDefault();
           let idItem = e.target.id;
           console.log("id BOTON:", idItem);
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
-        });
+        }); 
+        loadDataTable();
        }
-  
+      
       function loadDataTable() {
         var table = $('#tblReportes').DataTable({
           dom: 'Blfrtip',
@@ -258,8 +260,6 @@ function exportPDF()
       
       pdf.save('Gestion_educativa_'+time_pdf +'.pdf');
   });
-//----------------------------------------------------------------------------// 
-   
 };      
 
     

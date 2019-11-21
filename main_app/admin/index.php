@@ -14,7 +14,7 @@
 
 <!DOCTYPE html>
 
-    <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -56,8 +56,8 @@
 <script  src="../../js/acercade.js"></script>
 <link rel="stylesheet" href="../../css/main.css">
 
-  <head>
-    <meta charset="utf-8">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <title>Administración</title>
   </head>
 	
@@ -98,8 +98,8 @@
                   switch ($_SESSION["tipo_usuario"]) {
                     case "1":
                           echo "<a class='dropdown-item' href='#' class='botones_menu' id='agregar'>Agregar</a>";  
-                        break;                    
-                  case "6":
+                        break;
+                    case "6":
                           echo "<a class='dropdown-item' href='#' class='botones_menu' id='agregar'>Agregar</a>";  
                         break;
                     case "7":

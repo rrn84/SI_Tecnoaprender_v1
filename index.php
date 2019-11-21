@@ -46,11 +46,10 @@
 
 		<nav class="main-nav">
 			<ul>
-				<!-- inser more links here -->
 				<li><a class="cd-signin" href="#0" id="ingresar" >Ingresar</a></li>
-				<li><a class="cd-signrecover" href="#0" id="recuperar" >Recuperar contraseña</a></li>
 				<li><a class="cd-signrecover" href="./registro_directores.php" id="regDirector" >Registro Director</a></li>
 				<li><a class="cd-signrecover" href="./registro_asesores.php" id="regAsesor" >Registro Asesor</a></li>
+				<li><a class="cd-signrecover" href="#0" id="recuperar" >Recuperar contraseña</a></li>				
 				<li><a class="cd-acercade" href="#0" id="acercade">Acerca de</a></li>
 			</ul>
 		</nav>

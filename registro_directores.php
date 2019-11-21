@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html lang="en" >
 
-<head>
-  <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
   <title>Tecnoaprender - Registro de directores</title>
 		
 		<link rel="stylesheet" href="vendor/bootstrap-4.1.3/css/bootstrap.min.css">
@@ -53,8 +53,8 @@
 
 		<nav class="main-nav">
 			<ul>
-												<li><a class="cd-signin" href="index.php" id="Inicio" >inicio</a></li>
-				<!-- inser more links here -->	<li><a class="cd-signup" href="#0" id="crear" >Crear cuenta Director</a></li>
+				<li><a class="cd-signin" href="./index.php" id="Inicio" >Inicio</a></li>
+				<!-- inser more links here -->	<li><a class="cd-signup" href="#0" id="crear" >Crear una cuenta Director</a></li>
 			</ul>
 		</nav>
 	</header>

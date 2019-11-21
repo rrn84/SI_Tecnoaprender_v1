@@ -20,7 +20,7 @@ $(document).ready(function () {
           e.preventDefault();
           exportPDF();
     });
-
+    
     $(function() {   
       console.log("clic");
       $(".btn-exportar-doc").click(function(event) {
@@ -64,9 +64,9 @@ $(document).ready(function () {
       $("#visorAsesorias").empty(); 
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
-            $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
+             $("#visorAsesorias").append("<span class='t1'><div align='center'><img src='../../images/Logos.png' height='80' width='210'/> </div></span><br>");
             $("#visorAsesorias").append("<span class='t1'><h5 align='center'>MINISTERIO DE EDUCACIÓN PÚBLICA</h5></span>");
-            $("#visorAsesorias").append("<span class='t1'><h6 align='center'>Informe de gestión educativa</h6></span>");
+           $("#visorAsesorias").append("<span class='t1'><h5 align='center'>Informe de gestión educativa</h5></span>");
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
             $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
             
@@ -163,10 +163,6 @@ $(document).ready(function () {
                }
          $(htmlTable).append(tBody);
           $(visor).html(htmlTable);
-     
-        loadDataTable();
-
-
 
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btnVerDetalles").click(function (e) { 
@@ -176,9 +172,7 @@ $(document).ready(function () {
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         });
-
-
-
+        loadDataTable();
        }
   
       function loadDataTable() {
@@ -240,7 +234,7 @@ $(document).ready(function () {
     //     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
     //          "xmlns:w='urn:schemas-microsoft-com:office:word' "+
     //          "xmlns='http://www.w3.org/TR/REC-html40'>"+
-    //          "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+    //          "<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Export HTML to Word Document with JavaScript</title></head><body>";
     //     var footer = "</body></html>";
     //     var sourceHTML = header+document.getElementById("visorAsesorias").innerHTML+footer;
         
@@ -278,7 +272,7 @@ $(document).ready(function () {
     var time_pdf = moment().add(10, 'days').calendar(); 
 
     pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);   
-    pdf.addImage(imgTecnoMep, 'JPEG', 300, 30, 200, 60); 
+    //pdf.addImage(imgTecnoMep, 'JPEG', 300, 30, 200, 60); 
     for (var i = 1; i <= totalPDFPages; i++) 
     {
       pdf.addPage(PDF_Width, PDF_Height);      
