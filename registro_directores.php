@@ -19,7 +19,8 @@
 		<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/reset.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-		<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js">
+		<!-- <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css"> -->
 		<link rel="stylesheet" href="vendor/alertify/css/alertify.min.css">
 		<link rel="stylesheet" href="vendor/alertify/css/themes/default.css">
 		<link rel='stylesheet' href='../../lib/fontawesome/css/all.css'>
