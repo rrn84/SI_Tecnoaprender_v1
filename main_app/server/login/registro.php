@@ -87,13 +87,21 @@
            if($registro > 0 )
 				{
 
+<<<<<<< HEAD
+					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SI_Tecnoaprender_v1/main_app/server/login/activar.php?id='.$registro.'&val='.$token;
+=======
 					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SI_Tecnoaprender/main_app/server/login/activar.php?id='.$registro.'&val='.$token;
+>>>>>>> b2f921ebaaf47ba94852e0311db24850a26e440d
 					
 					$asunto = 'Activar Cuenta - Sistema de Usuarios';
 					$cuerpo = "Hola ".utf8_decode($nombre).": <br /><br />Para continuar con el proceso de registro, es indispensable que d&#233; clic en el siguiente enlace: <a href='$url'>activar cuenta</a>";
 
 					if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
+<<<<<<< HEAD
+					//if(enviarCorreo($email, $asunto, $cuerpo)){	
+=======
 					//if(enviarCorreo($email, $asunto, $cuerpo)){
+>>>>>>> b2f921ebaaf47ba94852e0311db24850a26e440d
 						$mjs[]="Para terminar el proceso de registro siga las instrucciones que le hemos enviado a la direccion de correo electronico: ".$email;
 				   	echo json_encode(array('error'=>false,'msj'=>$mjs));
 					exit;
