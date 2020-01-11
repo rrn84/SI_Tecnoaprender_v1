@@ -162,7 +162,7 @@
                     <select id ="form_atencion" name="form_atencion" class="form-control custom-select form-1" required>
                       <!-- <option value="default" selected>Seleccione...</option> -->
                       <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                      <option value="Pedagógica">Pedagógica</option>
+                      <option value="Pedagogica">Pedagógica</option>
                       <option value="Administrativa">Administrativa</option>
                       <option value="Técnica">Técnica</option>                          
                     </select>
