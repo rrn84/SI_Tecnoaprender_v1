@@ -175,6 +175,12 @@
                       echo "<a class='dropdown-item' href='#' id='centros' class='botones_menu'>Centros educativos</a>";
               }
             ?>
+            <?php
+                  if ($_SESSION["tipo_usuario"]  != "2"  ) {
+                      echo "<a class='dropdown-item' href='#' id='graficos' class='botones_menu'>Gráficos</a>";
+              }
+            ?>
+
           </div>
         </li>
         <li class="nav-item dropdown">

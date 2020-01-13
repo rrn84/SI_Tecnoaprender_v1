@@ -19,6 +19,11 @@ jQuery(document).ready(function($){
   $( "#reportes" ).click(function() {
     window.location.href = "reportes.php";
   });
+
+  $( "#graficos" ).click(function() {
+    window.location.href = "resumenGraficos.php";
+  });
+
   $( "#consultar" ).click(function() {
       window.location.href = "formulario.php?accion=consultar";
   });

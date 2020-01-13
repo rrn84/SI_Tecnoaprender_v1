@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
+      header("Location: ../../index.php");
+  }
+  //  elseif ($_SESSION['tipo'] !== 1) {  //debe ser tipo administrador
+  //        header("Location: ../../index.php");
+  //      }
+?>
+
 <html>
     <head>
         <title>SI_Reportes</title>
@@ -7,7 +17,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/style_forms.css">    
  
     </head>
     <style>
@@ -45,13 +57,29 @@
 
     </style>
     <!-- Recibe los datos de la consulta 2 -->
-    <body style="background-color:#fff;"> 
-    <div class="container">
-    
-        <h2 align="center">REPORTE</h2>
+    <!-- <body style="background-color:#fff";>  -->
+    <body> 
+    <div class="row" id="encForm">
+      <div class="col-sm-12">
+        <div class="">
+          <div class="d-flex flex-row">
+            <div class="p-2 border-logo"><img class ="logo" src="../../images/logo-tecnoaprender.png" alt="logo tecnoaprender"></div>
+            <div class="p-2 align-self-center"><span class="tit-header-opt">Resumen Datos Tecno @prender</span></div>
+            <div id="divInfo" class="p-2 ml-auto logout"></div>
+            <!-- <div class="p-2 ml-auto logout"><a id="btnInicio" href="index.php"><i class= "fas fa-home"></i> Inicio</a></div> -->
+          </div>
+          <div class="d-flex justify-content-end">
+            <div id="divUsuario" class="p-2 logout"></div>
+            <div id="divSalir" class="p-2 logout"></div>
+          </div>
+        </div>
+      </div>
+    </div> 
 
-        <!-- <div class="table-responsive"> -->
-        <table  class="table table-bordered";>
+
+
+    <div class="container container-custom">    
+        <table  class="table table-bordered"; style="background-color:#fff"; >
         <thead>
         <tr>
             <th><p align="center"><b>INSTITUCIONES</b></p></th>
