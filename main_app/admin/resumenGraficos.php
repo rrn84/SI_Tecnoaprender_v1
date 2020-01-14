@@ -11,17 +11,28 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 <html>
     <head>
         <title>SI_Reportes</title>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/chartJS/Chart.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../../css/main.css">
-        <link rel="stylesheet" href="../../css/style_forms.css">    
- 
-    </head>
+
+        <script  src="../../js/acercade.js"></script>
+        <script  src="../../js/reporte_graficos.js"></script>
+        <script src="../../vendor/moment-with-locales.min.js"></script>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" media="screen" href="../../css/style_forms.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+        <script type="text/javascript" src="../graficos/js/chartJS/Chart.min.js"></script>
+        
+     </head>
     <style>
         .caja{
             margin: auto;
@@ -42,7 +53,15 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         .gMediano{
             margin: auto;
             margin-top: 20px;
-            width: 250px;
+            width: 240px;
+            height:200px;
+        }
+
+        .gGigante{
+            margin: auto;
+            margin-top: 20px;
+            width: 800px;
+            height:600px;
         }
         .footer {
             grid-area: footer;
@@ -60,24 +79,24 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <!-- <body style="background-color:#fff";>  -->
     <body> 
     <div class="row" id="encForm">
-      <div class="col-sm-12">
-        <div class="">
-          <div class="d-flex flex-row">
-            <div class="p-2 border-logo"><img class ="logo" src="../../images/logo-tecnoaprender.png" alt="logo tecnoaprender"></div>
-            <div class="p-2 align-self-center"><span class="tit-header-opt">Resumen Datos Tecno @prender</span></div>
-            <div id="divInfo" class="p-2 ml-auto logout"></div>
-            <!-- <div class="p-2 ml-auto logout"><a id="btnInicio" href="index.php"><i class= "fas fa-home"></i> Inicio</a></div> -->
-          </div>
-          <div class="d-flex justify-content-end">
-            <div id="divUsuario" class="p-2 logout"></div>
-            <div id="divSalir" class="p-2 logout"></div>
-          </div>
+        <div class="col-sm-12">
+            <div class="">
+            <div class="d-flex flex-row">
+                <div class="p-2 border-logo"><img class ="logo" src="../../images/logo-tecnoaprender.png" alt="logo tecnoaprender"></div>
+                <div class="p-2 align-self-center"><span class="tit-header-opt">Resumen datos Tecno Aprender</span></div>
+                <div id="divInfo" class="p-2 ml-auto logout"></div>
+                <!-- <div class="p-2 ml-auto logout"><a id="btnInicio" href="index.php"><i class= "fas fa-home"></i> Inicio</a></div> -->
+            </div>
+            <div class="d-flex justify-content-end">
+                <div id="divUsuario" class="p-2 logout"></div>
+                <div id="divSalir" class="p-2 logout"></div>
+            </div>
+            </div>
         </div>
-      </div>
     </div> 
 
 
-
+    <tbody> 
     <div class="container container-custom">    
         <table  class="table table-bordered"; style="background-color:#fff"; >
         <thead>
@@ -92,34 +111,66 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             <!-- -------------------------------Solo texto--------------------------------->
             <td valign="top">
                 <div>
-                    <?php include('datos/dato3.php'); ?> 
-                    <font color="#2E2E2E"><b><h1 align="center"><?php echo $totalInstituciones[0] ?></h1></b></font>        <!--  llama al script de total de centros     -->
-                    <p align="center">Instituciones</p>
+                    <?php include('../graficos/datos/dato3.php'); ?> 
+                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalInstituciones[0]?></h1></p>
+                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Instituciones</b></font>
                 </div>
             </td>
             <!-- -------------------------------Solo texto--------------------------------->
             <td valign="top">        
                 <div>  
-                    <?php include('datos/dato4.php'); ?> 
-                    <font color="#2E2E2E"><b><h1 align="center"><?php echo $totalP = $hombres[0]+$mujeres[0]?></h1></b></font>        <!--  llama al script de total de centros     -->
-                    <p align="center">Beneficiados</p>
+                    <?php include('../graficos/datos/dato4.php'); ?> 
+                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalP = $hombres[0]+$mujeres[0]?></h1></p>
+                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Beneficiados</b></font>
                 </div>
                         
             </td>
 
             <td valign="top">
                 <div>
-                    <?php include('datos/dato2.php'); ?> 
-                    <font color="#2E2E2E"><b><h1 align="center"><?php echo $totalGestiones[0] ?></h1></b></font>        <!--  llama al script de total de centros     -->
-                    <p align="center">Gestiones educativas</p>
+                    <?php include('../graficos/datos/dato2.php'); ?> 
+
+                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalGestiones[0] ?></h1></p>
+                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Gestiones educativas</b></font>
                 </div>
             </td>
         </tr>
         <tr>
             <td valign="top"> 
-            <p align="center"><b>Instituciones por Tipo</b></p>  
-            <?php include('datos/dato7.php'); ?> 
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Instituciones por Tipo</b></p></font>
+            <?php include('../graficos/datos/dato7.php'); ?> 
             <div class="gMediano"><canvas id="graficoInstitucionesTipo" ></canvas></div>
+
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Preescolar:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_1[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Escuela:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_2[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Unidad pedagógica:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_3[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> CINDEA:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_4[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Liceo/Colegio:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_5[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Colegio Técnico:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_6[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b>Enseñanza especial:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_7[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - Nocturno:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_8[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - IPEC:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_9[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Marco Tulio:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_10[0]?></b
 
                 <!--------------------------------Grafico de poblacion circular------------------------->                
                 <script>                
@@ -198,22 +249,27 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     animationEasing: "easeOutBounce",
                     animateRotate: true,
                     animateScale: false,
+                   
                     legendTemplate       : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
                     }
                         grafico.Pie(datosGrafico, opcionesGrafico) 
                     })
+
+                    Chart.defaults.global.legend = { enabled: false};
                 </script>  
             
             </td>
 
             <td valign="top">
-            <p align="center"><b>Población por sexo</b></p>  
-                <?php include('datos/dato4.php'); ?> 
+                <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Población por sexo</b></p></font>
+                <?php include('../graficos/datos/dato4.php'); ?> 
 
-                <div class="gMediano"><canvas id="graficoPoblacion" ></canvas></div>
-        
-                <p align="center"><?php echo "Hombres: "; echo $hombres[0]?></p>
-                <p align="center"><?php echo "Mujeres: "; echo $mujeres[0]?></p>
+                <div class="gMediano"><canvas id="graficoPoblacion" ></canvas></div>        
+                <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Hombres:</b></font>
+                <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $hombres[0]?></b></font>
+
+                <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Mujeres:</b></font>
+                <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $mujeres[0]?></b></p></font>
                 <!--------------------------------Grafico de poblacion circular------------------------->    
                 
                 <script>                
@@ -253,14 +309,18 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             </td>
 
             <td valign="top"> 
-
-            <p align="center"><b>Gestiones por tipo</b></p>  
-            <?php include('datos/dato6.php'); ?> 
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Gestiones por tipo</b></p></font>
+            <?php include('../graficos/datos/dato6.php'); ?> 
             <div class="gMediano"><canvas id="graficoTiposGestion" ></canvas></div>
 
-            <p align="center"><?php echo "Administrativas: ";  echo $gestion1[0]?></p>
-            <p align="center"><?php echo "Pedagógicas    : ";  echo $gestion2[0]?></p>
-            <p align="center"><?php echo "Técnicas       : ";  echo $gestion3[0]?></p>
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Administrativas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion1[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Pedagógicas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion2[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Técnicas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion3[0]?></b></p>
                 <!--------------------------------Grafico de poblacion circular------------------------->                
                 <script>                
                     $(function () {
@@ -306,16 +366,44 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 
         <tr>
             <!-- --------------------------------------------------------------------------------------------- -->
-            <td valign="top">      
+            <td valign="top">    
+            <?php include('../graficos/datos/dato8.php'); ?> 
+
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Instituciones por provincia</b></p></font>
             <div class="gGrande"><canvas id="graficoInstitucionesProvincia"></canvas></div>
-            <?php include('datos/dato8.php'); ?>        
+
+            <br>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> San José:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_1[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Alajuela:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_2[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Cartago:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_3[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Heredia:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_4[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Guanacaste:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_5[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b>- Puntarenas</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_6[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b>Limón:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $provincia_7[0]?></b>
+
+            <!-- --- -->
+       
             <script>
                 $(function () {
                     var lineChartData = {
                     labels  : ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'], 
                     datasets: [
                         {
-                        label               : 'Previous Year',
+                        label               : 'Provincia',
                         fillColor           : 'rgba(210, 214, 222, 1)',
                         strokeColor         : 'rgba(210, 214, 222, 1)',
                         pointColor          : 'rgba(210, 214, 222, 1)',
@@ -335,8 +423,9 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 
                     var lineChartCanvas          = $('#graficoInstitucionesProvincia').get(0).getContext('2d')
                     var lineChart                = new Chart(lineChartCanvas)
+
                     var lineChartOptions = {
-                    showScale               : true,
+                    showScale               : true, 
                     scaleShowGridLines      : true,
                     scaleGridLineColor      : 'rgba(0,0,0,.05)',
                     scaleGridLineWidth      : 1,
@@ -351,7 +440,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     datasetStroke           : true,
                     datasetStrokeWidth      : 2,
                     datasetFill             : true,
-                    legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+                    legendTemplate          :  "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
                     maintainAspectRatio     : true,
                     responsive              : true
                     }                
@@ -362,11 +451,42 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             </td>
             
             <!-- --------------------------------------------------------------------------------------------- -->
-            <td valign="top">
-            <p align="center"><b>Población por área</b></p>  
-                <br>
-                <div class="gGrande"><canvas  id="graficoPoblacionArea"></canvas></div>
-                <?php include('datos/dato5.php'); ?>
+            <td valign="top">                
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Población por área</b></p></font>    
+            <?php include('../graficos/datos/dato5.php'); ?>
+
+            <div class="gGrande"><canvas  id="graficoPoblacionArea"></canvas></div>
+            <br>
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Preescolar:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad1[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - Escuela:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad2[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Unidad pedagógica:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad3[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - CINDEA:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad4[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b>Liceo/Colegio:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad5[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - Colegio Técnico:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad6[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b>Enseñanza especial:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad7[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - Nocturno:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad8[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b>IPEC:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad9[0]?></b>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><b> - Marco Tulio:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $modalidad10[0]?></b></p>
+            
                 <Script>                
                     $(function () {
                         var barChartData = 
@@ -413,7 +533,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                         barStrokeWidth          : 2,
                         barValueSpacing         : 5,
                         barDatasetSpacing       : 5,
-                        legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+                        legendTemplate          :  "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
                         responsive              : true,
                         maintainAspectRatio     : true
                         }
@@ -425,9 +545,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             </td>
 
             <td valign="top">
-            
-
-            <p align="center"><b>Gestiones educativas por año y mes</b></p> 
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Gestiones educativas por año y mes</b></p></font>   
                 <div class="caja">
                     <select onChange="mostrarResultadosG(this.value);">
                         <?php
@@ -450,7 +568,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                                     $('.resultadosGestiones').html('<canvas id="graficoGestiones"></canvas>');
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'datos/dato1.php',
+                                        url: '../graficos/datos/dato1.php',
                                         data: 'year='+year,
                                         dataType: 'JSON',
                                         success:function(data){
@@ -481,10 +599,11 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         </tbody>
     </table>
 </div>
+</tbody>
 <footer class="footer">
     <div >&copy; 2019 DRTE</div>
     <div >Departamento de Investigación, desarrollo e implementación</div>
 </footer>
-</body>
+</tbody>
 
 </html>
