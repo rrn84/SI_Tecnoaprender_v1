@@ -162,6 +162,9 @@ function MaysPrimera(string){
                case "uso_esp":
                string = "Español"
                break;
+               case "uso_ing":
+               string = "Ingles"
+               break;
                case "uso_bio":
                string = "Biología"
                break;

@@ -4,7 +4,7 @@
         $servidor = "localhost";
         $usuario = "root";
        // $password = "Hola123Gespro";
-        $bd = "prueba_ddie";
+        $bd = "prueba_tecnoaprender";
 				    $mysqli = new mysqli($servidor, $usuario, $password,$bd);
                 if (mysqli_connect_errno()) {
                         printf("Fall車 la conexi車n: %s\n", mysqli_connect_error());

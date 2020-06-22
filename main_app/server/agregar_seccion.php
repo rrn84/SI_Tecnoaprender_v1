@@ -135,6 +135,7 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
   $uso_fis=utf8_decode($valores['uso_fis']);
   $uso_qui=utf8_decode($valores['uso_qui']);
   $uso_esp=utf8_decode($valores['uso_esp']);
+  $uso_ing=utf8_decode($valores['uso_ing']);
   $uso_apl=utf8_decode($valores['uso_apl']);
   $uso_eph=utf8_decode($valores['uso_eph']);
   $uso_ain=utf8_decode($valores['uso_ain']);
@@ -147,7 +148,7 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
   $uso_incluir_plan_vocacional=utf8_decode($valores['uso_incluir_plan_vocacional']);
   $uso_incluir_modulos_cindea_ipec=utf8_decode($valores['uso_incluir_modulos_cindea_ipec']);
   $practicas_proyectos=utf8_decode($valores['practicas_proyectos']);
-  mysqli_query($conexion,"INSERT INTO $tabla (`id_CE`, `id_iniciativa`, `uso_est`, `uso_mat`, `uso_cie`, `uso_bio`, `uso_fis`, `uso_qui`, `uso_esp`, `uso_apl`, `uso_ain`, `uso_eph`, `uso_civ`, `uso_mus`, `uso_rel`, `uso_bib`, `uso_bib_cra`, `uso_bib_digital`, `uso_incluir_plan_vocacional`, `uso_incluir_modulos_cindea_ipec`, `practicas_proyectos`) VALUES ('$id_CE','$id_iniciativa','$uso_est','$uso_mat','$uso_cie','$uso_bio','$uso_fis','$uso_qui','$uso_esp','$uso_apl','$uso_ain','$uso_eph','$uso_civ','$uso_mus', '$uso_rel','$uso_bib','$uso_bib_cra','$uso_bib_digital','$uso_incluir_plan_vocacional','$uso_incluir_modulos_cindea_ipec','$practicas_proyectos')") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+  mysqli_query($conexion,"INSERT INTO $tabla (`id_CE`, `id_iniciativa`, `uso_est`, `uso_mat`, `uso_cie`, `uso_bio`, `uso_fis`, `uso_qui`, `uso_esp`, `uso_ing`,`uso_apl`, `uso_ain`, `uso_eph`, `uso_civ`, `uso_mus`, `uso_rel`, `uso_bib`, `uso_bib_cra`, `uso_bib_digital`, `uso_incluir_plan_vocacional`, `uso_incluir_modulos_cindea_ipec`, `practicas_proyectos`) VALUES ('$id_CE','$id_iniciativa','$uso_est','$uso_mat','$uso_cie','$uso_bio','$uso_fis','$uso_qui','$uso_esp','$uso_ing','$uso_apl','$uso_ain','$uso_eph','$uso_civ','$uso_mus', '$uso_rel','$uso_bib','$uso_bib_cra','$uso_bib_digital','$uso_incluir_plan_vocacional','$uso_incluir_modulos_cindea_ipec','$practicas_proyectos')") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
  }
 
 

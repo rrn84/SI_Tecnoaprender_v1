@@ -2547,6 +2547,21 @@
                         </div>
                       </div>
 
+                      <div class="col-4">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="matIng">Ingles</label>
+                          </div>
+                          <select class="custom-select form-6" id="matIng">
+                            <option value="No se utiliza" selected> No se utiliza </option>
+                            <option value="Una vez por semana">Una vez por semana</option>
+                            <option value="Dos veces por semana">Dos veces por semana</option>
+                            <option value="Tres veces por semana">Tres veces por semana</option>
+                            <option value="Diariamente">Diariamente</option>
+                          </select>
+                        </div>
+                      </div>
+
                     </div>
 
                     <!--Fila 4-->

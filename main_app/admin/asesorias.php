@@ -146,9 +146,10 @@
                     <!-- <option value="default" selected>Seleccione...</option> -->
                       <option value="default" selected="true" disabled="disabled">Seleccione...</option>
                       <option value="Presencial">Presencial</option>
-                      <option value="Correo">Correo</option>
+                      <option value="Correo">Correo electrónico</option>
                       <option value="Llamada">Llamada</option>
                       <option value="WhatsApp">WhatsApp</option>
+                      <option value="Virtual_Teams">Virtual (Teams)</option>
                     </select>
                   </div>
                   <div class="error"></div>
