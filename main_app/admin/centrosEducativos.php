@@ -28,8 +28,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
      <script src="../../vendor/moment-with-locales.min.js"></script> 
-     
-     <script  src="../../js/acercade.js"></script>
+
      <script src="../../js/reporte_ce.js"></script>
      <script  src="../../js/acercade.js"></script>
 

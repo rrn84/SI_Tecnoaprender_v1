@@ -549,8 +549,8 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 <div class="caja">
                     <select onChange="mostrarResultadosG(this.value);">
                         <?php
-                            for($i=2000;$i<2021;$i++){
-                                if($i == 2019){
+                            for($i=2000;$i<2022;$i++){
+                                if($i == 2020){
                                     echo '<option value="'.$i.'" selected>'.$i.'</option>';
                                 }else{
                                     echo '<option value="'.$i.'">'.$i.'</option>';
@@ -563,7 +563,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 <div class="gGrande"><canvas id="graficoGestiones"></canvas></div>
             <!--------------------------------------------------------------------------------->
                 <script>
-                            $(document).ready(mostrarResultadosG(2019));  
+                            $(document).ready(mostrarResultadosG(2020));  
                                 function mostrarResultadosG(year){
                                     $('.resultadosGestiones').html('<canvas id="graficoGestiones"></canvas>');
                                     $.ajax({

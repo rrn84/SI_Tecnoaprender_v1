@@ -93,7 +93,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         <input class="margen-izq mat-basicas" type="checkbox" name="columnas" value="uso_cie"> Ciencias <br>
         <input class="margen-izq mat-basicas" type="checkbox" name="columnas" value="uso_esp"> Español<br>
         <input class="margen-izq mat-basicas" type="checkbox" name="columnas" value="uso_ing"> Ingles<br>
-        <br>  
+         <br>  
         <br> 
         <div><input  type="checkbox" id="selectall1"><span class="marcadores"> Todas/Ninguna</span></div>
 

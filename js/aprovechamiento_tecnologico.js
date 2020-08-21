@@ -263,7 +263,6 @@ dataset.reverse();
                 $("#matEsp").val(  dataset[index].uso_esp );
                 $("#matIng").val(  dataset[index].uso_ing );
 
-
                 $("#matArtesPlast").val(  dataset[index].uso_apl  );
                 $("#matArtesInd").val(  dataset[index].uso_ain  );
                 $("#matHogar").val(  dataset[index].uso_eph  );
@@ -340,7 +339,7 @@ function empaquetarDatosUsoTecProyecto () {
     formData.append("uso_qui", $("#matQuimica").val() );
     formData.append("uso_esp", $("#matEsp").val() );
     formData.append("uso_ing", $("#matIng").val() );
-
+    
     formData.append("uso_apl", $("#matArtesPlast").val() );
     formData.append("uso_ain", $("#matArtesInd").val() );
     formData.append("uso_eph", $("#matHogar").val() );

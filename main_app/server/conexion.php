@@ -4,9 +4,9 @@ function conectarDB(){
 	//www\SI-Tecnoaprender\main_app\server
 //Conexión a DB
        $servidor = "localhost";
-        $usuario = "root";
-        $password = "";
-        $bd = "prueba_tecnoaprender";
+        $usuario = "tecno_admin";
+        $password = "Holatecno123*";
+        $bd = "tecno_aprender";
 
     $conexion = mysqli_connect($servidor, $usuario, $password,$bd);
 

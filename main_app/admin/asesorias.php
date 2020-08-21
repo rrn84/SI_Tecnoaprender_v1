@@ -12,8 +12,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -115,7 +115,7 @@
                     <div class="error"></div>
                   </div>
                    
-                    <div class="col-sm-3 form-group">
+                    <div class="col-sm-2 form-group">
                       <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
                           <span class="input-group-text">Teléfono  </span>
@@ -125,7 +125,7 @@
                     <div class="error"></div>
                   </div>
 
-                  <div class=" col-sm-3 form-group">
+                  <div class=" col-sm-4 form-group">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Fecha de gestión</span>
