@@ -128,10 +128,10 @@
 		}
 	}
 
-	// function enviarCorreo($email, $asunto, $cuerpo, $headers){
+	//function enviarCorreo($email, $asunto, $cuerpo, $headers){
 	function enviarCorreo($email, $asunto, $cuerpo){
 		// $email_origen = "usuariogespro@gmail.com";
-		$nombre_origen = "Sistema de Usuarios";
+		 $nombre_origen = "Sistema de Usuarios";
          $headers  = "From: $nombre_origen \r\n";
         //  $headers .= "Return-Path: <$email_origen> \r\n";
         // $headers .= "Reply-To: $email_origen \r\n";

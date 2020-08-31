@@ -3,8 +3,8 @@
 function conectarDB(){
 //Conexión a DB 123
         $servidor = "localhost";
-        $usuario = "tecno_admin";
-        $password = "Holatecno123*";
+        $usuario = "root";
+        $password = "";
         $bd = "tecno_aprender";
 
     $conexion = mysqli_connect($servidor, $usuario, $password,$bd);

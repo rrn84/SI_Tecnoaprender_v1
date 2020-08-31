@@ -7,9 +7,9 @@ $donde = $_POST['tabla'];
 $sql = "DELETE FROM `capacitaciones` WHERE `cod_cap` = '$elemento'";
 //echo $elemento;
 $servername = "localhost";
-$username = "prueba_gespro";
-$password = "Hola123Gespro";
-$dbname = "prueba_tecnoaprender";
+$username = "root";
+$password = "";
+$dbname = "tecno_aprender";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
