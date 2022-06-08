@@ -6,24 +6,35 @@ $donde = $_POST['tabla'];
 //$donde = "consultas";
 $sql = "DELETE FROM $donde WHERE `id` = $elemento";
 //echo $elemento;
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "prueba_tecnoaprender";
+include "conexion.php";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$conexion = conectarDB();
+
+
+//generamos la consulta
+
+mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
+
+if(!mysqli_query($conexion, $sql)) die();
+
+$sql = "DELETE FROM `proyectos` WHERE `id_iniciativa` = $elemento";
+
+if(!mysqli_query($conexion, $sql)) die();
+
+desconectar($conexion); 
+
+
+function desconectar($conexion){
+
+    $close = mysqli_close($conexion);
+
+        if($close){
+            echo '';
+        }else{
+            echo 'Ha sucedido un error inexperado en la desconexion de la base de datos';
+        }
+
+    return $close;
 }
 
-
-if ($conn->query($sql) === TRUE) {
-    echo json_encode(array('error'=>'false','msj'=>"Elemento eliminado satisfactoriamente."));
-} else {
-    echo json_encode(array('error'=>'true','msj'=>"Error al intentar borrar el elemento. Por favor intente más tarde."));
-}
-
-$conn->close();
 ?>

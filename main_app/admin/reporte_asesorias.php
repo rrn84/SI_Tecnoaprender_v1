@@ -3,6 +3,12 @@ session_start();
 if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
       header("Location: ../../index.php");
   }
+
+  if (isset($_GET['nombre'])) {
+    $nombre=$_GET['nombre'];
+    $codigo=$_GET['codigo'];
+    $id=$_GET['id'];
+   }
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +18,10 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <title>Reportes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/alertify/css/alertify.min.css">
+    <link rel="stylesheet" href="../../vendor/alertify/css/themes/default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>   
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> 
     <script src=" https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
@@ -23,16 +33,21 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    
     <script src="../../vendor/moment-with-locales.min.js"></script> 
 
     <script src="../../js/reporte_asesorias.js"></script>
+    <script src="../../vendor/alertify/alertify.min.js"></script>
     <script  src="../../js/acercade.js"></script>
     <script  src="../../js/logos_B64.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     
-        <script src="../../vendor/html_to_word/jquery.wordexport.js"></script>
+    <script src="../../vendor/html_to_word/jquery.wordexport.js"></script>
     <script src="../../vendor/html_to_word/FileSaver.js"></script>
 
 
@@ -74,6 +89,59 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
 </div> 
 <!-- <div class="row" style="background-color: #e45032b5; color: beige; padding-bottom: 14px;padding-left: 4px"> -->
 
+<div class="container">
+  <br>    
+      <div class="row">
+     
+
+        <div class="col-12">   
+        <div class="alert alert-success">
+        <div class="alert-heading">  
+            <p class="font-weight-bold">Seleccione el tipo de búsqueda</span>
+        
+
+          <div class="mb-0">          
+                      <div class="custom-control custom-radio custom-control-inline">                   
+                          
+                          
+                            <input  class="form-check-input" type="radio" id="CentroE" name="tipoBusqueda" value="CE"
+                                  checked>
+                            <label class="form-check-label" for="CentroE">Centro Educativo</label>
+                        
+
+                      </div>
+                      
+                      <div class="custom-control custom-radio custom-control-inline">                   
+                        
+                            <input  class="form-check-input" type="radio" id="DRegional" name="tipoBusqueda" value="DR">
+                            <label class="form-check-label" for="DRegional">Dirección Regional</label>
+                        
+
+                      </div>
+
+                      <div class="custom-control custom-input custom-control-inline">   
+                      <input id="form_idCE" name="form_idCE" type="text" name="miConsulta" class="form-control form-1" aria-label="Default" required placeholder="Escriba el nombre o cód presupuestario" >
+                      </div>
+                      <div class="custom-control custom-input custom-control-inline">
+                      <button id="btnCargar" type="button" class="btn btn-info m-1" alt = "Buscar" title="Buscar">Buscar <i class="fas fa-search inline"></i></button>
+                      </div>
+            <div class="error"></div>
+
+        </div>    
+        </div>  
+              
+             
+
+          </div>
+    
+    
+      </div>
+     </div>
+    </div>
+  </div>
+
+
+
     <div class="container container-custom">
     <div id="asesoriasModal" class="modal fade">  
       <div class="modal-dialog modal-lg">  
@@ -89,7 +157,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                 <div id="editor"></div>
                 <div class="modal-footer">  
                 <button type="button" id="btn-exportar-doc" class="btn btn-success btn-exportar-doc">Exportar a Word</button>
-                <!--<button type="button" id="btn-exportar" class="btn btn-success">Exportar a PDF</button> -->
+                <button type="button" id="btn-exportar" class="btn btn-info btn-exportar">Exportar a PDF</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>                 
                 </div>  
            </div>  
@@ -105,6 +173,28 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         <img class="img-ajax-loading" src="../../images/ajax-loader.gif" alt="Loading">
     </div>
     <div class="modal animated" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>      
+
+
+    <?php
+      if (isset($_GET['nombre'])) { ?>
+        <script type="text/javascript">
+        
+          var nombre = '<?php echo $nombre;?>'
+          var codigo = '<?php echo $codigo;?>'
+          var id = '<?php echo $id;?>'
+          var completo = "(COD: "+codigo+") -"+nombre+"- [ID: "+id+"]";
+          //console.log(completo);
+          $("#miConsulta").val(completo);
+          setTimeout(
+              function() 
+              {
+                $("#btnSend").trigger("click");
+              }, 1000);
+          
+        </script>
+         <?php 
+         }
+      ?>
 
 </body>
 </html>

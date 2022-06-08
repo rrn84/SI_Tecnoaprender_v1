@@ -1,6 +1,8 @@
 <?php
 $idCe = $_GET["idCe"];
+$tipo = $_GET["tipo"];
 
+if ($tipo == 1){
 $sql= "SELECT 
 centro_educativo.direccion_regional, centro_educativo.telefono, centro_educativo.equipamiento, 
 infraestructura.tomas, infraestructura.condicion_electrica, infraestructura.plaqueo_equipo, 
@@ -8,7 +10,10 @@ infraestructura.protocolo_equipo, infraestructura.aire_acondicionado
 FROM centro_educativo 
 INNER JOIN infraestructura ON  centro_educativo.id=infraestructura.id_CE 
 WHERE centro_educativo.id = '$idCe'";
+}else {
+    $sql= "SELECT nombre, telefono FROM direcciones_regionales WHERE id = '$idCe'";
 
+}
 
 include "conexion.php";
 sleep(1);

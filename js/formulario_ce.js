@@ -11,6 +11,7 @@ var itemID=0,  //id del centro que existe
 
 jQuery(document).ready(function($){  
   // session
+  //console.log("Si entro en esta vara");
   $('[data-toggle="tooltip"]').tooltip();
   saveSession();
   settingsIniciales();
@@ -71,8 +72,9 @@ function setAccion() {
   const currentURL =   window.location.href;
   const url = new URL(currentURL);
   accion = url.searchParams.get("accion");
+  
   // console.log("Direccion actual:",  currentURL);                
-  // console.log("Valor de acción:", accion);
+  
   if (accion == null) {
     location = 'index.php';
   }
@@ -268,6 +270,7 @@ function preparacionAgregar(accion, existe){
 
 //CONSULTAR 
 function consultaCentro(accion) {  
+  
   $(".row-search").show(); 
   // console.log("Tipo", tipo);
   
@@ -296,13 +299,15 @@ function consultaCentro(accion) {
     $("#form-2")[0].reset();   
     limpiarFormularios();
     // if ($("#miConsulta").val() != "")
+  
+    
    if (valorConsulta != "")
     {
       let tmp = valorConsulta;
       var res = tmp.indexOf("[");
       let codigoConsulta = tmp.substring(res + 4, tmp.length - 1);
       itemID = codigoConsulta;
-      
+
       cargaForm1(accion, codigoConsulta);
       cargaForm2(accion, codigoConsulta);
       cargaForm3(accion, codigoConsulta);
@@ -378,19 +383,20 @@ function validacionyEnvioForm1(accion) {
      });
     $("#btn-informacion-general").off("click");
     $("#btn-informacion-general").click(function () {
-      if(form.valid()=== true){           
+
+      /*if(form.valid()=== true){           */
         $("#btn-informacion-general").prop("disabled", true);  
         
         envioDatosForm1(accion);
-      }
+    /*  }
       else {
           alertify.notify('El formulario no es válido','warning',3, null);
-      }
+      }*/
    });
 }
 
 function envioDatosForm1(accionF) {
-  
+ 
   $('#form-1 input[type=text]').each(function(){
     if($(this).val()==""){
       let elementEmpty = $(this)[0].id;      
@@ -410,6 +416,7 @@ function envioDatosForm1(accionF) {
            url = "../server/agregar_main.php?tabla=centro_educativo";
         }
         else {
+        
           url = "../server/actualizar_main.php?tabla=centro_educativo&id=" +id_del_centro_educativo + "";
         }
   
@@ -524,7 +531,7 @@ function validacionyEnvioForm2(accionF) {
   $('#btn-datos-proyectos').click(function(e){
     var searchIDs = [];
     console.log("array searchIDs AFUERA"+searchIDs);
-            
+      
     if(form.valid()=== true){   
 
       if (id_del_centro_educativo != 0) {
@@ -534,6 +541,7 @@ function validacionyEnvioForm2(accionF) {
               return $(this).attr("id");
             }).get(); // <----
             
+          
             // var url = "../server/agregar_main.php?tabla=proyectos&id=" +id_del_centro_educativo + "";
             var url = "../server/actualizar_main.php?tabla=proyectos&id=" +id_del_centro_educativo + "";
             let datosDesde = searchIDs.length;  
@@ -851,26 +859,27 @@ function cargaForm1(accion, codigo) {
   else{
     tabla="centro_educativo";
   }
-  let url= "../server/obtener_datos.php?id="+codigo+"&tabla="+tabla;   
+  let url= "../server/obtener_datos.php?tipo=0&id="+codigo+"&tabla="+tabla;   
   cargarJson2( renderizarFormDatosGenerales,accion, url);
 };
 
 function cargaForm2(accion, codigo) {
   // llena el formulario2 Proyectos
   let tabla="proyectos",
-      url= "../server/obtener_datos.php?id="+codigo+"&tabla="+tabla;  
+      url= "../server/obtener_datos.php?tipo=0&id="+codigo+"&tabla="+tabla;  
+
   cargarJson2( renderizarFormProyectos, accion, url);
 }
 
 function cargaForm3(accion, codigo) {
   // llena el formulario3 Infraestructura
   let tabla="infraestructura",
-      url= "../server/obtener_datos.php?id="+codigo+"&tabla="+tabla;  
+      url= "../server/obtener_datos.php?tipo=0&id="+codigo+"&tabla="+tabla;  
   cargarJson2( renderizarFormInfraestructura, accion, url);
 }
 
 function cargaForm4(accion, codigo) {   // EQUIPAMIENTO
-  let url= "../server/obtener_datos.php?id="+codigo+"&tabla=centro_educativo",
+  let url= "../server/obtener_datos.php?tipo=0&id="+codigo+"&tabla=centro_educativo",
       jsonEquipamientos = [], 
       equipos = [], 
       primerTab;
@@ -1029,7 +1038,7 @@ function activaTabsAgregar(jsonEquipamientos, tabActivo) {
 }
 
 function cargaForm5(accion, codigo) {
-  cargarJson( renderizarFormAprovechamientoTec, "../server/obtener_datos.php?tabla=uso_equipo" );
+  cargarJson( renderizarFormAprovechamientoTec, "../server/obtener_datos.php?tipo=0&tabla=uso_equipo" );
   if (accion =="agregar") {
     $(".form-5")
   }
@@ -1043,7 +1052,7 @@ function cargaForm6(accion, codigo, dataFrom) {
   }
   else {
     let tabla="proyectos",
-        url= "../server/obtener_datos.php?id="+codigo+"&tabla="+tabla;  
+        url= "../server/obtener_datos.php?tipo=0&id="+codigo+"&tabla="+tabla;  
         cargarJson2( function(data) { llamaRenderForm6(data.length,accion)}, accion, url);
   };
 }
@@ -1092,6 +1101,16 @@ function renderizarFormDatosGenerales(data, accion) {
       $("#form_coordenada_y").val(institucion[i].coordenada_y);      
       $("#form_correo").val(institucion[i].correo); 
       $("#form_actualizado_por").val(correoUser);
+
+         // DATOS DIRECTOR
+         $("#director_cedula").val(institucion[i].cedula_director);
+         $("#director_nombre").val(institucion[i].nombre_director);
+         $("#director_correo").val(institucion[i].correo_director);
+         $("#director_correoAlt").val(institucion[i].correoalt_director);
+         $("#director_telefono").val(institucion[i].telefono_director);
+         $("#director_condicion").val(institucion[i].nombramiento_director);
+         $("#director_direccion").val(institucion[i].tipo_direccion);
+        
 
       provincia = institucion[i].provincia;
       canton = institucion[i].canton;
@@ -1255,8 +1274,10 @@ function renderizarFormProyectos(data, accion) {
     if(data.length !== 0)   {
       $.each(data, function(i, field){
         proyecto.push(field);  
+        
         let id_iniciativa = proyecto[i].id_iniciativa;
         $("#"+id_iniciativa+"").prop("checked", true);
+       
       });
       registros = true;
       
@@ -1558,10 +1579,12 @@ function  conectDataAjaxSimple (path, formData) {
             console.log(mError);
         }
       });
+      
 }
 
 function conectDataAjaxModificar ( path, formData, accionE, idCE) {
   $(".div-shadow").removeClass("invisible");
+
   // Modificar para centro educativo
     jQuery.ajax({
         url: path,
@@ -1642,6 +1665,8 @@ function conectDataAjax ( path, formData, mCallBack) {
             console.log(mError);
         }
       });
+      
+    
 }
 
 function deshabilitaForm(nameForm) {

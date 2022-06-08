@@ -128,10 +128,10 @@
 		}
 	}
 
-	//function enviarCorreo($email, $asunto, $cuerpo, $headers){
+	// function enviarCorreo($email, $asunto, $cuerpo, $headers){
 	function enviarCorreo($email, $asunto, $cuerpo){
 		// $email_origen = "usuariogespro@gmail.com";
-		 $nombre_origen = "Sistema de Usuarios";
+		$nombre_origen = "Sistema de Usuarios";
          $headers  = "From: $nombre_origen \r\n";
         //  $headers .= "Return-Path: <$email_origen> \r\n";
         // $headers .= "Reply-To: $email_origen \r\n";
@@ -149,7 +149,9 @@
          { $headers .= "Content-Type: text/html; charset=iso-8859-1 \r\n";  }
            else
             { $headers .= "Content-Type: text/plain; charset=iso-8859-1 \r\n";  } 
-        $cuerpo =utf8_decode($cuerpo);
+            $cuerpo =utf8_decode($cuerpo);
+            //mail("jeisoncoga@hotmail.com", $asunto,$cuerpo,$headers);
+            
             if(@mail($email, $asunto, $cuerpo, $headers))
                 return true;
             else

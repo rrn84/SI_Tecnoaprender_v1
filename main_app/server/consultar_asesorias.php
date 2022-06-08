@@ -36,9 +36,39 @@ switch($tipoUsr) {
         centro_educativo.direccion_regional, centro_educativo.direccion_regional, 
         centro_educativo.provincia, centro_educativo.canton, centro_educativo.distrito 
         FROM asesoria2 
-        INNER JOIN centro_educativo ON centro_educativo.id=asesoria2.id_CE";
+        INNER JOIN centro_educativo ON centro_educativo.id=asesoria2.id_CE WHERE tipo_visita = 1";
     break;
-    
+        
+    case "9":
+        //echo "Admin";
+        $sql= "SELECT
+        asesoria2.*, 
+        direcciones_regionales.nombre, direcciones_regionales.telefono
+        FROM asesoria2 
+        INNER JOIN direcciones_regionales ON direcciones_regionales.id=asesoria2.id_CE WHERE tipo_visita = 2";
+    break;
+
+    case "10":
+        //echo "Admin";
+        $sql= "SELECT
+        asesoria2.*, 
+        centro_educativo.institucion, centro_educativo.cod_pres, centro_educativo.equipamiento,
+        centro_educativo.direccion_regional, centro_educativo.direccion_regional, 
+        centro_educativo.provincia, centro_educativo.canton, centro_educativo.distrito 
+        FROM asesoria2 
+        INNER JOIN centro_educativo ON centro_educativo.id=asesoria2.id_CE WHERE tipo_visita = 1 and asesoria2.id_CE= '$id'";
+    break;
+
+    case "11":
+        $sql= "SELECT
+        asesoria2.*, 
+        centro_educativo.institucion, centro_educativo.cod_pres, centro_educativo.equipamiento,
+        centro_educativo.direccion_regional, centro_educativo.direccion_regional, 
+        centro_educativo.provincia, centro_educativo.canton, centro_educativo.distrito 
+        FROM asesoria2 
+        INNER JOIN centro_educativo ON centro_educativo.id=asesoria2.id_CE WHERE tipo_visita = 1 and centro_educativo.direccion_regional like '%$id%'";
+    break;
+
     default:
         echo "opcion fuera de rango";
     }
@@ -63,12 +93,12 @@ function desconectar($conexion){
 function obtenerArreglo($sql){
     //Creamos la conexion con la funcion anterior
   $conexion = conectarDB();
-
+  
     //generamos la consulta
 
         mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
 
-    if(!$resultado = mysqli_query($conexion, $sql)) die(); //si la conexi¨®n cancelar programa
+    if(!$resultado = mysqli_query($conexion, $sql)) die(); //si la conexiï¿½ï¿½n cancelar programa
 
     $arreglo = array(); //creamos un array
 

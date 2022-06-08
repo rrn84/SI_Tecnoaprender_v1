@@ -578,6 +578,13 @@
                     </div>
                   </div>
 
+                  <div class="col-sm-3" >
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkotros" name="chkotros">
+                      <label class="custom-control-label" for="chkotros">Otros</label>
+                    </div>
+                  </div>
+
                 </div>
                 <hr>
                <div class="row">
@@ -683,6 +690,120 @@
                 </div>
 
                 <hr>
+                
+                <!--DATOS DEL DIRECTOR !-->
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <span class="badge badge-secondary p-2">Datos del Director(a)</span>
+                  </div>
+
+                </div>
+                <hr>
+
+                <div class="row">
+
+                  <div class="col-sm-8 form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Nombre </span>
+                      </div>
+                      <input id= "director_nombre" name= "director_nombre" type="text" class="form-control form-1">
+                    </div>
+                    <div class="error"></div>
+                  </div>
+
+                  <div class="col-sm-4 form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Cédula</span>
+                      </div>
+                      <input id= "director_cedula" name= "director_cedula" type="text" class="form-control form-1">
+                    </div>
+                    <div class="error"></div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-6 form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Correo </span>
+                      </div>
+                      <!-- <input id= "form_enlace_correo" name= "form_enlace_correo" type="text" class="form-control form-1" pattern ="((?:[a-z][a-z1-9]+))(\.)((?:[a-z][a-z1-9]+))(\.)((?:[a-z][a-z]+))(@)(mep\.go\.cr)" placeholder="nombre.apellido1.apellido2@mep.go.cr"> -->
+                      <input id= "director_correo" name= "director_correo" type="text" class="form-control form-1" placeholder="nombre.apellido1.apellido2@mep.go.cr">
+                    </div>
+                    <div class="error"></div>
+                  </div>
+
+                  <div class="col-sm-6 form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Correo Alternativo</span>
+                      </div>
+                      <!-- <input id= "form_enlace_correo" name= "form_enlace_correo" type="text" class="form-control form-1" pattern ="((?:[a-z][a-z1-9]+))(\.)((?:[a-z][a-z1-9]+))(\.)((?:[a-z][a-z]+))(@)(mep\.go\.cr)" placeholder="nombre.apellido1.apellido2@mep.go.cr"> -->
+                      <input id= "director_correoAlt" name= "director_correoAlt" type="text" class="form-control form-1" placeholder="nombre.apellido1.apellido2@mep.go.cr">
+                    </div>
+                    <div class="error"></div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                    
+                  <div class="col-sm-6 form-group">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Teléfono</span>
+                      </div>
+                      <input id= "director_telefono" name= "director_telefono" type="text" class="form-control form-1">
+                    </div>
+                    <div class="error"></div>
+                  </div>
+
+              
+
+              
+
+                  <div class="col-sm-6">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Condición de nombramiento</span>
+                      </div>
+                      <select id ="director_condicion" class="form-control custom-select form-1" name="director_condicion">
+                        <option value="0" selected >Seleccione ....</option>
+                        <option value="Propiedad">Propiedad</option>
+                        <option value="Interino">Interino</option>
+                       </select>
+                      <div class="error"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Tipo de dirección</span>
+                      </div>
+                      <select id ="director_direccion" class="form-control custom-select form-1" name="director_direccion">
+                        <option value="0" selected >Seleccione ....</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                       </select>
+                      <div class="error"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <hr>
+
+                <!--FIN DATOS DEL DIRECTOR!-->
+
+
                 <div class="row row-pdf">
 
                   <div class="col-12 form-1" id="namePDF">
@@ -733,96 +854,31 @@
                   <div id="proyectosCE">
                     <div class="row">
 
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="1" name="1">
-                          <label class="custom-control-label" for="1">Tecnoaprender en Preescolar</label>
-                        </div>
-                      </div>
+                    <?php 
+                          require_once('../server/obtenerProyectos.php');
+                          $contFilas=0;
+                          foreach ($r as $value) {
+                          ?>
 
                       <div class="col-sm-3" >
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="2" name="2">
-                          <label class="custom-control-label" for="2">Tecnoaprender en Primaria</label>
+                          <input type="checkbox" class="custom-control-input form-2" id="<?php echo ($value['id']) ?>" name="<?php echo ($value['id']) ?>">
+                          <label class="custom-control-label" for="<?php echo ($value['id']) ?>"><?php echo ($value['nombre']) ?></label>
                         </div>
                       </div>
+                      <?php 
 
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="3" name="3">
-                          <label class="custom-control-label" for="3">Tecnoaprender en Secundaria</label>
-                        </div>
-                      </div>
+                            $contFilas++;
+                            if ($contFilas== 4){?>
 
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="4" name="4">
-                          <label class="custom-control-label" for="4">Tecnoaprender Jóvenes</label>
-                        </div>
-                      </div>
-
-                    </div>
-                    <br>
-                    <div class="row">
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="5" name="5">
-                          <label class="custom-control-label" for="5">Tecnoaprender en Educación Especial</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="6" name="6">
-                          <label class="custom-control-label" for="6">Tecnoaprender en BiblioCRA</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="7" name="7">
-                          <label class="custom-control-label" for="7">Programa Nacional de Innovación</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="10" name="10">
-                          <label class="custom-control-label" for="10">Pensalo</label>
-                        </div>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="11" name="11">
-                          <label class="custom-control-label" for="11">PROFUTURO Primaria</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="12" name="12">
-                          <label class="custom-control-label" for="12">PROFUTURO secundaria</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input form-2" id="13" name="13">
-                          <label class="custom-control-label" for="13">Robótica Educativa</label>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-3" >
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input form-2" id="14" name="14">
-                            <label class="custom-control-label" for="14">Conectándonos</label>
-                        </div>
-                      </div>
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                            <?php
+                            $contFilas=0;
+                            }
+                          }
+                          ?>
 
                     </div>
 

@@ -92,50 +92,6 @@
 				<!-- <a href="#0" class="cd-close-form">Close</a> -->
 			</div> <!-- cd-login -->
 
-			<!-- <div id="cd-signup"> // sign up form
-				<form id= "form-singup" class="cd-form">
-					<p class="fieldset">
-						<label class="image-replace cd-username" for="signup-nombre">Nombre completo</label>
-						<input class="full-width has-padding has-border" id="signup-nombre"  name="signup_nombre" type="text" placeholder="Nombre apellido1 apellido2" required>
-					</p>
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="signup-cedula">Cédula</label>
-						<input class="full-width has-padding has-border" id="signup-cedula" name="signup_cedula" type="email" placeholder="nombre.apellido1.apellido2@mep.go.cr" value ="ana.araya.salazar@mep.go.cr" required>
-						<span class="cd-error-message">¡Error en el número de cédula!</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="signup-email">Correo electrónico</label>
-						<input class="full-width has-padding has-border" id="signup-email" name="signup_email" type="email" placeholder="nombre.apellido1.apellido2@mep.go.cr" value ="ana.araya.salazar@mep.go.cr" required>
-						<span class="cd-error-message">¡Error en el correo!</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-email" for="signup-email">Correo electrónico</label>
-						<input class="full-width has-padding has-border" id="signup-email" name="signup_email" type="email" placeholder="nombre.apellido1.apellido2@mep.go.cr" value ="ana.araya.salazar@mep.go.cr" required>
-						<span class="cd-error-message">¡Error en el correo!</span>
-					</p>
-					<p class="fieldset">
-						<label class="image-replace cd-password" for="signup-password">Contraseña</label>
-						<input class="full-width has-padding has-border" id="signup-password" name="signup_password" type="password"  placeholder="Contraseña">
-						<a href="#0" class="hide-password">Mostrar</a>
-						<span class="cd-error-message">La contraseña está incorrecta, por favor intenta de nuevo</span>
-					</p>
-
-					<p class="fieldset">
-						<label class="image-replace cd-password" for="signup-password-2">Confirmar contraseña</label>
-						<input class="full-width has-padding has-border" id="signup-password-2" name="signup_password_2" type="password"  placeholder="Confirmar contraseña">
-						<a href="#0" class="hide-password">Mostrar</a>
-						<span class="cd-error-message">La contraseña está incorrecta, por favor intenta de nuevo</span>
-					</p>
-
-					<p class="fieldset">
-						<input id="signup-submit" class="full-width has-padding" type="submit" value="Crear cuenta">
-					</p>
-				</form>
-
-				 <a href="#0" class="cd-close-form">Close</a> 
-			</div> cd-signup -->
 
 			<div id="cd-acercade"> 
 			<form id= "form-acercade" class="cd-form">

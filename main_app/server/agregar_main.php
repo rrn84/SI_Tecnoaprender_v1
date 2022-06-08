@@ -35,6 +35,7 @@ switch ($tabla) {
         break;
     case "uso_equipo":
             $id = $_GET['id'];
+           
             incluirUsoEquipo($_POST, $tabla,$conexion,$id);
             
     break;

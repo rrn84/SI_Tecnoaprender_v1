@@ -7,6 +7,7 @@ var accion;
 
 function setupForm5y6 (accion,itemID) {
 	// Handler onload
+
        idCentroEducativo = itemID;
 	   activaSelect(accion);          	    
         //console.log("---------------Accion en setup5y6", accion, "--------------");                      
@@ -80,7 +81,7 @@ function guardarProfesor () {
         };
         usoProf.push(obj);        
     };
-    // console.log("datos profesor guardados", usoProf);   
+     //console.log("datos profesor guardados", usoProf);   
        
 }
 
@@ -95,14 +96,13 @@ function guardarEstudiante () {
         };
         usoEst.push(obj);        
     };
-    // console.log("datos estudiante guardados ");
-    // console.log(usoEst);    
+  //  console.log("datos estudiante guardados ");
+   // console.log(usoEst);    
        
 }
 
 function empaquetarDatosAprovechamientoTec () {
-    console.log($("#selTecnologiaPAT").val());
-    
+    console.log($("#numCantDocnetes").val());
     var formData = new FormData();
    // formData.append("id_CE", idCentroEducativo);
     formData.append("total_docentes",  $("#numCantDocnetes").val()  );
@@ -134,7 +134,7 @@ function empaquetarDatosAprovechamientoTec () {
 
 
 function enviarFormDataAjax  ( formData, mCallBack,  url ) { 
-    
+  
   $.ajax({
     url: url,
     type: 'POST',

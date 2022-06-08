@@ -38,8 +38,38 @@
      $id_asesor_enlace = $valores[ 'form_id_asesor_enlace'];
      $equipamiento =  $valores[ 'equipamiento'];
      $actualizado_por =  $valores[ 'form_actualizado_por'];
-    
-     mysqli_query($conexion,"UPDATE `$tabla` SET `cod_pres`='$cod_pres',`institucion`='$institucion',`id_modalidad_educativa`='$modalidad_educativa',`centro_indigena`='$centro_indigena',`bachillerato_internacional`='$bachillerato_internacional',`provincia`='$provincia',`canton`='$canton',`distrito`='$distrito',`poblado`='$poblado',`coordenada_x`='$coordenada_x',`coordenada_y`='$coordenada_y',`internet`='$internet',`velocidad`='$velocidad',`matricula_h`='$matricula_h',`matricula_m`='$matricula_m',`cantidad_grupos`='$cantidad_grupos',`cantidad_docentes`='$cantidad_docentes',`direccion_regional`='$regional',`circuito`='$circuito',`telefono`='$telefono',`fax`='$fax',`correo`='$correo',`total_pabellones`='$total_pabellones',`edificio_compartido`='$edificio_compartido',`total_aulas`='$total_aulas',`estado_conexion`='$estado_conexion',`ultima_actualizacion_por`='$actualizado_por',`enlace_nombre` = '$enlace_nombre',`enlace_cedula` = '$enlace_cedula',`enlace_telefono` = '$enlace_telefono',`enlace_correo` = '$enlace_correo',`enlace_especialidad` = '$enlace_especialidad',`enlace_condicion` = '$enlace_condicion', `id_asesor_enlace` = '$id_asesor_enlace',`url_inventario` ='$archivo_inventario', `equipamiento`='$equipamiento' WHERE `id`= '$id'") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+     //datos del director
+
+     $resultconsult = mysqli_query($conexion,"Select directo_id from `$tabla` where `id`='$id'");
+
+     $nombre_director =  $valores[ 'director_nombre'];
+     $cedula_director =  $valores[ 'director_cedula'];
+     $telefono_director =  $valores[ 'director_telefono'];
+     $correo1_director =  $valores[ 'director_correo'];
+     $correo2_director =  $valores[ 'director_correoAlt'];
+     $nombramiento_director =  utf8_decode($valores[ 'director_condicion']);
+     $tipoDireccion_director =  utf8_decode($valores[ 'director_direccion']);
+
+      
+     mysqli_query($conexion,"UPDATE `$tabla` SET `cod_pres`='$cod_pres',
+     `institucion`='$institucion',`id_modalidad_educativa`='$modalidad_educativa',
+     `centro_indigena`='$centro_indigena',`bachillerato_internacional`='$bachillerato_internacional',
+     `provincia`='$provincia',`canton`='$canton',`distrito`='$distrito',`poblado`='$poblado',
+     `coordenada_x`='$coordenada_x',`coordenada_y`='$coordenada_y',`internet`='$internet',
+     `velocidad`='$velocidad',`matricula_h`='$matricula_h',`matricula_m`='$matricula_m',
+     `cantidad_grupos`='$cantidad_grupos',`cantidad_docentes`='$cantidad_docentes',
+     `direccion_regional`='$regional',`circuito`='$circuito',`telefono`='$telefono',`fax`='$fax',
+     `correo`='$correo',`total_pabellones`='$total_pabellones',`edificio_compartido`='$edificio_compartido',
+     `total_aulas`='$total_aulas',`estado_conexion`='$estado_conexion',
+     `ultima_actualizacion_por`='$actualizado_por',`enlace_nombre` = '$enlace_nombre',
+     `enlace_cedula` = '$enlace_cedula',`enlace_telefono` = '$enlace_telefono',
+     `enlace_correo` = '$enlace_correo',`enlace_especialidad` = '$enlace_especialidad',
+     `enlace_condicion` = '$enlace_condicion', `id_asesor_enlace` = '$id_asesor_enlace',
+     `url_inventario` ='$archivo_inventario', `equipamiento`='$equipamiento',
+     `cedula_director` ='$cedula_director', `nombre_director`='$nombre_director',
+     `telefono_director` ='$telefono_director', `correo_director`='$correo1_director',
+     `correoalt_director` ='$correo2_director', `nombramiento_director`='$nombramiento_director',
+     `tipo_direccion` ='$tipoDireccion_director' WHERE `id`= '$id'") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
     
     }
 

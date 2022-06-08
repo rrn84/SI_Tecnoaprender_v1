@@ -1,5 +1,6 @@
 <?php
 $sql= $_POST['consulta'];
+
 include "conexion.php";
 sleep(1);
 function desconectar($conexion){

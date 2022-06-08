@@ -92,8 +92,8 @@
 					$asunto = 'Activar Cuenta - Sistema de Usuarios';
 					$cuerpo = "Hola ".utf8_decode($nombre).": <br /><br />Para continuar con el proceso de registro, es indispensable que d&#233; clic en el siguiente enlace: <a href='$url'>activar cuenta</a>";
 
-	                if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
-					//if(enviarCorreo($email, $asunto, $cuerpo)){	
+	                //if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
+					if(enviarCorreo($email, $asunto, $cuerpo)){	
 						$mjs[]="Para terminar el proceso de registro siga las instrucciones que le hemos enviado a la direccion de correo electronico: ".$email;
 				   	echo json_encode(array('error'=>false,'msj'=>$mjs));
 					exit;

@@ -54,11 +54,38 @@ function incluirCentro($valores,$archivoInventario,$tabla,$conexion)
    $equipamiento =  utf8_decode($valores['equipamiento']);
    $actualizado_por =  utf8_decode($valores[ 'form_actualizado_por']);
    $inventario = $archivoInventario;
-       mysqli_query($conexion,"INSERT INTO $tabla (cod_pres,institucion,id_modalidad_educativa,centro_indigena,bachillerato_internacional,provincia,canton,distrito,poblado,coordenada_x,coordenada_y,internet,velocidad,matricula_h,matricula_m,cantidad_grupos,cantidad_docentes,direccion_regional,circuito,telefono,fax,correo,total_pabellones,edificio_compartido,total_aulas,estado_conexion,url_inventario, ultima_actualizacion_por,enlace_nombre,enlace_cedula,enlace_telefono,enlace_correo,enlace_especialidad,enlace_condicion,id_asesor_enlace, equipamiento)
-                                          VALUES ('$cod_pres', '$institucion','$modalidad_educativa','$centro_indigena','$bachillerato_internacional','$provincia','$canton','$distrito','$poblado','$coordenada_x','$coordenada_y','$internet','$velocidad','$matricula_h', '$matricula_m','$cantidad_grupos','$cantidad_docentes','$regional', '$circuito','$telefono','$fax','$correo','$total_pabellones','$edificio_compartido','$total_aulas','$estado_conexion','$inventario','$actualizado_por','$enlace_nombre','$enlace_cedula','$enlace_telefono','$enlace_correo','$enlace_especialidad','$enlace_condicion','$id_asesor_enlace','$equipamiento' )") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
-       printf($conexion->insert_id); 
 
-    //  `enlace_nombre` = '$enlace_nombre',`enlace_cedula` = '$enlace_cedula',`enlace_telefono` = '$enlace_telefono',`enlace_correo` = '$enlace_correo',`enlace_especialidad` = '$enlace_especialidad',`enlace_condicion` = '$enlace_condicion', `id_asesor_enlace` = '$id_asesor_enlace'
+  // DATOS DEL  DIRECTOR
+
+    $cedulaDir = $valores[ 'director_cedula'];
+   $nombreDir = utf8_decode($valores[ 'director_nombre']);  
+   $telefonoDir = utf8_decode($valores[ 'director_telefono']);
+   $correo1Dir = utf8_decode($valores[ 'director_correo']);
+   $correo2Dir = utf8_decode($valores[ 'director_correoAlt']);
+   $nombramientoDir = utf8_decode($valores[ 'director_condicion']); 
+   $tipoDireccionDir = utf8_decode($valores[ 'director_direccion']);
+
+
+   mysqli_query($conexion,"INSERT INTO 
+   $tabla (cod_pres,institucion,id_modalidad_educativa,centro_indigena,
+   bachillerato_internacional,provincia,canton,distrito,poblado,coordenada_x,
+   coordenada_y,internet,velocidad,matricula_h,matricula_m,cantidad_grupos,
+   cantidad_docentes,direccion_regional,circuito,telefono,fax,correo,total_pabellones,
+   edificio_compartido,total_aulas,url_inventario,estado_conexion,equipamiento,
+   enlace_nombre,enlace_cedula,enlace_telefono,enlace_correo,enlace_especialidad,
+   enlace_condicion,id_asesor_enlace, ultima_actualizacion_por,  cedula_director,nombre_director,
+   telefono_director,correo_director,correoalt_director,nombramiento_director, tipo_direccion)   
+   VALUES ('$cod_pres', '$institucion','$modalidad_educativa','$centro_indigena',
+   '$bachillerato_internacional','$provincia','$canton','$distrito','$poblado',
+   '$coordenada_x','$coordenada_y','$internet','$velocidad','$matricula_h', '$matricula_m',
+   '$cantidad_grupos','$cantidad_docentes','$regional', '$circuito','$telefono','$fax',
+   '$correo','$total_pabellones','$edificio_compartido','$total_aulas','$inventario',
+   '$estado_conexion','$equipamiento','$enlace_nombre','$enlace_cedula','$enlace_telefono',
+   '$enlace_correo','$enlace_especialidad','$enlace_condicion','$id_asesor_enlace',
+   '$actualizado_por','$cedulaDir','$nombreDir','$telefonoDir',
+   '$correo1Dir','$correo2Dir','$nombramientoDir',
+   '$tipoDireccionDir' )") or die ("Problemas al añadir elementos a la BD".mysqli_error($conexion));
+   
     }
   }
    

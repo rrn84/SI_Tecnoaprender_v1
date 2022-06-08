@@ -28,9 +28,9 @@
 
 <script>
       var idCE = '<?php echo $_SESSION["id_CE"]?>';      
-            console.log("id CE", idCE);      
+            //console.log("id CE", idCE);      
       var tipo = '<?php echo $_SESSION["tipo_usuario"]?>';
-          console.log("tipo de usuario", tipo);            
+          //console.log("tipo de usuario", tipo);            
 </script>
 
 

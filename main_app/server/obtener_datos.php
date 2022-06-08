@@ -1,17 +1,36 @@
 <?php
 header("Content-type:text/html;charset=\"utf-8\"");
 $tabla = $_GET['tabla'];
+$tipo = $_GET['tipo'];
 
 $quien= $_GET["id"];
 
-if ($tabla == "centro_educativo" or $tabla == "centros_educativos_mep"){
-	$columna = "id";
+if ($tabla == "centro_educativo" or $tabla == "centros_educativos_mep" or $tabla == "iniciativas"){
+    $columna = "id";
+    
+    if ($tipo == 2){
+        $sql = "SELECT * FROM $tabla";
+        
+        }else {
+        $sql = "SELECT * FROM $tabla  WHERE `$columna`=$quien";
+        }
+        
+	
 }
-else{
-	$columna = "id_CE";
-}
+else if ($tabla == "uso_equipo"){
+    $columna = "id_CE";
+    $sql = "SELECT * FROM $tabla  WHERE `$columna`=$quien ORDER BY id DESC LIMIT 1"; 
+	
+    }else {
 
-$sql = "SELECT * FROM $tabla  WHERE `$columna`=$quien";
+        $columna = "id_CE";
+        $sql = "SELECT * FROM $tabla  WHERE `$columna`=$quien"; 
+    }
+
+  
+
+
+
 // $sql = "SELECT * FROM centro_educativo  WHERE id=9";
 //$sql = "SELECT * FROM `centro_educativo` WHERE`id`= 9";
 include "conexion.php";

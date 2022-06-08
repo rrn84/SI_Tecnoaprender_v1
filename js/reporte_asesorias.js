@@ -1,25 +1,162 @@
 var arregloDatos=[];
+var arregloProyectos=[];
+var tipoBusqueda = 1;
+var idCEDR=0;
+
 $(document).ready(function () {
   saveSession(); 
   $("#divInfo").html('<a id="btnInicio" href="../admin/index.php" alt="Inicio"><i class= "fas fa-home"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="acerca-de" data-toggle="tooltip" title="Acerca de"> <i class="fas fa-info-circle"></i></a>');
   $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> </span>'+correoUser);
   $("#divSalir").html('<a href="../server/login/logout.php" data-toggle="tooltip" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>');
   cargaModalAcercaDe();  
-  cargarApp();
+  cargarProyectos();
 
   $("#btn-exportar").click(function (e) { 
           e.preventDefault();
-          exportPDF();
-          console.log("Doy clic");    
+          exportPDF();   
     });
     
     $(function() {   
-      console.log("clic");
+//      console.log("clic");
       $(".btn-exportar-doc").click(function(event) {
           $("#visorAsesorias").wordExport();          
       });
     });
+
+eventoCargarDatosIntitucion(); 
+    
+
+$('[data-toggle="tooltip"]').tooltip();
+
+let consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
+enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php"); 
+
+$("input[name=tipoBusqueda]").change(function(){
+  if ($("input[name='tipoBusqueda']:checked").val() == 'CE') {
+    tipoBusqueda = 1;
+    consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
+    
+}else {
+  tipoBusqueda = 2;
+  consSelect = 'SELECT id, nombre FROM direcciones_regionales ORDER BY id';
+}
+
+$("input[name=form_idCE]").val("");
+
+enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php"); 
 });
+
+});
+
+function empaquetarConsulta(c) 
+{ 
+        var formData = new FormData();            
+        formData.append("consulta", c );
+       // console.log("Esto es aquí", formData);   
+        return formData;
+}
+
+function cargarCentrosEducativos(stringArray) 
+{
+    
+  let data = JSON.parse(stringArray),
+      availableCentros=[];
+   //console.log(data);    
+  //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
+  const maxCentros = data.length;
+  if (tipoBusqueda == 1){
+  for (var index = 0; index < maxCentros; index++) 
+  { 
+    availableCentros.push( "(COD: " + data[index].cod_pres + ") -"+    data[index].institucion    +  "- [ID: " + data[index].id  + "]");
+  }
+}else {
+  for (var index = 0; index < maxCentros; index++) 
+  { 
+    availableCentros.push( "(REGIONAL: "+    data[index].nombre    +  "- [ID: " + data[index].id  + "]");
+  }
+}
+
+$( "#form_idCE").autocomplete(
+  {
+    source: availableCentros
+    
+  });
+}
+
+function enviarFormDataAjax2  ( formData, mCallBack,  url) { 
+  //console.log("Si-funciona". url);
+$.ajax({
+  url: url,
+  type: 'POST',
+  data: formData,
+  //dataType:'json',
+  cache: false,
+  contentType: false,
+  processData: false,
+  beforeSend: function(){
+  //console.log("En proceso");    
+  }, success: function(response){
+    //console.log("Enviado satisfactoriamente");
+    //console.log(response);
+    mCallBack(response);      
+
+  }, error: function(response){
+    console.log("Error al enviar");   
+  }
+});
+}
+
+function eventoCargarDatosIntitucion()
+{ 
+         
+    $("#btnCargar").click(function () 
+    {
+      document.getElementById("visor").innerHTML=null;
+
+      if (tipoBusqueda == 1){
+      idCEDR = obtenerIdCe();
+      }else {
+        if (tipoBusqueda == 2){
+          idCEDR = obtenerNombreRegional();
+          }
+      }
+      cargarApp();
+     // console.log(idCe);
+    });
+
+ 
+}
+//--------------------Obtener ID CE a mostrar--------------//
+function obtenerIdCe() 
+{
+  try {
+  //Obtiene el id del string centro educativo
+  let str =  $("#form_idCE").val().split("[");         
+  let res = str[1].slice(4);   
+  let idCe = res.slice(0, -1).trim();
+ 
+  return idCe;
+  }
+  catch (e) {
+    alertify.alert('Gestión Educativa','Seleccione un código de centro educativo o dirección regional correcto');
+  }
+}
+
+function obtenerNombreRegional() 
+{
+  try {
+  //Obtiene el id del string centro educativo
+  let str =  $("#form_idCE").val().split("[");         
+  let res = str[0].slice(11);   
+  let idCe = res.slice(0, -2).trim();
+  //console.log(idCe);
+  return idCe;
+  }
+  catch (e) {
+    alertify.alert('Gestión Educativa','Seleccione un código de centro educativo o dirección regional correcto');
+  }
+}
+
   
 function saveSession() {
   let tipo = sessionStorage.getItem("tipo");
@@ -29,29 +166,79 @@ function saveSession() {
   function cargarApp(){
   //CArga el ajax loader    
   $(".div-shadow").removeClass("invisible");
-  
+
+  if (tipoBusqueda==1){
   const data = new FormData();
-   url= '../server/consultar_asesorias.php?id_CE=x&correo=x&tipo_usr=8';
+   url= "../server/consultar_asesorias.php?id_CE="+idCEDR+"&correo=x&tipo_usr=10";
+   
    fetch( url)
       .then(function(response) {
           return response.json();
       })
       .then(function(myJson) {
-          console.log(myJson);
-          arregloDatos=myJson;
-          if (myJson.length>0) {
+        if (myJson.length>0) {
+        arregloDatos = myJson;
+        dibujarTabla (myJson, '#visor');
+        $(".div-shadow").addClass("invisible");
+        }else {
+          $("#visor").append("<br><br><h2>No se ha encontrado información.</h2>");
+          $(".div-shadow").addClass("invisible");
+        }      
+    })
+  }else {
+
+    if (tipoBusqueda==2){
+      const data = new FormData();
+       url= "../server/consultar_asesorias.php?id_CE="+idCEDR+"&correo=x&tipo_usr=11";
+       //console.log(url);
+       fetch( url)
+          .then(function(response) {
+              return response.json();
+          })
+          .then(function(myJson) {
+            if (myJson.length>0) {
+            arregloDatos = myJson;
             dibujarTabla (myJson, '#visor');
             $(".div-shadow").addClass("invisible");
-          } else {
-              $("#visor").append("<br><br><h2>No se han ingresado asesorías al sistema.</h2>");
+            }else {
+              $("#visor").append("<br><br><h2>No se ha encontrado información.</h2>");
               $(".div-shadow").addClass("invisible");
-          }          
-      })
+            }      
+        })
+      }
+  }
     }  
   
-    function mostrarDetalle(id, array) 
+    function cargarProyectos(){
+      url= '../server/obtener_proyectosConsulta.php';
+       fetch( url)
+          .then(function(response) {
+              return response.json();
+          })
+          .then(function(myJson) {
+              
+              arregloProyectos=myJson;       
+          })
+        }  
+
+
+        function verificarProyecto(id){
+         
+          let nombreProyecto = "Sin asignar";
+
+          for (let index = 0; index < arregloProyectos.length; index++) {
+            if (arregloProyectos[index].id == id  ) {
+              return nombreProyecto = arregloProyectos[index].nombre;
+            }
+          }
+
+          return nombreProyecto;
+           }  
+
+
+  function mostrarDetalle(id, array) 
     {
-      console.log(array);      
+        
       $("#visorAsesorias").empty(); 
         for (let index = 0; index < array.length; index++) {
           if (array[index].id_visita == id  ) {
@@ -61,6 +248,7 @@ function saveSession() {
             $("#visorAsesorias").append("<span class='t1'><hr></span>");
             $("#visorAsesorias").append("<span class='t1'><p>Estimado(a) director(a), el presente documento cuenta con información importante sobre un jornada de intervención realizada en la institución que usted representa, asociada con el desarrollo de la(s) diferentes propuesta(s) educativas  de la Dirección de Recursos Tecnológicos en Educación.</p></span>");
             
+            if (array[index].cod_pres != null){
 
             $("#visorAsesorias").append("<span class='t1'><b>Datos administrativos de la visita.</b></span><br>");
             $("#visorAsesorias").append("<span class='t1'>Codigo Presupuestario: </span><span>"+array[index].cod_pres+"</span><br>");
@@ -69,12 +257,20 @@ function saveSession() {
             $("#visorAsesorias").append("<span class='t1'>Cantón: </span><span>"+array[index].canton+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Distrito: </span><span>"+array[index].distrito+"</span><br>");
             $("#visorAsesorias").append("<span class='t1'>Dirección Regional: </span> <span>"+array[index].direccion_regional+"</span><br>");
+          } else {
+            $("#visorAsesorias").append("<span class='t1'>Dirección Regional: </span> <span>"+array[index].nombre+"</span><br>");
+            $("#visorAsesorias").append("<span class='t1'>Teléfono: </span> <span>"+array[index].telefono+"</span><br>");
+
+          }
             $("#visorAsesorias").append("<span class='t1'>Fecha de la gestión educativa: </span><span>"+ moment(array[index].fecha).format('L') + "</span>");
             //$("#visorAsesorias").append("<span class='t1'>Propuesta educativa: </span><span>"+array[index].equipamiento2+"</span>");        //  
 
             $("#visorAsesorias").append("<br><br><span class='t1'><b>Información general.</b></span><br>");                 
             $("#visorAsesorias").append("<span class='t1'>Canal de comunicación: </span><span>"+ array[index].medio_visita+"<br></span>");
-            $("#visorAsesorias").append("<span class='t1'>Tipo de atención: </span><span>"+ array[index].tipo_atencion+"</span>");
+            $("#visorAsesorias").append("<span class='t1'>Tipo de atención: </span><span>"+ array[index].tipo_atencion+"<br></span>");
+            $("#visorAsesorias").append("<span class='t1'>Funcionario: </span><span>"+ array[index].funcionario+"<br></span>");
+
+            $("#visorAsesorias").append("<span class='t1'>Proyecto: </span><span>"+ verificarProyecto(array[index].proyecto_id)+"</span>");
             //$("#visorAsesorias").append("<span class='t1'>Aval del informe: </span> <span>"+array[index].estado_asesoria+"</span>"); 
 
             $("#visorAsesorias").append("<br><span class='t1'><br><b>Consultas Administrativas/Pedagógicas.</b></span><br>");
@@ -89,7 +285,7 @@ function saveSession() {
             }
             $("#visorAsesorias").append("<br><br><span><b>_______________________________</b></span><br>");
             $("#visorAsesorias").append("<span class='t1'>Asesor(a):</b></span><span><br>"+array[index].correo_asesor+"</span>");
-            if (array[index].url_archivo != "pepito") {
+            if (array[index].url_archivo != "Sin Archivo") {
               $("#visorAsesorias").append("<hr><a href="+ array[index].url_archivo +" class='t1' target='_blank' > <i class='fas fa-paperclip'></i> Archivo adjunto </a><br>");  
             }
           }
@@ -97,7 +293,6 @@ function saveSession() {
       }
 
     function dibujarTabla (array, visor) {
-      console.log(array);
       moment.locale('es'); 
          $(visor).empty();
      
@@ -106,7 +301,7 @@ function saveSession() {
            "<table  id='tblReportes' class='table table-striped'>" +
            "<thead>" +
            "<tr>" +        
-             "<th class='text-center' scope='col'>Centro educativo</th>" +
+             "<th class='text-center' scope='col'>C.Educativo-D.Regional</th>" +
              "<th scope='col'>Medio</th>" +
              "<th class='text-center'>Asesor a cargo</th>" +
              "<th class='text-center'>Fecha de asesoría</th>" +
@@ -123,10 +318,18 @@ function saveSession() {
      
                  for (let index = 0; index < limite; index++) {
                    let fowNumb = index + 1;
+                   let tipoVisita; 
+
+                   if (array[index].tipo_visita == 1){
+                    tipoVisita = array[index].institucion;
+                   }else {
+                    tipoVisita = array[index].nombre;
+                   }
+                   
                    row = $(
                      "<tr>" +
                      "<td class=''>" +
-                        array[index].institucion +
+                     tipoVisita +
                      "</td>" +
                      "<td class=''>"+ array[index].medio_visita+ "</td>" +
                      "<td class='text-center'>" +
@@ -159,10 +362,11 @@ function saveSession() {
 
         //Se agrega el manejador de eventos en el botón ver detalles
         $(".btnVerDetalles").click(function (e) { 
-            console.log("botón cliqueado");
+           // console.log("botón cliqueado");
           e.preventDefault();
           let idItem = e.target.id;
-          console.log("id BOTON:", idItem);
+         //console.log("id BOTON:", idItem);
+          //console.log("AQUI ES SI:", arregloDatos);
           mostrarDetalle(idItem, arregloDatos);
           $('#asesoriasModal').modal(); 
         }); 
@@ -243,7 +447,7 @@ function exportPDF()
   html2canvas($(".modal-body")[0],{allowTaint:true}).then(function(canvas) 
   {
     canvas.getContext('2d');
-    console.log(canvas.height+"  "+canvas.width);    
+   //console.log(canvas.height+"  "+canvas.width);    
     
     var imgData = canvas.toDataURL("image/jpeg", 1.0);
     var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
@@ -254,7 +458,7 @@ function exportPDF()
     for (var i = 1; i <= totalPDFPages; i++) 
     {
       pdf.addPage(PDF_Width, PDF_Height);      
-      pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+      pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin),canvas_image_width,canvas_image_height);
       //pdf.addImage(imgTecnoMep, 'JPEG', 30, 30, 200, 60);    
     }
       

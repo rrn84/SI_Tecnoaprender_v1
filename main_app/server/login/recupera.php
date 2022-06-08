@@ -26,9 +26,8 @@
 			$asunto = utf8_decode($txtasunto);
 			$cuerpo = "Hola ".utf8_decode($nombre).": <br /><br />Se ha solicitado un reinicio de contrase&ntilde;a. <br/><br/>Para restaurar la contrase&ntilde;a, d&#233; clic en el siguiente enlace: <a href='$url'>Recuperar contrase&ntilde;a</a>";
 			
-		
-			if(enviarEmail($email, $nombre, $asunto, $cuerpo)){	
-			//if(enviarCorreo($email, $asunto, $cuerpo)){
+			if(enviarCorreo($email, $asunto, $cuerpo)){
+			//if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
 				$mensaje[]= 'Se ha enviado un correo electrónico a la dirección '.$email.'. Para restablecer su contraseña siga las instrucciones que ahí se le indican';
 				echo json_encode(array('error'=>false,'msj'=>$mensaje));
 				exit;

@@ -6,6 +6,7 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
   //  elseif ($_SESSION['tipo'] !== 1) {  //debe ser tipo administrador
   //        header("Location: ../../index.php");
   //      }
+
 ?>
 
 <html>
@@ -60,8 +61,8 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
         .gGigante{
             margin: auto;
             margin-top: 20px;
-            width: 800px;
-            height:600px;
+            width: 400px;
+            height:300px;
         }
         .footer {
             grid-area: footer;
@@ -94,16 +95,13 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             </div>
         </div>
     </div> 
-
-
-    <tbody> 
-    <div class="container container-custom">    
+    <br>
+    <div class="container container-fluid">    
         <table  class="table table-bordered"; style="background-color:#fff"; >
         <thead>
         <tr>
             <th><p align="center"><b>INSTITUCIONES</b></p></th>
             <th><p align="center"><b>POBLACIÓN</b></p></th>
-            <th><p align="center"><b>GESTIONES</b></p></th>
         </tr>
         </thead>
         <tbody>
@@ -124,15 +122,6 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Beneficiados</b></font>
                 </div>
                         
-            </td>
-
-            <td valign="top">
-                <div>
-                    <?php include('../graficos/datos/dato2.php'); ?> 
-
-                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalGestiones[0] ?></h1></p>
-                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Gestiones educativas</b></font>
-                </div>
             </td>
         </tr>
         <tr>
@@ -170,9 +159,9 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
             <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_9[0]?></b></p>
 
             <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Marco Tulio:</b></font>
-            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_10[0]?></b
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $tipoCE_10[0]?></b></font>
 
-                <!--------------------------------Grafico de poblacion circular------------------------->                
+                <!-- ------------------------------Grafico de poblacion circular----------------------- -->                
                 <script>                
                     $(function () {
                     var canvasGrafico = $('#graficoInstitucionesTipo').get(0).getContext('2d')
@@ -302,61 +291,6 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     responsive           : true,
                     maintainAspectRatio  : true,
                     legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-                    }
-                        grafico.Pie(datosGrafico, opcionesGrafico) 
-                    })
-                </script>
-            </td>
-
-            <td valign="top"> 
-            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Gestiones por tipo</b></p></font>
-            <?php include('../graficos/datos/dato6.php'); ?> 
-            <div class="gMediano"><canvas id="graficoTiposGestion" ></canvas></div>
-
-            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Administrativas:</b></font>
-            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion1[0]?></b></p>
-
-            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Pedagógicas:</b></font>
-            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion2[0]?></b></p>
-
-            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Técnicas:</b></font>
-            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion3[0]?></b></p>
-                <!--------------------------------Grafico de poblacion circular------------------------->                
-                <script>                
-                    $(function () {
-                    var canvasGrafico = $('#graficoTiposGestion').get(0).getContext('2d')
-                    var grafico       = new Chart(canvasGrafico)
-                    var datosGrafico  = [
-                    {
-                        value    : <?php echo $gestion1[0] ?>,
-                        color    : '#FA58D0',
-                        highlight: '#FA58D0',
-                        label    : 'ADMINISTRATIVAS'
-                    },
-                    {
-                        value    : <?php echo $gestion2[0] ?>,
-                        color    : '#2E9AFE',
-                        highlight: '#2E9AFE',
-                        label    : 'PEDAGÓGICAS'
-                    },
-                    {
-                        value    : <?php echo $gestion3[0] ?>,
-                        color    : '#D7DF01',
-                        highlight: '#D7DF01',
-                        label    : 'TÉCNICAS'
-                    }]
-                    
-                    var opcionesGrafico     = {
-                    segmentShowStroke: true,
-                    responsive       : true,
-                    segmentStrokeColor: "#fff",
-                    segmentStrokeWidth: 2,
-                    percentageInnerCutout: 0, // This is 0 for Pie charts
-                    animationSteps: 100,
-                    animationEasing: "easeOutBounce",
-                    animateRotate: true,
-                    animateScale: false,
-                    legendTemplate       : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
                     }
                         grafico.Pie(datosGrafico, opcionesGrafico) 
                     })
@@ -543,8 +477,178 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                     })
             </Script>              
             </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 
-            <td valign="top">
+
+    <div class="container container-fluid">  
+    <table  class="table table-bordered"; style="background-color:#fff"; >
+        <thead>
+        <tr>
+            <th><p align="center"><b>PROYECTOS TECNOAPRENDER</b></p></th>
+            <th><p align="center"><b>GESTIONES</b></p></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+        <td>
+                <div>
+                    <?php include('../graficos/datos/dato9.php'); ?> 
+                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalIniciativas[0]?></h1></p>
+                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Proyectos TecnoAprender</b></font>
+                </div>
+        </td>
+        <td>
+        <div>
+                    <?php include('../graficos/datos/dato2.php'); ?> 
+
+                    <font size="3" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><h1 align="center"><b><?php echo $totalGestiones[0] ?></h1></p>
+                    <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b> Gestiones educativas</b></font>
+        </div>
+        </td>
+        </tr>
+
+
+            <tr>
+            <td valign="top"> 
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Proyectos por Tipo</b></p></font>
+            <?php require_once('../graficos/datos/datosProyectos.php'); ?> 
+            
+            <div class="gGigante"><canvas id="graficoProyectos" ></canvas></div>
+
+ <?php
+ $longitud = count($tipoProyecto);
+
+for($i=0; $i<$longitud; $i=$i+2)
+{
+
+            $nombreProyecto[] =  $tipoProyecto[$i + 1];
+            $cantProyecto[] =  $tipoProyecto[$i];
+           // echo $valores;
+?>
+            
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> <?php  echo $tipoProyecto[$i+1];?>:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo implode( ",", $tipoProyecto[$i] );?>  ---</b></p>
+
+
+<?php
+}
+?>
+                    
+                <!-- --------------------------------Grafico de proyectos------------------------->                
+                <script>                
+                    $(function () {
+                    var canvasGrafico = $('#graficoProyectos').get(0).getContext('2d')
+                    
+                    var grafico       = new Chart(canvasGrafico)
+                    
+                        var datosGrafico  = [
+
+                            <?php
+                                $longitud = count($nombreProyecto);                        
+                                for($i=0; $i<$longitud; $i++)
+                        {                              
+                            ?>
+                  
+                  {
+                        value    : <?php echo implode( ",", $cantProyecto[$i] ); ?>,
+                        color    : color= "#" + Math.floor(Math.random()*16777215).toString(16),
+                        highlight: color,
+                        label    : '<?php echo $nombreProyecto[$i];?>'
+                    },
+                    <?php }?>
+
+                   
+                   
+                    ]
+                    
+  
+
+                    var opcionesGrafico     = {
+                    segmentShowStroke: true,
+                    responsive       : true,
+                    segmentStrokeColor: "#fff",
+                    segmentStrokeWidth: 2,
+                    percentageInnerCutout: 0, // This is 0 for Pie charts
+                    animationSteps: 100,
+                    animationEasing: "easeOutBounce",
+                    animateRotate: true,
+                    animateScale: false,
+                   
+                    legendTemplate       : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                    }
+                        grafico.Pie(datosGrafico, opcionesGrafico) 
+                    })
+
+                    Chart.defaults.global.legend = { enabled: false};
+                </script>  
+            
+            </td>
+            
+            <td valign="top"> 
+            <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Gestiones por tipo</b></p></font>
+            <?php include('../graficos/datos/dato6.php'); ?> 
+            <div class="gGigante"><canvas id="graficoTiposGestion" ></canvas></div>
+
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Administrativas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion1[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Pedagógicas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion2[0]?></b></p>
+
+            <font size="2" face="Georgia, Arial" color="#585858"><p align="center"><b> Técnicas:</b></font>
+            <font size="2" face="Bookman Old Style, Book Antiqua, Garamond" color="#151515"><b><?php echo $gestion3[0]?></b></p>
+                <!--------------------------------Grafico de poblacion circular------------------------->                
+                <script>                
+                    $(function () {
+                    var canvasGrafico = $('#graficoTiposGestion').get(0).getContext('2d')
+                    var grafico       = new Chart(canvasGrafico)
+                    var datosGrafico  = [
+                    {
+                        value    : <?php echo $gestion1[0] ?>,
+                        color    : '#FA58D0',
+                        highlight: '#FA58D0',
+                        label    : 'ADMINISTRATIVAS'
+                    },
+                    {
+                        value    : <?php echo $gestion2[0] ?>,
+                        color    : '#2E9AFE',
+                        highlight: '#2E9AFE',
+                        label    : 'PEDAGÓGICAS'
+                    },
+                    {
+                        value    : <?php echo $gestion3[0] ?>,
+                        color    : '#D7DF01',
+                        highlight: '#D7DF01',
+                        label    : 'TÉCNICAS'
+                    }]
+                    
+                    var opcionesGrafico     = {
+                    segmentShowStroke: true,
+                    responsive       : true,
+                    segmentStrokeColor: "#fff",
+                    segmentStrokeWidth: 2,
+                    percentageInnerCutout: 0, // This is 0 for Pie charts
+                    animationSteps: 100,
+                    animationEasing: "easeOutBounce",
+                    animateRotate: true,
+                    animateScale: false,
+                    legendTemplate       : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                    }
+                        grafico.Pie(datosGrafico, opcionesGrafico) 
+                    })
+                </script>
+            </td>
+            
+        </tr>
+
+        <tr>
+        <td></td>
+        <td valign="top">
             <font size="3" face="Georgia, Arial" color="#585858"><p align="center"><b>Gestiones educativas por año y mes</b></p></font>   
                 <div class="caja">
                     <select onChange="mostrarResultadosG(this.value);">
@@ -556,22 +660,25 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                                     echo '<option value="'.$i.'">'.$i.'</option>';
                                 }
                             }
-                        ?>      |   "qwa    
-                        +-|"
+                        ?>     
                     </select>
                 </div>
                 <div class="gGrande"><canvas id="graficoGestiones"></canvas></div>
             <!--------------------------------------------------------------------------------->
                 <script>
                             $(document).ready(mostrarResultadosG(2020));  
+                            
                                 function mostrarResultadosG(year){
+                                    
                                     $('.resultadosGestiones').html('<canvas id="graficoGestiones"></canvas>');
+                                   
                                     $.ajax({
                                         type: 'POST',
                                         url: '../graficos/datos/dato1.php',
                                         data: 'year='+year,
                                         dataType: 'JSON',
                                         success:function(data){
+                                           // console.log("HOla");
                                             var Datos = {
                                                     labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'mayo','Junio','Julio','Agostp','Septiembre','Octubre','Noviembre','Diciembre'],
                                                     datasets : [
@@ -586,24 +693,31 @@ if(!isset($_SESSION["usuario"])){ //Si no ha iniciado sesión redirecciona a ind
                                                     ]
                                                 }
                                             var contexto = document.getElementById('graficoGestiones').getContext('2d');
+                                           
                                             window.Barra = new Chart(contexto).Bar(Datos, { responsive : true });
-                                            Barra.clear();
-                                        }
+                                           Barra.clear();
+                                        },
+                                        error: function() {
+                                            console.log("No se ha podido obtener la información");
+    }
+
+
                                     });
-                                    return false;
+                                    return true;
                                 }
                     </script>
         
             </td>
         </tr>
+       
         </tbody>
-    </table>
+        </table>
 </div>
-</tbody>
+
 <footer class="footer">
     <div >&copy; 2019 DRTE</div>
     <div >Departamento de Investigación, desarrollo e implementación</div>
 </footer>
-</tbody>
+</body>
 
 </html>

@@ -595,3 +595,40 @@
 [22-Jun-2020 18:04:49 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phptw99en' to '../../files/2020-06-22-18-04-49EscRogeliioFernndezRFG-0954PlantillaPerfildelCentroEducativoV22020.pdf' in /home/tecno/public_html/main_app/server/actualizar_main.php on line 80
 [22-Jun-2020 20:25:33 UTC] PHP Warning:  move_uploaded_file(../../files/2020-06-22-20-25-33875-PerfildelCentroEducativoliccostarica1.pdf): failed to open stream: No such file or directory in /home/tecno/public_html/main_app/server/actualizar_main.php on line 80
 [22-Jun-2020 20:25:33 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpICsv2X' to '../../files/2020-06-22-20-25-33875-PerfildelCentroEducativoliccostarica1.pdf' in /home/tecno/public_html/main_app/server/actualizar_main.php on line 80
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:33 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:20:34 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:20:34 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:20:35 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/consultas_generales.php on line 25
+[07-Sep-2021 15:20:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/consultas_generales.php on line 27
+[07-Sep-2021 15:23:41 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:23:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/actualizar_seccion.php on line 42
+[07-Sep-2021 15:24:12 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/actualizar_seccion.php on line 42
+[07-Sep-2021 15:24:18 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:24:24 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 52
+[07-Sep-2021 15:24:25 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_datos.php on line 54
+[07-Sep-2021 15:25:52 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:25:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/actualizar_seccion.php on line 48
+[07-Sep-2021 15:25:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/actualizar_seccion.php on line 52
+[07-Sep-2021 15:25:54 UTC] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/actualizar_seccion.php on line 52
+[07-Sep-2021 15:26:00 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:26:00 UTC] PHP Warning:  mysqli_connect(): (HY000/2002): No such file or directory in /home/tecno/public_html/main_app/server/conexion.php on line 11
+[07-Sep-2021 15:26:01 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_proyectos_tecnoaprender.php on line 28
+[07-Sep-2021 15:26:01 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/obtener_proyectos_tecnoaprender.php on line 30
+[07-Sep-2021 15:26:02 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/consultas_generales.php on line 25
+[07-Sep-2021 15:26:02 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/tecno/public_html/main_app/server/consultas_generales.php on line 27

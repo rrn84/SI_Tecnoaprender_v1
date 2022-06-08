@@ -67,6 +67,7 @@
       </div>
 </div> 
 <br>
+
     <div class="container">    
       <div class="row">
         <div class="col-12">
@@ -74,17 +75,51 @@
         </div>
       </div>
       
+
+<div class="alert alert-success">
+<div class="alert-heading">        
+
+
+      <p class="font-weight-bold">Seleccione el tipo de búsqueda</span>
+   
+
+<div class="mb-0">          
+<div class="custom-control custom-radio custom-control-inline">                   
+                    
+                    
+                      <input  class="form-check-input" type="radio" id="CentroE" name="tipoBusqueda" value="CE"
+                            checked>
+                      <label class="form-check-label" for="CentroE">Centro Educativo</label>
+                   
+
+                </div>
+                
+<div class="custom-control custom-radio custom-control-inline">                   
+                  
+                      <input  class="form-check-input" type="radio" id="DRegional" name="tipoBusqueda" value="DR">
+                      <label class="form-check-label" for="DRegional">Dirección Regional</label>
+                  
+
+                </div>
+
+</div>
+
+</div>    
+</div> 
+ 
+
       <div class="row">        
+
           <div class="col-sm-4 form-group">
             <div class="input-group input-group-sm">
               <div class="input-group-prepend">
-                <span class="input-group-text">Centro Educativo</span>
+                <span id = "tituloBusqueda" class="input-group-text">Centro Educativo</span>
               </div>
               <input id="form_idCE" name="form_idCE" type="text" name="miConsulta" class="form-control form-1" aria-label="Default" required placeholder="Escriba el nombre o cód presupuestario" >
             </div>
-          <div class="error"></div>
-      </div>
-          
+            <div class="error"></div>
+          </div>
+   
         
       <div class="col-sm-2">          
         <button id="btnCargar" type="button" class="btn btn-info m-1" alt = "Buscar" title="Buscar">Buscar <i class="fas fa-search"></i></button>
@@ -100,7 +135,7 @@
                         </div>
                         <div class="error"></div>
                     </div>
-        </div>
+ </div>
 
         <div class="row">
 
@@ -115,7 +150,7 @@
                     <div class="error"></div>
                   </div>
                    
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm-6 form-group">
                       <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
                           <span class="input-group-text">Teléfono  </span>
@@ -125,7 +160,16 @@
                     <div class="error"></div>
                   </div>
 
-                  <div class=" col-sm-4 form-group">
+        </div>
+ </div>
+
+<div class="container"> 
+  
+<form  id="form_asesoria"  name="form_asesoria">    
+
+          <div class="row">
+
+                 <div class=" col-sm-6 form-group">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Fecha de gestión</span>
@@ -133,14 +177,12 @@
                       <input id= "form_fecha" name= "form_fecha" type="date" class="form-control form-1" required placeholder="nombre.apellido.apellido@mep.go.cr">
                     </div>
                     <div class="error"></div>
-                </div>
-          </div>
-            
-          <div class="row">
+                  </div>
+
                 <div class="col-sm-6 form-group">
                   <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Tipo de gestión</span>
+                      <span class="input-group-text">Tipo de atención</span>
                     </div>
                     <select id ="form_medio" name="form_medio" class="form-control custom-select form-1" required>
                     <!-- <option value="default" selected>Seleccione...</option> -->
@@ -153,12 +195,15 @@
                     </select>
                   </div>
                   <div class="error"></div>
-                </div>           
+                </div>                           
+           </div>
 
-                <div class="col-sm-6 form-group">
+      <div class="row">
+
+                  <div class="col-sm-6 form-group">
                   <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Tipo de atención</span>
+                      <span class="input-group-text">Tipo de gestión</span>
                     </div>
                     <select id ="form_atencion" name="form_atencion" class="form-control custom-select form-1" required>
                       <!-- <option value="default" selected>Seleccione...</option> -->
@@ -169,177 +214,111 @@
                     </select>
                     </div>
                       <div class="error"></div>
-                    </div>  
-          </div>
-     <hr>      
-    </div>   
-    <br>
-<!-------------------------------------------Aqui comienza la segunda parte--------------------------------->
-    <div class="container">    
-      <div class="row">
-         <div class="col-12">
-             <span class="badge badge-secondary p-2">2.	Datos administrativos</span>        
-         </div>
+                </div> 
+
+                <div class="col-sm-6 form-group">
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Funcionario/Institución</span>
+                    </div>
+                    <select id ="form_Funcionario" name="form_Funcionario" class="form-control custom-select form-1" required>
+                      <option value="default" selected="true" disabled="disabled">Seleccione...</option>
+                      <option value="Director(a) de centro educativo">Director(a) de centro educativo</option>
+                      <option value="Docente">Docente</option>
+                      <option value="Director(a) Regional">Director(a) Regional</option>
+                      <option value="Jefe de asesoria pedagogica">Jefe de asesoría pedagógica</option>
+                      <option value="Asesor(a) pedagogico(a)">Asesor(a) pedagógico(a)</option>
+                      <option value="Junta de educacion/administrativa">Junta de educación/administrativa</option>
+                      <option value="Otro">Otros</option>
+                    </select>
+                  </div>
+                  <div class="error"></div>     
+                </div>
+
+                     
+        <div id = "Otros" class="col-sm-6 form-group">
+            <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Especifique</span>
+        </div>
+        <input id="otros_especif" name="otros_especif" type="text"  class="form-control form-1" aria-label="Default" required placeholder="Especifique el dato" >
       </div>
-    
-      <div class="row">
+    <div class="error"></div>
+      
+        </div>  
+                
+  </div>
+     <hr>         
+    <br>
+      <!--------------------------------------------Aqui comienza la segunda parte-------------------------------->              
+<div class="container">    
+    <div class="row">
+      <div class="col-12">
+          <span class="badge badge-secondary p-2">2.	Proyectos TecnoAprender </span>        
+      </div>
+    </div>
+
+               <!--Objetivos -->
+              <div class="row">
           <div class="col-sm-8 form-group">
               <div class="input-group input-group-sm">
                  
-                  <div class="col-sm-3" >
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkfonatel" name="chkfonatel" readonly disabled="false">
-                        <label class="custom-control-label" for="chkfonatel">MEP-Fonatel</label>
+              <div id="proyectosCE">
+                <div id="proyectosList">
+                    <div class="row" >
+                    <?php 
+                          require_once('../server/obtenerProyectos.php');
+                          $contFilas=0;
+                          foreach ($r as $value) {
+                          ?>
+                      <div class="col-sm-3" >
+                        <div class="custom-control custom-checkbox">
+                                              
+                          <input type="checkbox" disabled="disabled" class="custom-control-input form-2" id="<?php echo ($value['id']) ?>" name="<?php echo ($value['id']) ?>" readonly disabled="false">
+                          <label class="custom-control-label" for="<?php echo ($value['id']) ?>"><?php echo ($value['nombre']) ?></label>
+
+                         
+                        </div>
                       </div>
+
+                      <?php 
+
+                            $contFilas++;
+                            if ($contFilas== 4){?>
+
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                            <?php
+                            $contFilas=0;
+                            }
+                          }
+                          ?>
                     </div>
-                  
-                  <div class="col-sm-3" >
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chktransferencia" name="chktransferencia" readonly disabled="false">
-                        <label class="custom-control-label" for="chktransferencia">Transferencia</label>
-                      </div>   
-                  </div>
-
-                  <div class="col-sm-3" >
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkconectandonos" name="chkconectandonos" readonly disabled="false">
-                        <label class="custom-control-label" for="chkconectandonos">Conectándonos</label>
-                      </div>                  
-                  </div>
-
-                  <div class="col-sm-3" >
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input form-1 chk-equipamiento" id="chkdonacion" name="chkdonacion" readonly disabled="false">
-                        <label class="custom-control-label" for="chkdonacion">Donación</label>
-                      </div>
-                  </div>
-
+                    </div>
+                  <br>  
+                <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Seleccione el proyecto a gestionar</span>
+                    </div>
+                    <select id ="form_Proyectos" name="form_Proyectos" class="form-control custom-select form-1" required>
+                      
+                    </select>
+                  </div> 
+                </div>
               </div>
-              <div class="error"></div>
+
+                  </div>
           </div>
-        </div>
-
-        <div class="row">
-              <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Estado actual del equipo</span>
-                    </div>
-                    <select id ="form_eequipo" name="form_eequipo" class="form-control custom-select form-1" readonly disabled="true">
-                      <!-- <option value="default" selected>Seleccione...</option> -->
-                        <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                        <option value="1">EXCELENTE</option>
-                        <option value="2">BUENO</option>
-                        <option value="3">REGULAR</option>
-                        <option value="4">MALO</option>
-                    </select>
-                  </div>
-                  <div class="error"></div>
-                </div>           
-      </div>
-      <br>
-<!------------------------------------------------SI/NO---------------------------------------------------------->     
-      <div class="row">
-          <div class="col-sm-4 form-group">
-            <div class="input-group input-group-sm">
-               <div class="input-group-prepend">
-                  <span class="input-group-text">¿Está plaqueado el equipo?  </span>
-               </div>
-               <select id ="form_plaq" name="form_plaq" class="form-control custom-select form-1" readonly disabled="false">
-               <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="1">Si</option>
-                  <option value="2">No</option>
-                </select>
-              </div>
-              <div class="error"></div>
-          </div> 
-
-          <div class="col-sm-4 form-group">
-            <div class="input-group input-group-sm">
-               <div class="input-group-prepend">
-                  <span class="input-group-text">¿Posee protocolo de uso?  </span>
-               </div>
-               <select id ="form_protocolo" name="form_protocolo" class="form-control custom-select form-1" readonly disabled="false">
-               <!-- <option value="default" selected>Seleccione...</option> -->
-                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="1">Si</option>
-                  <option value="2">No</option>
-                </select>
-            </div>
-            <div class="error"></div>
           </div>
+          </div>
+          
+  <hr>
+</div>
 
-          <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">¿Requiere soporte? </span>
-                    </div>
-                    <select id ="form_soporte" name="form_soporte" class="form-control custom-select form-1" readonly disabled="false">
-                    <!-- <option value="default" selected>Seleccione...</option> -->
-                      <option value="default" selected="true" disabled="disabled">Seleccione...</option>
-                      <option value="1">Si</option>
-                      <option value="2">No</option>
-                    </select>
-                  </div>
-                <div class="error"></div>
-              </div> 
-      </div> 
-      <br>
-      
-      <div class="row">
-
-                <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Estado de la instalación eléctrica</span>
-                    </div>
-                    <select id ="form_einstalacione" name="form_einstalacione" class="form-control custom-select form-1" readonly disabled="true">
-                      <option value="0" selected>Seleccione</option>
-                      <option value="1">Pésimo</option>
-                      <option value="2">Malo</option>
-                      <option value="3">Regular</option>
-                      <option value="4">Bueno</option>
-                      <option value="5">Excelente</option>
-                    </select>
-                  </div>
-                  <div class="error"></div>
-                </div>       
-
-                <div class="col-sm-4 form-group">
-                  <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                     <span class="input-group-text" for="form_pcorriente">¿Están polarizados los tomacorrientes?</span>
-                    </div>
-                    <select id ="form_pcorriente" name="form_pcorriente" class="form-control custom-select form-1" readonly disabled="false">
-                      <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                      <option value="1">Si</option>
-                      <option value="2">No</option>
-                    </select>
-                </div>
-                <div class="error"></div>
-              </div>
-
-              <div class="col-sm-4 form-group">
-              <div class="input-group input-group-sm">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" for="form_aire_a">¿Cuenta con aire acondicionado?</span>
-                </div>
-                <select id ="form_aire_a" name="form_aire_a" class="form-control custom-select form-1" readonly disabled="false">
-                  <option value="0" selected="true" disabled="disabled">Seleccione...</option>
-                  <option value="1">Si</option>
-                  <option value="2">No</option>
-                </select>
-                </div>
-                <div class="error"></div>
-            </div> 
-        </div> 
-      <hr>  
-      </div>
-      </div>
-      </div>
-      <br>
-<!--------------------------------------------Aqui comienza la tercera parte-------------------------------->              
+<!--------------------------------------------Aqui comienza la terecera parte-------------------------------->              
 <div class="container">    
     <div class="row">
       <div class="col-12">
@@ -347,7 +326,7 @@
       </div>
     </div>
 
-    <form  id="form_asesoria" name="form_asesoria" >
+ 
               <!--Objetivos -->
         <div class="row">
                 <div class="col-12">
@@ -368,7 +347,7 @@
           <span class="badge badge-secondary p-2">4.	Observaciones y recomendaciones </span>        
       </div>
     </div>
-    <form  id="form_asesoria" name="form_asesoria" >
+ 
               <!--Objetivos -->
 
               <div class="row">
@@ -431,9 +410,11 @@
                 <button id="btn_asesorias" name ="form-1" type="submit" class="btn btn-enviar form-1" alt = "Guardar" title="Guardar"><i class='fas fa-save' style='font-size:40px'></i></button>
               </div>
               <div class="error"></div>
-    </form>
     
-  </div>
+    
+        </div>
+ </form>
+ </div>
 
   <div class="div-shadow invisible">
       <img class="img-ajax-loading" src="../../images/ajax-loader.gif" alt="Loading">
@@ -449,7 +430,7 @@
           var codigo = '<?php echo $codigo;?>'
           var id = '<?php echo $id;?>'
           var completo = "(COD: "+codigo+") -"+nombre+"- [ID: "+id+"]";
-          console.log(completo);
+          //console.log(completo);
           $("#miConsulta").val(completo);
           setTimeout(
               function() 

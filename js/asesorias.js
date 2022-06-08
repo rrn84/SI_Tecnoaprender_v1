@@ -3,8 +3,24 @@
 var correoUser;
 var regional; //variable para llamar regionales//
 var llevaArchivo = "false";
+var listaProyectos;
+var tipoBusqueda = 1;
 
 $(document).ready(function () {
+  ocultarElementosFormulario();
+  $('#Otros').hide(); 
+  $("#btn_asesorias").prop("disabled", true);
+  
+  $('#form_Funcionario').on('change', function (){
+    var funcionarioS= $('select[id=form_Funcionario]').val();
+    if (funcionarioS=="Otro"){
+      $('#Otros').show(); 
+    }else {
+      $('#Otros').hide(); 
+    }
+});
+
+  
           eventoCargarDatosIntitucion(); //llama al procedimiento que esta al final
           $.extend($.validator.messages, {
             required: "Campo requerido"
@@ -30,14 +46,52 @@ $(document).ready(function () {
 
           let consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
           enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php"); 
+
+          $("input[name=tipoBusqueda]").change(function(){
+            if ($("input[name='tipoBusqueda']:checked").val() == 'CE') {
+              tipoBusqueda = 1;
+              document.getElementById("tituloBusqueda").innerText = "Centro Educativo";
+              consSelect = 'SELECT id, cod_pres, institucion FROM centro_educativo ORDER BY cod_pres';
+              
+          }else {
+            tipoBusqueda = 2;
+            document.getElementById("tituloBusqueda").innerText = "Dirección Regional";
+            consSelect = 'SELECT id, nombre FROM direcciones_regionales ORDER BY id';
+          }
+          $("input[name=form_idCE]").val("");
+          $("input[name=form_DRegional]").val("");
+          $("input[name=form_telefonoI]").val("");
+          
+          enviarFormDataAjax2( empaquetarConsulta(consSelect), cargarCentrosEducativos, "../server/consultas_generales.php"); 
+          });
+
+ 
+
+      
   });
+
   
+  function ocultarElementosFormulario(){
+    $('#form_asesoria select').attr("disabled", "enabled");
+    $('#form_asesoria textarea').attr("disabled", "disabled");
+    $('#form_asesoria input').attr("disabled", "disabled");
+  }
+
+  function mostrarElementosFormulario(){
+    $("input").removeAttr("disabled");
+    $("textarea").removeAttr("disabled");
+    $("select").removeAttr("disabled");
+  }
+
   function saveSession() {
     let tipo = sessionStorage.getItem("tipo");
     correoUser = sessionStorage.getItem("correo");
     $("#divInicio").html('<a href="../server/login/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>')
     $("#divUsuario").html('<i class="fas fa-user-alt"></i><span class="usuario"> Usuario: </span>'+correoUser)
   }
+
+
+  
 
   function validacionyEnvioForm() {
       // Validación Formulario de Información General y llamado para INSERT O UPDATE
@@ -46,34 +100,11 @@ $(document).ready(function () {
       $("form").on("submit", function(event) {
             event.preventDefault();
       });
-      $.validator.addMethod("valueNotEquals", function(value, element, arg){
-        //console.log("avalue", value,"arg", arg);        
-        return arg !== value;
-        }, "Inserta el nombre");
-    
-      form.validate({
-        rules: { 
-          form_medio : {
-            required: true,
-            valueNotEquals: "default",
-          },
-        },
-        messages: {
-            form_medio : {
-              required: 'Por favor selecciona un medio de visita',
-              valueNotEquals: "Por favor selecciona un medio de visita"
-              },
-          },
-          errorPlacement: function(error, element) {
-              if ( element.is(":input")) {
-                  error.appendTo(element.parent("div").next("div"));
-                }
-                else { // This is the default behavior of the script for all fields
-                    error.insertAfter( element );
-                }
-            }
-         });
+
+     
+
         $("#btn_asesorias").click(function () {
+          
           if(form.valid()=== true){ 
            console.log("formulario valido");
                         
@@ -91,20 +122,24 @@ $(document).ready(function () {
 //--------------------Obtener ID CE a mostrar--------------//
 function obtenerIdCe() 
 {
+  try {
   //Obtiene el id del string centro educativo
-  let str =  $("#form_idCE").val().split("[");             
-  let res = str[1].slice(4);
+  let str =  $("#form_idCE").val().split("[");         
+  let res = str[1].slice(4);   
   let idCe = res.slice(0, -1).trim();
-  //console.log(idCe);  
+  
   return idCe;
+  }
+  catch (e) {
+    alertify.alert('Gestión Educativa','Seleccione un código de centro educativo correcto');
+  }
 }
 
 //---------------------Agrega la asesoría a la tabla------------------//
 function agregarAsesoria() {
   //Verifica si hay archivo adjunto
   verificarArchivo();
-
-  //Inicia el ajax loader 
+     //Inicia el ajax loader 
   $(".div-shadow").removeClass("invisible");
 
   const idCe = obtenerIdCe();
@@ -117,14 +152,23 @@ if (observacionesRegional.length == 0)
 }
   let objFile = $("#form_url_file");
   let formData = new FormData();
+  let funcionarioS =  $("#form_Funcionario").val();
   
   formData.append("id_CE", idCe );  
   formData.append("correo_asesor", $("#form_correoAsesor").val() );  
-  formData.append("fecha", $("#form_fecha").val() ); 
+  formData.append("fecha", $("#form_fecha").val() );
+  formData.append("tipo_visita", tipoBusqueda);
   formData.append("medio_visita", $("#form_medio").val() );
   formData.append("tipo_atencion", $("#form_atencion").val() );
   formData.append("adquisicion_E", $("#form_adquisicion").val() );
 
+  if (funcionarioS=="Otro"){
+  formData.append("funcionario", $("#otros_especif").val() );
+  }else {
+    formData.append("funcionario", funcionarioS );
+  }
+
+  formData.append("proyecto_id", $("#form_Proyectos").val() );
   formData.append("objetivos", $("#form_objetivos").val() );
   formData.append("observaciones", $("#form_observaciones").val() );
   formData.append("recomendacion_asesor", $("#form_recomendaciones").val() );
@@ -176,13 +220,14 @@ function selectMediador ()
 
 function empaquetarConsulta(c) 
 { 
-        var formData = new FormData();               
+        var formData = new FormData();            
         formData.append("consulta", c );
+       // console.log("Esto es aquí", formData);   
         return formData;
 }
 
 function enviarFormDataAjax2  ( formData, mCallBack,  url) { 
-    
+    //console.log("Si". url);
   $.ajax({
     url: url,
     type: 'POST',
@@ -192,9 +237,9 @@ function enviarFormDataAjax2  ( formData, mCallBack,  url) {
     contentType: false,
     processData: false,
     beforeSend: function(){
-    console.log("En proceso");    
+   // console.log("En proceso");    
     }, success: function(response){
-      console.log("Enviado satisfactoriamente");
+      //console.log("Enviado satisfactoriamente");
       //console.log(response);
       mCallBack(response);      
 
@@ -216,31 +261,44 @@ function cargarCentrosEducativos(stringArray)
   // console.log(dataset);    
   //Renderiza el formulario de acuerdo al valor seleccionado por el usuario:
   const maxCentros = data.length;
+  if (tipoBusqueda == 1){
   for (var index = 0; index < maxCentros; index++) 
   { 
     availableCentros.push( "(COD: " + data[index].cod_pres + ") -"+    data[index].institucion    +  "- [ID: " + data[index].id  + "]");
   }
+}else {
+  for (var index = 0; index < maxCentros; index++) 
+  { 
+    availableCentros.push( "(REGIONAL: "+    data[index].nombre    +  "- [ID: " + data[index].id  + "]");
+  }
+}
+
+ 
   $( "#form_idCE").autocomplete(
   {
     source: availableCentros
+    
   });
 }
 
 //-------------------------------------------------------//
 //-------------Metodo manejador de Eventos---------------//
 function eventoCargarDatosIntitucion()
-{
- var  i=0, tmp, tmp2;
- 
-    console.log("eventoClic2");      
+{ 
+         
     $("#btnCargar").click(function () 
     {
+
       const idCe = obtenerIdCe();
 
-      console.log("CE",idCe);  
-      obtenerJson ("../server/obtener_datos_gestion.php?idCe="+idCe, function (arrayJson) 
+      $("#form_asesoria input[type=checkbox]").prop("checked", false); 
+
+     // console.log("CE",idCe);  
+     if (tipoBusqueda==1){
+      obtenerJson ("../server/obtener_datos_gestion.php?tipo=1&idCe="+idCe, function (arrayJson) 
       {
-        console.log("Datos",arrayJson[0]);
+       
+       // console.log("Datos",arrayJson[0]);
         $("#form_telefonoI").val(arrayJson[0].telefono);
         $("#form_DRegional").val(arrayJson[0].direccion_regional);
         $("#form_pcorriente").val(arrayJson[0].tomas);
@@ -249,73 +307,141 @@ function eventoCargarDatosIntitucion()
         $("#form_protocolo").val(arrayJson[0].protocolo_equipo);
         $("#form_aire_a").val(arrayJson[0].aire_acondicionado);
 
-        //---------------se consulta el valor del campo de equipamiento------------------//
-         if (arrayJson[i].equipamiento != "") 
-         {
-         tmp = JSON.parse( arrayJson[i].equipamiento );
-         console.log("tmp:",tmp);   
-
-         for (let index = 0; index < tmp.length; index++) 
-         {
-             let tmpChk =  document.getElementById( tmp[index].id );
-             tmpChk.checked = tmp[index].chk;  
-              
-             if (tmpChk.checked == true)
-             { 
-               tmp2 = tmpChk.name;
-               console.log("tmp2:",tmp2);
-               switch (tmp2) 
-               {
-
-                case "chkfonatel":
-                console.log("FONATEL");
-                    obtenerJson2 ("../server/obtener_datos_equipo_fonatel.php?idCe="+idCe, function (arrayJson2)
-                    { 
-                      console.log("Datos:",arrayJson2[0]);
-                      $("#form_soporte").val(arrayJson2[0].requiere_soporte);
-                      $("#form_eequipo").val(arrayJson2[0].fonatel_estado); 
-                    });
-                   break;
-
-                 case "chktransferencia":
-                   console.log("TRANSFERENCIA");
-                   obtenerJson2 ("../server/obtener_datos_equipo_transferencia.php?idCe="+idCe, function (arrayJson2)
-                   { 
-                     console.log("Datos:",arrayJson2[0]);
-                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
-                     $("#form_eequipo").val(arrayJson2[0].transferencia_estado); 
-                   });
-                  break;
-                 case "chkconectandonos":
-                   console.log("CONECTANDONOS");
-                   obtenerJson2 ("../server/obtener_datos_equipo_conectandonos.php?idCe="+idCe, function (arrayJson2)
-                   { 
-                     console.log("Datos:",arrayJson2[0]);
-                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
-                     $("#form_eequipo").val(arrayJson2[0].conectandonos_estado); 
-                   });
-                  break;
-                 case "chkdonacion":
-                   console.log("DONACION");
-                   obtenerJson2 ("../server/obtener_datos_equipo_donacion.php?idCe="+idCe, function (arrayJson2)
-                   { 
-                     console.log("Datos:",arrayJson2[0]);
-                     $("#form_soporte").val(arrayJson2[0].requiere_soporte);
-                     $("#form_eequipo").val(arrayJson2[0].donacion_estado); 
-                   });
-                  break;
-               }
-             }         
-         }
-       }
-       else
-       {
-         console.log("esta vacío equipamiento");        
-       }
-      //----------------------------------------------------------------------------------//
       });
+    }else {
+      
+      obtenerJson ("../server/obtener_datos_gestion.php?tipo=2&idCe="+idCe, function (arrayJson) 
+      {
+       
+        $("#form_DRegional").val(arrayJson[0].nombre);
+        $("#form_telefonoI").val(arrayJson[0].telefono);
+
+      });
+    }
+
+      $('option', '#form_Proyectos').remove();
+      
+      $('#form_Proyectos').append($('<option>', {
+        value: "default",
+        text: "Seleccione...",
+        selected: true,
+        disabled: "disabled"
+      }));
+
+      cargaFormProyectos(idCe);
+      mostrarElementosFormulario();
     })  
+
+ 
 }
+
+function cargaProyectos(mCallBack,codigoP) {
+
+  let tabla="iniciativas",
+      url= "../server/obtener_datos.php?tipo=0&id="+codigoP+"&tabla="+tabla; 
+
+      fetch( url)
+      .then(response => response.json())
+      .then(data => { 
+        
+        mCallBack (data);            
+      })
+      .catch( 
+        error => {
+          // aquí
+          console.error(error)
+        })   
+      
+}
+
+
+function renderizarProyectos(data) {
+  if(data.length !== 0)   {
+             
+      $('#form_Proyectos').append($('<option>', {
+        value: data[0].id,
+        text: data[0].nombre
+      }));
+
+  }
+};
+
+function renderizarProyectosRegionales(data) {
+
+  var proyecto=[];
+     
+  if(data.length !== 0)   {
+    
+    $.each(data, function(i, field){
+      proyecto.push(field);  
+      
+      $('#form_Proyectos').append($('<option>', {
+        value: proyecto[i].id,
+        text: proyecto[i].nombre
+      }));    
+    });
+
+    $("#btn_asesorias").prop("disabled", false);
+
+  }else {
+    $("#btn_asesorias").prop("disabled", true);
+  }
+};
+
+function cargaFormProyectos(codigoCE) {
+  let tabla="proyectos", url
+  // llena el formulario2 Proyectos
+  if (tipoBusqueda==1){
+    $('#proyectosList').show(); 
+    url= "../server/obtener_datos.php?tipo=0&id="+codigoCE+"&tabla="+tabla;  
+    cargarJsonProyectos(renderizarFormProyectos, url);
+  }else {
+    $('#proyectosList').hide(); 
+    tabla="iniciativas"
+    url= "../server/obtener_datos.php?tipo=2&id="+codigoCE+"&tabla="+tabla;  
+    cargarJsonProyectos(renderizarProyectosRegionales, url);
+  }
+      //console.log("esto es", url);
+
+}
+
+
+function renderizarFormProyectos(data) {
+  var proyecto=[];
+
+  if(data.length !== 0)   {
+    $.each(data, function(i, field){
+      proyecto.push(field);  
+      
+      let id_iniciativa = proyecto[i].id_iniciativa;
+      $("#"+id_iniciativa+"").prop("checked", true);
+      cargaProyectos(renderizarProyectos,id_iniciativa);     
+    });
+
+    $("#btn_asesorias").prop("disabled", false);
+  }
+  else {
+     alertify.alert('Gestión Educativa','Es necesario actualizar los proyectos TecnoAprender del centro educativo');
+     $("#btn_asesorias").prop("disabled", true);
+  }
+ 
+  //formaBotonEnviar(formulario,registros);
+};
+
+function cargarJsonProyectos ( mCallBack,url  ) {
+ 
+  fetch( url)
+         .then(response => response.json())
+         .then(data => { 
+
+             mCallBack (data);                
+         })
+         .catch( 
+           error => {
+             // aquí
+             console.error(error)
+           })                 
+};
 
 //----------------------------------//
 //function renderizarEquipamientoFonatel(data, accion)
